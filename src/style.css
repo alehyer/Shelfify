@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* can toggle */
+.login-body {
+    background-color: #F9EFED;
+}
+
+.login-container {
+    background-color: #F9EFED;
+    width: 70vw;
+    height: 75vh;
+    margin: 10vh auto;
+    padding: 1em;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-logo { 
+    width: 20vw;
+    height: auto;
+    margin: 1em 0;
+}
+
+.login-h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-inputText {
+    width: 60vw;
+    padding: 1em;
+    margin-top: 1em;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-inputText:focus {
+    outline: none; 
+}
+
+.login-button {
+    width: 40vw;
+    padding: 1em;
+    margin-top: 2.5em;
+    border: none;
+    border-radius: 20px;
+    background-color: #BC7B63;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none;
+}
+
+.login-note {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    font-size: 0.8rem;
+    
+}
+
+.login-note p {
+    max-width: 200px; 
+    margin-left: 0.5em;
+}
+
+.login-note a {
+    margin-right: 0.5em;
+}
+
+
+/* For tablets */
+@media only screen and (min-width: 600px) {
+    .login-logo {
+        width: 20vw; 
+    }
+
+    .login-h1 {
+        font-size: 2.5rem;
+    }
+
+    .login-inputText {
+        width: 50vw;
+        font-size: 1.2rem;
+    }
+
+    .login-button {
+        width: 35vw;
+        font-size: 1.2rem;
+    }
+
+    .login-note {
+        font-size: 0.9rem;
+    }
+
+    .login-note p {
+        max-width: 250px; 
+    }
+}
+
+/* For desktops */
+@media only screen and (min-width: 900px) {
+    .login-logo {
+        width: 10vw;
+    }
+
+    .login-h1 {
+        font-size: 3rem;
+    }
+
+    .login-inputText {
+        width: 35vw;
+        font-size: 1.3rem;
+    }
+
+    .login-button {
+        width: 25vw;
+        font-size: 1.3rem;
+    }
+
+    .login-note {
+        font-size: 1rem;
+    }
+
+    .login-note p {
+        max-width: none; 
+    }
+} 
