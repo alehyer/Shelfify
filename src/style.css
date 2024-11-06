@@ -1,0 +1,127 @@
+/* Importing Fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Defining Colors */
+
+:root {
+    --primaryBackground: #dde6ed;
+    --secondaryBackground: #27374d;
+    --tertiaryBackground: #526d82;
+    --primaryText: #27374d;
+    --secondaryText: #9db2bf;
+}
+
+/* Main styles */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: var(--primaryText);
+    background-color: var(--primaryBackground);
+    font-family: "Poppins", serif;
+    font-weight: 500;
+}
+
+menu {
+    display: flex;
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
+    height: 4rem;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.logo {
+    margin-left: 2rem;
+}
+
+menu li {
+    list-style: none;
+    margin-right: 2rem;
+    transition: color 0.3s ease-out;
+    cursor: pointer;
+}
+
+menu li:hover {
+    color: var(--secondaryText);
+}
+
+.right-group {
+    display: flex;
+    margin-left: auto;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+button {
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
+    font-family: "Poppins", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: none;
+    padding: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: 3rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: color 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+}
+
+button:hover {
+    color: var(--secondaryText);
+    box-shadow: 0 0 1rem #00000075;
+}
+
+/* Home Page */
+
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+
+.home-page > * {
+    margin-bottom: 2rem;
+}
+
+.navigation-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navigation-cards > * {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30rem;
+    height: 30rem;
+    background-color: var(--tertiaryBackground);
+    border-radius: 2rem;
+}
+
+.cards button {
+    color: var(--secondaryText);
+    align-self: center;
+    width: 15rem;
+}
+
+.cards button:hover {
+    color: var(--primaryBackground);
+}
