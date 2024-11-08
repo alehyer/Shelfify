@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // admin account
         if (id === "123" && password === "abc") {
-            window.location.href = `index.html`;
+            window.location.href = `../pages/home.html`;
         } else {
             alert("Incorrect ID or password.");
         }
