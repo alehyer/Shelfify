@@ -4,25 +4,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.getElementById('login-button').addEventListener('click', function() {
-        const idElement = document.getElementById('librarian-id');
-        const passwordElement = document.getElementById('librarian-password');
+        const id = document.getElementById('librarian-id').value.trim();
+        let password = document.getElementById('librarian-password').value.trim();
         
-        const id = idElement.value.trim();
-        let password = passwordElement.value.trim();
-    
-        if (id === "" || password === "") {
+        if (!id) {
+            document.getElementById('librarian-id').classList.add('invalid-input');
+        }
+        if (!password) {
+            document.getElementById('librarian-password').classList.add('invalid-input');
+        }
+
+        if (!id || !password) {
             alert("Please fill in all required fields.");
             return;
         }
         
-        // admin account
+        // demo account
         if (id === "123" && password === "abc") {
             window.location.href = `../pages/home.html`;
         } else {
             alert("Incorrect ID or password.");
+            document.getElementById('librarian-id').classList.add('invalid-input');
+            document.getElementById('librarian-password').classList.add('invalid-input');
         }
 
-        passwordElement.value = "";
+        // reset password 
+        document.getElementById('librarian-password').value = "";
     });
+
+    document.getElementById('librarian-id').addEventListener('input', function() {
+        if (this.value.trim()) {
+            this.classList.remove('invalid-input');
+        }
+    })
+
+    document.getElementById('librarian-password').addEventListener('input', function() {
+        if (this.value.trim()) {
+            this.classList.remove('invalid-input');
+        }
+    })
 });
 

@@ -137,11 +137,12 @@ button:hover {
     width: 70vw;
     height: 75vh;
     margin: 10vh auto;
-    padding: 1em;
+    padding: 1rem;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* background-color: white; */
 }
 
 .login-logo { 
@@ -152,7 +153,7 @@ button:hover {
 
 .login-h1 {
     font-size: 2rem;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.5rem;
 }
 
 .input-container {
@@ -163,8 +164,8 @@ button:hover {
 
 .login-inputText {
     width: 60vw;
-    padding: 1em;
-    margin-top: 1em;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
     border: none;
     border-radius: 20px;
     font-size: 1rem;
@@ -177,17 +178,20 @@ button:hover {
 
 .login-button {
     width: 40vw;
-    padding: 1em;
-    margin-top: 2.5em;
+    padding: 1.5rem;
+    margin-top: 3rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 3rem;
     background-color: var(--tertiaryBackground);
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
     text-align: center;
     text-decoration: none;
+}
+
+.login-button:hover {
+    color: var(--primaryBackground);
 }
 
 .login-note {
@@ -201,11 +205,11 @@ button:hover {
 
 .login-note p {
     max-width: 200px; 
-    margin-left: 0.5em;
+    margin-left: 0.5rem;
 }
 
 .login-note a {
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
 }
 
 /* For tablets */
@@ -265,3 +269,71 @@ button:hover {
         max-width: none; 
     }
 } 
+
+
+/* Book Registration Page */
+
+.bookRegistration-container {
+    background-color: var(--tertiaryBackground);
+    width: 70vw;
+    margin: 10vh auto;
+    padding: 1rem;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookRegistration-container h1 {
+    color: var(--primaryBackground);
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 4rem;
+}
+
+.bookRegistration-table {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    color: var(--primaryBackground);
+    border-spacing: 3rem 2rem;
+}
+
+.bookRegistration-inputText {
+    width: 30vw;
+    padding: 1rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.bookRegistration-inputText:focus {
+    outline: none;
+}
+
+.bookRegistration-dropdown {
+    width: 12vw;
+
+}
+
+.bookRegistration-addBtn {
+    background-color: var(--primaryBackground);
+    color: var(--tertiaryBackground);
+    margin-top: 2rem;
+    margin-bottom: 1.3rem;
+}
+
+.bookRegistration-addBtn:hover {
+    color: var(--primaryText);
+}
+
+/* Red outline for invalid inputs */
+.invalid-input {
+    outline: 2px solid #ff4d4d;
+}
+
+/* No outline for valid inputs */
+.valid-input {
+    outline: none;
+}
