@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <script src="../src/addBooks.js"></script>
+    <title>Shelfify</title>
+  </head>
+  <body>
+    <menu>
+      <li class="logo redirect-home">Shelfify</li>
+      <div class="right-group">
+        <li class="redirect-home">Home</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+        <li>Profile</li>
+      </div>
+    </menu>
+
+    <div class="bookRegistration-container" id="bookDetail-panel">
+      <h1>Book Registration</h1>
+
+      <div class="input-container">
+        <table class="bookRegistration-table">
+          <tr>
+            <td>Book Title</td>
+            <td>
+              <form>
+                <input type="text" placeholder="e.g. Harry Potter and the Philosopher's Stone" class="bookRegistration-inputText" id="book-title" />
+              </form>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Author</td>
+            <td>
+              <form>
+                <input type="text" placeholder="e.g. J. K. Rowling" class="bookRegistration-inputText" id="book-author" />
+              </form>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Publisher</td>
+            <td>
+              <form>
+                <input type="text" placeholder="e.g. Bloomsbury" class="bookRegistration-inputText" id="book-publisher" />
+              </form>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Category</td>
+            <td>
+              <form>
+                <select size="1" name="category" id="book-category" class="bookRegistration-inputText bookRegistration-dropdown">
+                  <option>Select a Category</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Biography">Biography</option>
+                  <option value="Classics">Classics</option>
+                  <option value="Fantasy">Fantasy</option>
+                  <option value="Historica Fiction">Historical Fiction</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Mystery">Mystery</option>
+                  <option value="Non-Fiction">Non-Fiction</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Science Fiction">Science Fiction</option>
+                  <option value="Self-Help">Self-Help</option>
+                  <option value="Thriller">Thriller</option>
+                </select>
+              </form>
+            </td>
+          </tr>
+        </table>
+
+        <button class="login-button bookRegistration-addBtn" id="addBook-btn">Add Book</button>
+      </div>
+    </div>
+
+    <!-- add a display: none confirmation panel when user clicked on the add book button. -->
+    <div id="confirmation-panel" style="display: none">
+      <p>test</p>
+    </div>
+  </body>
+</html>

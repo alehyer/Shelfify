@@ -1,0 +1,425 @@
+/* Importing Fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Defining Colors */
+
+:root {
+  --primaryBackground: #dde6ed;
+  --secondaryBackground: #27374d;
+  --tertiaryBackground: #526d82;
+  --primaryText: #27374d;
+  --secondaryText: #9db2bf;
+}
+
+/* Main styles */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--primaryText);
+  background-color: var(--primaryBackground);
+  font-family: "Poppins", serif;
+  font-weight: 500;
+}
+
+menu {
+  display: flex;
+  background-color: var(--secondaryBackground);
+  color: var(--primaryBackground);
+  height: 4rem;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.logo {
+  margin-left: 2rem;
+}
+
+menu li {
+  list-style: none;
+  margin-right: 2rem;
+  transition: color 0.3s ease-out;
+  cursor: pointer;
+}
+
+menu li:hover {
+  color: var(--secondaryText);
+}
+
+.right-group {
+  display: flex;
+  margin-left: auto;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+button {
+  background-color: var(--secondaryBackground);
+  color: var(--primaryBackground);
+  font-family: "Poppins", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border: none;
+  padding: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  border-radius: 3rem;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition: color 0.3s ease-out, box-shadow 0.3s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  color: var(--secondaryText);
+  box-shadow: 0 0 1rem #00000075;
+}
+
+/* Home Page */
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+
+.home-page > * {
+  margin-bottom: 2rem;
+}
+
+.navigation-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navigation-cards > * {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
+  height: 30rem;
+  background-color: var(--tertiaryBackground);
+  border-radius: 2rem;
+}
+
+.cards button {
+  color: var(--secondaryText);
+  align-self: center;
+  width: 15rem;
+}
+
+.cards button:hover {
+  color: var(--primaryBackground);
+}
+
+/* Login Page */
+
+.login-body {
+  background-color: var(--primaryBackground);
+}
+
+.login-container {
+  width: 70vw;
+  height: 75vh;
+  margin: 10vh auto;
+  padding: 1rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: white; */
+}
+
+.login-logo {
+  width: 20vw;
+  height: auto;
+  margin: 1em 0;
+}
+
+.login-h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-inputText {
+  width: 60vw;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-inputText:focus {
+  outline: none;
+}
+
+.login-button {
+  width: 40vw;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  border: none;
+  border-radius: 3rem;
+  background-color: var(--tertiaryBackground);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.login-button:hover {
+  color: var(--primaryBackground);
+}
+
+.login-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.login-note p {
+  max-width: 200px;
+  margin-left: 0.5rem;
+}
+
+.login-note a {
+  margin-right: 0.5rem;
+}
+
+/* For tablets */
+@media only screen and (min-width: 600px) {
+  .login-logo {
+    width: 20vw;
+  }
+
+  .login-h1 {
+    font-size: 2.5rem;
+  }
+
+  .login-inputText {
+    width: 50vw;
+    font-size: 1.2rem;
+  }
+
+  .login-button {
+    width: 35vw;
+    font-size: 1.2rem;
+  }
+
+  .login-note {
+    font-size: 0.9rem;
+  }
+
+  .login-note p {
+    max-width: 250px;
+  }
+}
+
+/* For desktops */
+@media only screen and (min-width: 900px) {
+  .login-logo {
+    width: 10vw;
+  }
+
+  .login-h1 {
+    font-size: 3rem;
+  }
+
+  .login-inputText {
+    width: 35vw;
+    font-size: 1.3rem;
+  }
+
+  .login-button {
+    width: 25vw;
+    font-size: 1.3rem;
+  }
+
+  .login-note {
+    font-size: 1rem;
+  }
+
+  .login-note p {
+    max-width: none;
+  }
+}
+
+/* Book Registration Page */
+
+.bookRegistration-container {
+  background-color: var(--tertiaryBackground);
+  width: 70vw;
+  margin: 10vh auto;
+  padding: 1rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookRegistration-container h1 {
+  color: var(--primaryBackground);
+  margin: 1rem;
+  margin-bottom: 0;
+  font-size: 4rem;
+}
+
+.bookRegistration-table {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  color: var(--primaryBackground);
+  border-spacing: 3rem 2rem;
+}
+
+.bookRegistration-inputText {
+  width: 30vw;
+  padding: 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.bookRegistration-inputText:focus {
+  outline: none;
+}
+
+.bookRegistration-dropdown {
+  width: 12vw;
+}
+
+.bookRegistration-addBtn {
+  background-color: var(--primaryBackground);
+  color: var(--tertiaryBackground);
+  margin-top: 2rem;
+  margin-bottom: 1.3rem;
+}
+
+.bookRegistration-addBtn:hover {
+  color: var(--primaryText);
+}
+
+/* Red outline for invalid inputs */
+.invalid-input {
+  outline: 2px solid #ff4d4d;
+}
+
+/* No outline for valid inputs */
+.valid-input {
+  outline: none;
+}
+
+/* Contact Page */
+
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tertiaryBackground);
+  border-radius: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 5px solid var(--tertiaryBackground);
+  padding: 50px;
+  margin: 80px auto;
+  max-width: 700px;
+}
+
+.contact-form h2 {
+  font-size: 2.1em;
+  color: var(--primaryBackground);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: var(--secondaryText);
+  margin-bottom: 2px; /* Adds spacing between label and input */
+}
+
+.form-input {
+  width: 100%; /* Full width for all input fields */
+  padding: 10px;
+  border: 1px solid #b8b3b3;
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* Ensures padding doesn’t affect width */
+}
+
+.error {
+  color: #b12a37;
+  font-size: 0.85rem;
+  margin-top: 2px; /* Adds some spacing between input and error message */
+  display: none;
+  width: 100%; /* Aligns error message width with input */
+}
+
+.form-input.error-border {
+  border-color: #dc3545;
+}
+
+.button-container {
+  text-align: center; /* Centers the button horizontally */
+  margin-top: 20px; /* Optional: adds space above the button */
+}
+
+.submit-btn {
+  background-color: var(--primaryBackground);
+  color: var(--primaryText);
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #357abd;
+}
+
+.submit-success {
+  color: #28a745;
+  text-align: center;
+  display: none;
+  margin-top: 1rem;
+}
