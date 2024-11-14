@@ -1,3 +1,11 @@
+// Redirect Home button
+document.querySelectorAll(".redirect-home").forEach(function (element) {
+  element.addEventListener("click", function () {
+    window.location.href = "/pages/home.html";
+  });
+});
+
+// Form submission handling
 document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
