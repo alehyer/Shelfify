@@ -91,7 +91,7 @@ button:hover {
   margin-top: 4rem;
 }
 
-.home-page > * {
+.home-page>* {
   margin-bottom: 2rem;
 }
 
@@ -101,7 +101,7 @@ button:hover {
   justify-content: center;
 }
 
-.navigation-cards > * {
+.navigation-cards>* {
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -347,6 +347,7 @@ button:hover {
   padding: 50px;
   margin: 80px auto;
   max-width: 700px;
+  box-sizing: border-box;
 }
 
 .contact-form h2 {
@@ -372,25 +373,30 @@ button:hover {
 .form-label {
   font-weight: bold;
   color: var(--secondaryText);
-  margin-bottom: 2px; /* Adds spacing between label and input */
+  margin-bottom: 2px;
+  /* Adds spacing between label and input */
 }
 
 .form-input {
-  width: 100%; /* Full width for all input fields */
+  width: 100%;
   padding: 10px;
   border: 1px solid #b8b3b3;
   border-radius: 30px;
   font-size: 1rem;
-  transition: border-color 0.2s;
-  box-sizing: border-box; /* Ensures padding doesn’t affect width */
+  box-sizing: border-box;
+  resize: none;
+  /* Prevents resizing */
 }
+
 
 .error {
   color: #b12a37;
   font-size: 0.85rem;
-  margin-top: 2px; /* Adds some spacing between input and error message */
+  margin-top: 2px;
+  /* Adds some spacing between input and error message */
   display: none;
-  width: 100%; /* Aligns error message width with input */
+  width: 100%;
+  /* Aligns error message width with input */
 }
 
 .form-input.error-border {
@@ -398,8 +404,10 @@ button:hover {
 }
 
 .button-container {
-  text-align: center; /* Centers the button horizontally */
-  margin-top: 20px; /* Optional: adds space above the button */
+  text-align: center;
+  /* Centers the button horizontally */
+  margin-top: 20px;
+  /* Optional: adds space above the button */
 }
 
 .submit-btn {
