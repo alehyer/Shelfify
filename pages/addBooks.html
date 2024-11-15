@@ -18,13 +18,17 @@
             </div>
         </menu>
 
-        <div class="bookRegistration-container" id="bookDetail-panel">
-            <h1>Book Registration</h1>
+        <div
+            class="bookRegistration-container"
+            id="bookDetail-panel"
+            style="display: flex"
+        >
+            <h1>Add Book</h1>
 
             <div class="input-container">
                 <table class="bookRegistration-table">
                     <tr>
-                        <td>Book Title</td>
+                        <td>Title</td>
                         <td>
                             <form>
                                 <input
@@ -32,6 +36,7 @@
                                     placeholder="e.g. Harry Potter and the Philosopher's Stone"
                                     class="bookRegistration-inputText"
                                     id="book-title"
+                                    tabindex="1"
                                 />
                             </form>
                         </td>
@@ -46,6 +51,7 @@
                                     placeholder="e.g. J. K. Rowling"
                                     class="bookRegistration-inputText"
                                     id="book-author"
+                                    tabindex="2"
                                 />
                             </form>
                         </td>
@@ -60,6 +66,7 @@
                                     placeholder="e.g. Bloomsbury"
                                     class="bookRegistration-inputText"
                                     id="book-publisher"
+                                    tabindex="3"
                                 />
                             </form>
                         </td>
@@ -74,6 +81,7 @@
                                     name="category"
                                     id="book-category"
                                     class="bookRegistration-inputText bookRegistration-dropdown"
+                                    tabindex="4"
                                 >
                                     <option>Select a Category</option>
                                     <option value="Adventure">Adventure</option>
@@ -110,8 +118,36 @@
         </div>
 
         <!-- add a display: none confirmation panel when user clicked on the add book button. -->
-        <div id="confirmation-panel" style="display: none">
-            <p>test</p>
+        <div id="confirmation-panel">
+            <h2>Confirm Addition of This Book?</h2>
+            <table class="confirmation-table">
+                <tr>
+                    <th>Title:</th>
+                    <td id="title-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Author:</th>
+                    <td id="author-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Publisher:</th>
+                    <td id="publisher-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Category:</th>
+                    <td id="category-span">-</td>
+                </tr>
+            </table>
+
+            <div class="confirmation-button-container">
+                <button class="confirmation-btn" id="cancel-btn">Cancel</button>
+                <button class="confirmation-btn" id="confirm-btn">
+                    Confirm
+                </button>
+            </div>
         </div>
     </body>
 </html>

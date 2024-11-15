@@ -213,7 +213,7 @@ button:hover {
 }
 
 /* For tablets */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 768px) {
     .login-logo {
         width: 20vw; 
     }
@@ -242,7 +242,7 @@ button:hover {
 }
 
 /* For desktops */
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1024px) {
     .login-logo {
         width: 10vw;
     }
@@ -275,10 +275,10 @@ button:hover {
 
 .bookRegistration-container {
     background-color: var(--tertiaryBackground);
-    width: 70vw;
+    width: 85vw;
     margin: 10vh auto;
-    padding: 1rem;
-    border-radius: 30px;
+    padding: 0.5rem;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,15 +288,15 @@ button:hover {
     color: var(--primaryBackground);
     margin: 1rem;
     margin-bottom: 0;
-    font-size: 4rem;
+    font-size: 2.5rem;
 }
 
 .bookRegistration-table {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     color: var(--primaryBackground);
-    border-spacing: 3rem 2rem;
+    border-spacing: 2rem 2rem;
 }
 
 .bookRegistration-inputText {
@@ -304,7 +304,7 @@ button:hover {
     padding: 1rem;
     border: none;
     border-radius: 20px;
-    font-size: 1.3rem;
+    font-size: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -313,7 +313,7 @@ button:hover {
 }
 
 .bookRegistration-dropdown {
-    width: 12vw;
+    width: 35vw;
 
 }
 
@@ -336,4 +336,194 @@ button:hover {
 /* No outline for valid inputs */
 .valid-input {
     outline: none;
+}
+
+#confirmation-panel {
+    background-color: var(--tertiaryBackground);
+    width: 75vw;
+    padding: 1rem;
+    border-radius: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 1000; /* High z-index to appear in front */
+    max-height: 41rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#confirmation-panel h2{
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--primaryBackground);
+    margin-top: 1rem;
+}   
+
+.confirmation-table {
+    font-size: 1.2rem;
+    color: var(--primaryBackground);
+    border-spacing: 2rem 1rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.confirmation-table th {
+    text-align: left;
+}
+
+.confirmation-button-container {
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    display: flex;
+    width: 90%;
+}
+
+.confirmation-btn {
+    width: 8rem;
+    height: 4rem;
+    background-color: var(--primaryBackground);
+    color: var(--tertiaryBackground);
+    font-weight: 700;
+}
+
+.confirmation-btn:hover {
+    color: var(--primaryText);
+}
+
+/* for tablets */
+@media only screen and (min-width: 768px) {
+    .bookRegistration-container {
+        width: 70vw;
+        padding: 1rem;
+        border-radius: 30px;
+    }
+    
+    .bookRegistration-container h1 {
+        margin: 1rem;
+        margin-bottom: 0;
+        font-size: 3rem;
+    }
+    
+    .bookRegistration-table {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        border-spacing: 3rem 2rem;
+    }
+    
+    .bookRegistration-inputText {
+        width: 30vw;
+        padding: 1rem;
+        border-radius: 20px;
+        font-size: 1.3rem;
+    }
+    
+    .bookRegistration-dropdown {
+        width: 30vw;
+    }
+    
+    .bookRegistration-addBtn {
+        margin-top: 2rem;
+        margin-bottom: 1.3rem;
+        font-size: 1.5rem;
+    }
+    
+    #confirmation-panel {
+        width: 65vw;
+        padding: 1.5rem;
+        border-radius: 20px;
+        max-height: 45rem;
+    }
+    
+    #confirmation-panel h2{
+        font-size: 2.3rem;
+        margin-top: 1rem;
+    }   
+    
+    .confirmation-table {
+        font-size: 1.7rem;
+        border-spacing: 2rem 1rem;
+        padding: 1rem;
+    }
+    
+    .confirmation-button-container {
+        margin-bottom: 1rem;
+        width: 90%;
+    }
+    
+    .confirmation-btn {
+        width: 13rem;
+        height: 4.5rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* for laptops */
+@media only screen and (min-width: 1024px) {
+    .bookRegistration-container {
+        width: 70vw;
+        padding: 1rem;
+        border-radius: 30px;
+    }
+    
+    .bookRegistration-container h1 {
+        margin: 1rem;
+        margin-bottom: 0;
+        font-size: 4rem;
+    }
+    
+    .bookRegistration-table {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        border-spacing: 3rem 2rem;
+    }
+    
+    .bookRegistration-inputText {
+        width: 30vw;
+        padding: 1rem;
+        border-radius: 20px;
+        font-size: 1.3rem;
+    }
+    
+    .bookRegistration-dropdown {
+        width: 12vw;
+    }
+    
+    .bookRegistration-addBtn {
+        margin-top: 1.5rem;
+        margin-bottom: 1.3rem;
+    }
+    
+    #confirmation-panel {
+        width: 35vw;
+        padding: 1rem;
+        border-radius: 30px;
+    }
+    
+    #confirmation-panel h2{
+        font-size: 2rem;
+        margin-top: 1rem;
+    }   
+    
+    .confirmation-table {
+        font-size: 1.5rem;
+        border-spacing: 2rem;
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .confirmation-button-container {
+        margin-bottom: 1rem;
+        width: 70%;
+    }
+    
+    .confirmation-btn {
+        width: 13rem;
+        height: 4rem;
+    }
 }
