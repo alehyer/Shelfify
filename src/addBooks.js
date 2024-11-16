@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } 
         else { // allow user to preview and confirm to add book
             document.getElementById('bookDetail-panel').style.opacity = '0';
-            document.getElementsByTagName('menu')[0].style.opacity = '0';
             document.getElementById('confirmation-panel').style.display = 'flex';
 
             // replace the text with the values in input fields
@@ -96,29 +95,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('author-span').textContent = bookAuthorValue;
             document.getElementById('publisher-span').textContent = bookPublisherValue;
             document.getElementById('category-span').textContent = bookCategoryValue;
-
-            //disable menu/nav buttons
-            const menuItems = document.querySelectorAll('menu li');
-
-            // Loop through each <li> element and apply the disabled styles
-            menuItems.forEach(item => {
-                item.style.pointerEvents = 'none'; // Disables interactions
-            });
         }
     });
 
     document.getElementById('cancel-btn').addEventListener('click', function() {
         document.getElementById('bookDetail-panel').style.opacity = '1';
-        document.getElementsByTagName('menu')[0].style.opacity = '1';
         document.getElementById('confirmation-panel').style.display = 'none';
-
-        // reenable menu/nav buttons
-        const menuItems = document.querySelectorAll('menu li');
-
-        // Loop through each <li> element and apply the disabled styles
-        menuItems.forEach(item => {
-            item.style.pointerEvents = 'auto'; 
-        });
 
     });
 
