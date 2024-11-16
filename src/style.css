@@ -116,7 +116,6 @@ menu li:hover {
     }
 }
 
-
 h1 {
     font-size: 3rem;
     font-weight: 800;
@@ -142,7 +141,6 @@ button:hover {
     color: var(--secondaryText);
     box-shadow: 0 0 1rem #00000075;
 }
-
 
 /* Home Page */
 
@@ -188,7 +186,6 @@ button:hover {
 .cards button:hover {
     color: var(--primaryBackground);
 }
-
 
 /* Login Page */
 
