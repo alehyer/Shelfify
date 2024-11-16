@@ -4,8 +4,43 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/src/style.css" />
-        <script src="/src/app.js"></script>
+        <script src="/src/login.js"></script>
         <title>Shelfify</title>
     </head>
-    <body></body>
+    <body class="login-body">
+        <div class="login-container">
+            <img
+                src="/images/logo.png"
+                alt="Shelfify Logo"
+                class="login-logo"
+            />
+
+            <h1 class="login-h1">Welcome Back</h1>
+
+            <div class="input-container">
+                <form class="input-container">
+                    <input
+                        type="text"
+                        placeholder="Librarian ID"
+                        class="login-inputText"
+                        id="librarian-id"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        class="login-inputText"
+                        id="librarian-password"
+                    />
+                </form>
+
+                <div class="login-note">
+                    <p>Note: Please login with your assigned Librarian ID.</p>
+
+                    <a id="login-helpInfo" href="">Need Help?</a>
+                </div>
+
+                <button class="login-button" id="login-button">LOGIN</button>
+            </div>
+        </div>
+    </body>
 </html>
