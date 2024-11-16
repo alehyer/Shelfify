@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="html-background">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,14 +10,52 @@
     <body>
         <menu>
             <li class="logo redirect-home">Shelfify</li>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <div class="right-group">
-                <li class="redirect-home">Home</li>
-                <li>About Us</li>
-                <li>Contact Us</li>
-                <li>Profile</li>
+                <li class="redirect-home">
+                    <div style="display: flex">
+                        <img
+                            src="../images/home.png"
+                            alt="home logo"
+                            class="nav-icon"
+                        />
+                        <p>Title</p>
+                    </div>
+                </li>
+                <li>
+                    <div style="display: flex">
+                        <img
+                            src="../images/about-us.png"
+                            alt="magnifier with question mark"
+                            class="nav-icon"
+                        />
+                        <p>About us</p>
+                    </div>
+                </li>
+                <li>
+                    <div style="display: flex">
+                        <img
+                            src="../images/contact-us.png"
+                            alt="phone ringing logo"
+                            class="nav-icon"
+                        />
+                        <p>Contact us</p>
+                    </div>
+                </li>
+                <li>
+                    <div style="display: flex">
+                        <img
+                            src="../images/profile.png"
+                            alt="profile logo"
+                            class="nav-icon"
+                        />
+                        <p>Profile</p>
+                    </div>
+                </li>
             </div>
         </menu>
 
+        <!-- <p class="backPage-btn">< Back</p> -->
         <div
             class="bookRegistration-container"
             id="bookDetail-panel"
@@ -28,7 +66,48 @@
             <div class="input-container">
                 <table class="bookRegistration-table">
                     <tr>
-                        <td>Title</td>
+                        <td>
+                            <div style="display: flex">
+                                <img
+                                    src="../images/upload.png"
+                                    alt="image of a tag"
+                                    class="bookRegistration-icon"
+                                />
+                                <p>Cover Image</p>
+                            </div>
+                        </td>
+                        <td>
+                            <form>
+                                <div class="file-upload-container">
+                                    <img id="image-preview" />
+                                    <button
+                                        class="file-upload-btn"
+                                        type="button"
+                                    >
+                                        Upload
+                                    </button>
+                                    <input
+                                        type="file"
+                                        id="file-upload"
+                                        hidden
+                                        accept="image/*"
+                                    />
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div style="display: flex">
+                                <img
+                                    src="../images/book-title.png"
+                                    alt="image of a book"
+                                    class="bookRegistration-icon"
+                                />
+                                <p>Title</p>
+                            </div>
+                        </td>
                         <td>
                             <form>
                                 <input
@@ -36,21 +115,6 @@
                                     placeholder="e.g. Harry Potter and the Philosopher's Stone"
                                     class="bookRegistration-inputText"
                                     id="book-title"
-                                    tabindex="1"
-                                />
-                            </form>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Author</td>
-                        <td>
-                            <form>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. J. K. Rowling"
-                                    class="bookRegistration-inputText"
-                                    id="book-author"
                                     tabindex="2"
                                 />
                             </form>
@@ -58,14 +122,23 @@
                     </tr>
 
                     <tr>
-                        <td>Publisher</td>
+                        <td>
+                            <div style="display: flex">
+                                <img
+                                    src="../images/fountain-pen.png"
+                                    alt="fountain-pen"
+                                    class="bookRegistration-icon"
+                                />
+                                <p>Author</p>
+                            </div>
+                        </td>
                         <td>
                             <form>
                                 <input
                                     type="text"
-                                    placeholder="e.g. Bloomsbury"
+                                    placeholder="e.g. J. K. Rowling"
                                     class="bookRegistration-inputText"
-                                    id="book-publisher"
+                                    id="book-author"
                                     tabindex="3"
                                 />
                             </form>
@@ -73,7 +146,40 @@
                     </tr>
 
                     <tr>
-                        <td>Category</td>
+                        <td>
+                            <div style="display: flex">
+                                <img
+                                    src="../images/publisher.png"
+                                    alt="image of a publisher"
+                                    class="bookRegistration-icon"
+                                />
+                                <p>Publsher</p>
+                            </div>
+                        </td>
+                        <td>
+                            <form>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Bloomsbury"
+                                    class="bookRegistration-inputText"
+                                    id="book-publisher"
+                                    tabindex="4"
+                                />
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div style="display: flex">
+                                <img
+                                    src="../images/tags.png"
+                                    alt="image of a tag"
+                                    class="bookRegistration-icon"
+                                />
+                                <p>Category</p>
+                            </div>
+                        </td>
                         <td>
                             <form>
                                 <select
@@ -81,7 +187,7 @@
                                     name="category"
                                     id="book-category"
                                     class="bookRegistration-inputText bookRegistration-dropdown"
-                                    tabindex="4"
+                                    tabindex="5"
                                 >
                                     <option>Select a Category</option>
                                     <option value="Adventure">Adventure</option>

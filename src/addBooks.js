@@ -1,8 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.getElementById('file-upload');
     const bookTitle = document.getElementById('book-title');
     const bookAuthor = document.getElementById('book-author');
     const bookPublisher = document.getElementById('book-publisher');
     const bookCategory = document.getElementById('book-category');
+    
+    // nav bar function
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menuItems = document.querySelector(".right-group");
+    menuToggle.addEventListener("click", () => {
+        menuItems.classList.toggle("active"); // Toggle the active class
+        menuToggle.classList.toggle("rotated");
+    });
 
     // function when home buttons are clicked
     document.querySelectorAll('.redirect-home').forEach( function(element) {
@@ -10,6 +19,33 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = `../pages/home.html`;
         });
     });
+
+    // upload file btn
+    document.querySelector(".file-upload-btn").addEventListener("click", () => {
+        document.getElementById("file-upload").click();
+    });
+
+    // preview image
+    document.getElementById("file-upload").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+    
+        if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+    
+            reader.onload = (event) => {
+                // Set the uploaded image as the src of the <img> element
+                const imagePreview = document.getElementById("image-preview");
+                imagePreview.src = event.target.result;
+                imagePreview.style.display = "block"; // Make the image visible
+            };
+    
+            reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+            alert("Please upload a valid image file.");
+            e.target.value = ""; // Clear the invalid file
+        }
+    });
+    
 
     // function for addBook button
     document.getElementById('addBook-btn').addEventListener('click', function () {
@@ -19,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const bookCategoryValue = bookCategory.value.trim();
     
         // Reset all outlines before applying new ones
+        document.querySelector('.file-upload-btn').classList.remove('invalid-input');
         bookTitle.classList.remove('invalid-input');
         bookAuthor.classList.remove('invalid-input');
         bookPublisher.classList.remove('invalid-input');
@@ -39,15 +76,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 element.classList.add('invalid-input');
             }
         });
-    
+        
+        if (!(fileInput.files.length > 0)) {
+            document.querySelector('.file-upload-btn').classList.add('invalid-input');
+        }
+
         // If any field is empty, return without submitting the form
-        if (!bookTitleValue || !bookAuthorValue || !bookPublisherValue || bookCategoryValue === "Select a Category") {
+        if (fileInput.files.length <= 0 || !bookTitleValue || !bookAuthorValue || !bookPublisherValue || bookCategoryValue === "Select a Category") {
             alert("Please fill in all required fields.");
             return;
         } 
         else { // allow user to preview and confirm to add book
-            document.getElementById('bookDetail-panel').style.opacity = '0.15';
-            // document.getElementsByTagName('menu')[0].style.opacity = '0.15';
+            document.getElementById('bookDetail-panel').style.opacity = '0';
+            document.getElementsByTagName('menu')[0].style.opacity = '0';
             document.getElementById('confirmation-panel').style.display = 'flex';
 
             // replace the text with the values in input fields
@@ -68,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('cancel-btn').addEventListener('click', function() {
         document.getElementById('bookDetail-panel').style.opacity = '1';
-        // document.getElementsByTagName('menu')[0].style.opacity = '1';
+        document.getElementsByTagName('menu')[0].style.opacity = '1';
         document.getElementById('confirmation-panel').style.display = 'none';
 
         // reenable menu/nav buttons
@@ -88,20 +129,30 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Remove the red outline as the user types
     function validateInput(event) {
-        if (
-            (event.type === 'input' && event.target.value.trim()) ||
-            (event.type === 'change' && event.target.value !== "Select a Category")
-        ) {
-            event.target.classList.remove('invalid-input');
+        const target = event.target;
+    
+        // Handle text inputs
+        if (event.type === 'input' && target.value.trim()) {
+            target.classList.remove('invalid-input');
+        }
+        // Handle category selection
+        else if (event.type === 'change' && target === bookCategory && target.value !== "Select a Category") {
+            target.classList.remove('invalid-input');
+        }
+        // Handle file input
+        else if (event.type === 'change' && target === fileInput && fileInput.files.length > 0) {
+            document.querySelector('.file-upload-btn').classList.remove('invalid-input');
         }
     }
-
-    // Attach the event listener to each field
+    
+    // Attach the event listener to text inputs
     [bookTitle, bookAuthor, bookPublisher].forEach(input => {
         input.addEventListener('input', validateInput);
     });
-
-    // Attach a change event for the category field
-    bookCategory.addEventListener('change', validateInput);
+    
+    // Attach a change event for the category and file input fields
+    [bookCategory, fileInput].forEach(field => {
+        field.addEventListener('change', validateInput);
+    });
    
 });
