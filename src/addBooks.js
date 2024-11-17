@@ -4,13 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const bookAuthor = document.getElementById('book-author');
     const bookPublisher = document.getElementById('book-publisher');
     const bookCategory = document.getElementById('book-category');
+    const backButton = document.getElementById('backPage-btn');
     
+    backButton.disabled = false;
     // nav bar function
     const menuToggle = document.querySelector(".menu-toggle");
     const menuItems = document.querySelector(".right-group");
     menuToggle.addEventListener("click", () => {
         menuItems.classList.toggle("active"); // Toggle the active class
         menuToggle.classList.toggle("rotated");
+        backButton.classList.toggle('hiddenBtn');
     });
 
     // function when home buttons are clicked
@@ -19,6 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = `../pages/home.html`;
         });
     });
+
+    backButton.addEventListener('click', function() {
+       window.location.href = `../pages/home.html`; // change this to the previous page html. 
+    });
+
 
     // upload file btn
     document.querySelector(".file-upload-btn").addEventListener("click", () => {
@@ -37,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const imagePreview = document.getElementById("image-preview");
                 imagePreview.src = event.target.result;
                 imagePreview.style.display = "block"; // Make the image visible
+                displayInSpan(event.target.result);
             };
     
             reader.readAsDataURL(file); // Read the file as a data URL
@@ -44,6 +53,15 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("Please upload a valid image file.");
             e.target.value = ""; // Clear the invalid file
         }
+    });
+
+    window.addEventListener('load', () => {
+        const fileInput = document.getElementById("file-upload");
+        fileInput.value = ""; // Clear the file input
+
+        // Optionally, clear the image preview (if applicable)
+        const imagePreview = document.getElementById("image-preview");
+        imagePreview.style.display = "none"; // Hide the image preview
     });
     
 
@@ -88,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } 
         else { // allow user to preview and confirm to add book
             document.getElementById('bookDetail-panel').style.opacity = '0';
+            backButton.classList.toggle('hiddenBtn');
             document.getElementById('confirmation-panel').style.display = 'flex';
 
             // replace the text with the values in input fields
@@ -100,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('cancel-btn').addEventListener('click', function() {
         document.getElementById('bookDetail-panel').style.opacity = '1';
+        backButton.classList.toggle('hiddenBtn');
         document.getElementById('confirmation-panel').style.display = 'none';
 
     });
@@ -109,6 +129,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
     
+    function displayInSpan(imageData) {
+        const span = document.getElementById("image-span");
+        span.innerHTML = `<img src="${imageData}" alt="Uploaded Image">`;
+
+        // Add a <style> block with media queries dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            #image-span img {
+                max-width: 5rem;
+            }
+
+            @media (min-width: 768px) {
+                #image-span img {
+                    max-width: 6rem;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                #image-span img {
+                    max-width: 7rem;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+
     // Remove the red outline as the user types
     function validateInput(event) {
         const target = event.target;
@@ -136,5 +183,4 @@ document.addEventListener('DOMContentLoaded', function () {
     [bookCategory, fileInput].forEach(field => {
         field.addEventListener('change', validateInput);
     });
-   
 });

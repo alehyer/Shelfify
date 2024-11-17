@@ -353,13 +353,29 @@ button:hover {
 }
 
 .backPage-btn {
-    font-size: 1.5rem;
-    font-weight: 700;
-    position: fixed;
-    top: 8%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 1rem; 
+    background-color: transparent;
+    color: var(--primaryText);
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    text-decoration: none;
+    position: absolute;
+    top: 10%;
+    left: 2%;    
+}
+
+.backPage-btn:hover {
+    text-decoration: underline;
+    color: var(--primaryText);
+    box-shadow: none;
+}
+
+.hiddenBtn {
+    opacity: 0;
+    pointer-events: none; 
+    /* transition: opacity 0.3s ease; */
 }
 
 .bookRegistration-container {
@@ -522,6 +538,12 @@ button:hover {
 
 /* for tablets */
 @media only screen and (min-width: 768px) {
+    .backPage-btn {
+        font-size: 1.5rem;
+        top: 9%;
+        left: 4%;    
+    }
+
     .bookRegistration-container {
         width: 70vw;
         padding: 1rem;
@@ -606,7 +628,13 @@ button:hover {
 }
 
 /* for laptops */
-@media only screen and (min-width: 1024px) {   
+@media only screen and (min-width: 1024px) {
+    .backPage-btn {
+        font-size: 1.8rem;
+        top: 9%;
+        left: 3%;    
+    }
+
     .bookRegistration-container {
         width: 70vw;
         padding: 1rem;
