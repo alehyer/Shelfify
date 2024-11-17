@@ -1,4 +1,3 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   // Navigation bar function
   const menuToggle = document.querySelector(".menu-toggle");
@@ -24,6 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     console.error("Redirect home elements not found!");
+  }
+
+  // Redirect About Us button
+  const redirectAboutUsElements = document.querySelector(".redirect-about");
+  if (redirectAboutUsElements) {
+    redirectAboutUsElements.addEventListener("click", () => {
+      window.location.href = "/pages/about_us.html";
+    });
+  } else {
+    console.error("About Us element not found!");
+  }
+
+  // Redirect Contact Us button
+  const redirectContactUsElements = document.querySelector(".redirect-contact");
+  if (redirectContactUsElements) {
+    redirectContactUsElements.addEventListener("click", () => {
+      window.location.href = "/pa ges/contact.html";
+    });
+  } else {
+    console.error("About Us element not found!");
   }
 
   // Form submission handling
