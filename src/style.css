@@ -336,6 +336,7 @@ button:hover {
 .html-background {
   position: relative;
   margin: 0;
+  height: 100%;
 }
 
 .html-background::before {
