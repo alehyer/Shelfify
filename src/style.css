@@ -695,17 +695,17 @@ button:hover {
   display: flex;
   flex-direction: column;
   background-color: var(--tertiaryBackground);
-  border-radius: 40px;
+  border-radius: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 5px solid var(--tertiaryBackground);
-  padding: 50px;
+  padding: 30px;
   margin: 80px auto;
   max-width: 700px;
   box-sizing: border-box;
 }
 
 .contact-form h2 {
-  font-size: 2.1em;
+  font-size: 2.05em;
   color: var(--primaryBackground);
   margin-bottom: 1rem;
   text-align: center;
@@ -736,7 +736,7 @@ button:hover {
   padding: 15px;
   margin: 2px;
   border: 1px solid #b8b3b3;
-  border-radius: 30px;
+  border-radius: 50px;
   font-size: 1rem;
   box-sizing: border-box;
   resize: none;
@@ -784,6 +784,15 @@ button:hover {
   text-align: center;
   display: none;
   margin-top: 1rem;
+}
+
+/* Add padding for smaller screens */
+@media (max-width: 768px) {
+  .contact-form {
+    margin: 40px;
+    padding: 20px;
+    border-radius: 50px;
+  }
 }
 
 /* About Us Page */
@@ -834,4 +843,126 @@ button:hover {
 .team-member p {
   font-size: 1rem;
   margin-bottom: 0.5rem;
+}
+
+/* Profile Page Styles */
+.profile-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--tertiaryBackground);
+  border-radius: 1.5rem;
+  color: var(--primaryBackground);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--secondaryText);
+}
+
+.profile-picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+#profile-picture {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: px solid var(--secondaryBackground);
+}
+
+.change-picture-btn {
+  background-color: var(--primaryBackground);
+  color: var(--tertiaryBackground);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
+
+.profile-status {
+  padding: 1rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.status-badge.active {
+  background-color: #28a745;
+  color: white;
+}
+
+.info-section {
+  margin-bottom: 2rem;
+}
+
+.info-section h2 {
+  margin-bottom: 1rem;
+  color: var(--primaryBackground);
+  font-size: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-item label {
+  color: var(--secondaryText);
+  font-size: 0.9rem;
+}
+
+.info-item p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .edit-profile-btn,
+  .change-password-btn {
+    width: 100%;
+  }
 }
