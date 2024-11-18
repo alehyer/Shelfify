@@ -2,14 +2,19 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+@font-face {
+    font-family: "Radlush";
+    src: url("../fonts/Radlush-Bold.woff") format("woff");
+}
+
 /* Defining Colors */
 
 :root {
-    --primaryBackground: #dde6ed;
-    --secondaryBackground: #27374d;
-    --tertiaryBackground: #526d82;
-    --primaryText: #27374d;
-    --secondaryText: #9db2bf;
+    --primaryBackground: #ffffff;
+    --secondaryBackground: #272727;
+    --tertiaryBackground: #f8e3b9;
+    --primaryText: #272727;
+    --secondaryText: #f8e3b9;
 }
 
 /* Main styles */
@@ -41,6 +46,13 @@ menu {
 }
 
 .logo {
+    margin-left: 0.5rem;
+    font-family: "Radlush";
+    font-size: 2rem;
+}
+
+menu img {
+    height: 3rem;
     margin-left: 2rem;
 }
 
@@ -49,6 +61,7 @@ menu li {
     margin-right: 2rem;
     transition: color 0.3s ease-out;
     cursor: pointer;
+    font-family: "Radlush";
 }
 
 menu li:hover {
@@ -69,7 +82,7 @@ menu li:hover {
 }
 
 .menu-toggle {
-    display: none; 
+    display: none;
     background: none;
     border: none;
     font-size: 2rem;
@@ -88,7 +101,7 @@ menu li:hover {
     transform: rotate(90deg);
 }
 
-/* Mobile styles for nav bar*/
+/* Mobile styles for nav bar */
 @media (max-width: 768px) {
     .right-group {
         flex-direction: column;
@@ -103,23 +116,35 @@ menu li:hover {
     }
 
     .right-group.active {
-        max-height: 300px; 
+        max-height: 300px;
         opacity: 1;
     }
 
     .menu-toggle {
-        display: block; 
+        display: block;
     }
 
     menu li {
-        margin: 0.5rem 0; 
+        margin: 0.5rem 0;
         text-align: center;
     }
 }
 
 h1 {
     font-size: 3rem;
-    font-weight: 800;
+    font-family: "Radlush";
+}
+
+a:link,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: var(--primaryBackground);
+    transition: color 0.3s ease-out;
+}
+
+a:hover {
+    color: var(--secondaryText);
 }
 
 button {
@@ -139,13 +164,13 @@ button {
 }
 
 button:hover {
+    box-shadow: 0 0 2rem #00000075;
     color: var(--secondaryText);
-    box-shadow: 0 0 1rem #00000075;
 }
 
 /* Home Page */
 
-.home-page {
+.default-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,7 +178,7 @@ button:hover {
     margin-top: 4rem;
 }
 
-.home-page > * {
+.default-page > * {
     margin-bottom: 2rem;
 }
 
@@ -172,20 +197,101 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 30rem;
-    height: 30rem;
+    width: 25rem;
+    height: 25rem;
     background-color: var(--tertiaryBackground);
     border-radius: 2rem;
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .cards button {
-    color: var(--secondaryText);
+    color: var(--primaryBackground);
     align-self: center;
     width: 15rem;
 }
 
-.cards button:hover {
+.cards a {
+    align-self: center;
+}
+
+.cards img {
+    align-self: center;
+    height: 15rem;
+    width: 15rem;
+    filter: drop-shadow(5px 5px 5px #00000040);
+}
+
+/* Manage Books */
+
+/* New styles for the library management interface */
+
+.tab-controls {
+    display: flex;
+    gap: 1rem;
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.tab {
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    background: none;
+    color: var(--primaryText);
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background-color: var(--secondaryBackground);
     color: var(--primaryBackground);
+}
+
+.search-section {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 1.5rem;
+    font-family: "Poppins", serif;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-btn {
+    padding: 0.75rem 2rem;
+}
+
+.content-section {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.remove-btn:hover {
+    background-color: #c82333;
 }
 
 /* Login Page */
@@ -205,7 +311,7 @@ button:hover {
     align-items: center;
 }
 
-.login-logo { 
+.login-logo {
     width: 20vw;
     height: auto;
     margin: 1em 0;
@@ -233,7 +339,7 @@ button:hover {
 }
 
 .login-inputText:focus {
-    outline: none; 
+    outline: none;
 }
 
 .login-button {
@@ -263,7 +369,7 @@ button:hover {
 }
 
 .login-note p {
-    max-width: 200px; 
+    max-width: 200px;
     margin-left: 0.5rem;
 }
 
@@ -274,7 +380,7 @@ button:hover {
 /* For tablets */
 @media only screen and (min-width: 768px) {
     .login-logo {
-        width: 20vw; 
+        width: 20vw;
     }
 
     .login-h1 {
@@ -296,7 +402,7 @@ button:hover {
     }
 
     .login-note p {
-        max-width: 250px; 
+        max-width: 250px;
     }
 }
 
@@ -325,10 +431,9 @@ button:hover {
     }
 
     .login-note p {
-        max-width: none; 
+        max-width: none;
     }
-} 
-
+}
 
 /* Book Registration Page */
 .html-background {
@@ -352,28 +457,13 @@ button:hover {
 }
 
 .backPage-btn {
-    background-color: transparent;
-    color: var(--primaryText);
-    font-size: 1.3rem;
-    font-weight: 600;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    text-decoration: none;
-    position: absolute;
-    top: 10%;
-    left: 2%;    
-}
-
-.backPage-btn:hover {
-    text-decoration: underline;
-    color: var(--primaryText);
-    box-shadow: none;
-}
-
-.hiddenBtn {
-    opacity: 0;
-    pointer-events: none; 
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: fixed;
+    top: 8%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 1rem;
 }
 
 .bookRegistration-container {
@@ -451,7 +541,7 @@ button:hover {
 
 .bookRegistration-dropdown {
     width: 35vw;
-}   
+}
 
 .bookRegistration-addBtn {
     background-color: var(--primaryBackground);
@@ -488,18 +578,19 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* High z-index to appear in front */
     max-height: 41rem;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-#confirmation-panel h2{
+#confirmation-panel h2 {
     font-size: 1.5rem;
     text-align: center;
     color: var(--primaryBackground);
     margin-top: 1rem;
-}   
+}
 
 .confirmation-table {
     font-size: 1.2rem;
@@ -545,20 +636,20 @@ button:hover {
         padding: 1rem;
         border-radius: 30px;
     }
-    
+
     .bookRegistration-container h1 {
         margin: 1rem;
         margin-bottom: 0;
         font-size: 3rem;
     }
-    
+
     .bookRegistration-table {
         font-size: 2rem;
         font-weight: 700;
         margin-top: 1rem;
         border-spacing: 3rem 2rem;
     }
-    
+
     .bookRegistration-icon {
         height: 2rem;
         margin-right: 1.5rem;
@@ -581,41 +672,41 @@ button:hover {
         border-radius: 20px;
         font-size: 1.3rem;
     }
-    
+
     .bookRegistration-dropdown {
         width: 30vw;
     }
-    
+
     .bookRegistration-addBtn {
         margin-top: 2rem;
         margin-bottom: 1.3rem;
         font-size: 1.5rem;
         width: 35vw;
     }
-    
+
     #confirmation-panel {
         width: 65vw;
         padding: 1.5rem;
         border-radius: 20px;
         max-height: 45rem;
     }
-    
-    #confirmation-panel h2{
+
+    #confirmation-panel h2 {
         font-size: 2.3rem;
         margin-top: 1rem;
-    }   
-    
+    }
+
     .confirmation-table {
         font-size: 1.7rem;
         border-spacing: 2rem 1rem;
         padding: 1rem;
     }
-    
+
     .confirmation-button-container {
         margin-bottom: 1rem;
         width: 90%;
     }
-    
+
     .confirmation-btn {
         width: 13rem;
         height: 4.5rem;
@@ -625,31 +716,25 @@ button:hover {
 
 /* for laptops */
 @media only screen and (min-width: 1024px) {
-    .backPage-btn {
-        font-size: 1.8rem;
-        top: 9%;
-        left: 3%;    
-    }
-
     .bookRegistration-container {
         width: 70vw;
         padding: 1rem;
         border-radius: 30px;
     }
-    
+
     .bookRegistration-container h1 {
         margin: 1rem;
         margin-bottom: 0;
         font-size: 4rem;
     }
-    
+
     .bookRegistration-table {
         font-size: 2rem;
         font-weight: 700;
         margin-top: 1rem;
         border-spacing: 3rem 2rem;
     }
-    
+
     .bookRegistration-icon {
         height: 3rem;
         margin-right: 2rem;
@@ -672,40 +757,40 @@ button:hover {
         border-radius: 20px;
         font-size: 1.3rem;
     }
-    
+
     .bookRegistration-dropdown {
         width: 12vw;
     }
-    
+
     .bookRegistration-addBtn {
         margin-top: 1.5rem;
         margin-bottom: 1.3rem;
         width: 25vw;
     }
-    
+
     #confirmation-panel {
         width: 35vw;
         padding: 1rem;
         border-radius: 30px;
     }
-    
-    #confirmation-panel h2{
+
+    #confirmation-panel h2 {
         font-size: 2rem;
         margin-top: 1rem;
-    }   
-    
+    }
+
     .confirmation-table {
         font-size: 1.5rem;
         border-spacing: 2rem;
         width: 100%;
         padding: 1rem;
     }
-    
+
     .confirmation-button-container {
         margin-bottom: 1rem;
         width: 70%;
     }
-    
+
     .confirmation-btn {
         width: 13rem;
         height: 4rem;
