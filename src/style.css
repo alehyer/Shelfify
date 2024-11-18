@@ -695,7 +695,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   background-color: var(--tertiaryBackground);
-  border-radius: 50px;
+  border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 5px solid var(--tertiaryBackground);
   padding: 30px;
@@ -728,7 +728,6 @@ button:hover {
   font-weight: bold;
   color: var(--secondaryText);
   margin-bottom: 2px;
-  /* Adds spacing between label and input */
 }
 
 .form-input {
@@ -736,11 +735,10 @@ button:hover {
   padding: 15px;
   margin: 2px;
   border: 1px solid #b8b3b3;
-  border-radius: 50px;
+  border-radius: 20px;
   font-size: 1rem;
   box-sizing: border-box;
   resize: none;
-  /* Prevents resizing */
 }
 
 .error {
@@ -759,9 +757,7 @@ button:hover {
 
 .button-container {
   text-align: center;
-  /* Centers the button horizontally */
   margin-top: 20px;
-  /* Optional: adds space above the button */
 }
 
 .submit-btn {
@@ -786,12 +782,11 @@ button:hover {
   margin-top: 1rem;
 }
 
-/* Add padding for smaller screens */
 @media (max-width: 768px) {
   .contact-form {
     margin: 40px;
     padding: 20px;
-    border-radius: 50px;
+    border-radius: 20px;
   }
 }
 
@@ -877,7 +872,7 @@ button:hover {
   height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  border: px solid var(--secondaryBackground);
+  box-shadow: #000000 2px 2px 2px 2px;
 }
 
 .change-picture-btn {
