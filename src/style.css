@@ -153,7 +153,7 @@ button:hover {
   margin-top: 4rem;
 }
 
-.home-page>* {
+.home-page > * {
   margin-bottom: 2rem;
 }
 
@@ -163,7 +163,7 @@ button:hover {
   justify-content: center;
 }
 
-.navigation-cards>* {
+.navigation-cards > * {
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -261,7 +261,6 @@ button:hover {
   align-items: baseline;
   width: 100%;
   font-size: 0.8rem;
-
 }
 
 .login-note p {
@@ -331,11 +330,11 @@ button:hover {
   }
 }
 
-
 /* Book Registration Page */
 .html-background {
   position: relative;
   margin: 0;
+  height: 100%;
 }
 
 .html-background::before {
@@ -438,7 +437,6 @@ button:hover {
 
 .bookRegistration-dropdown {
   width: 35vw;
-
 }
 
 .bookRegistration-addBtn {
@@ -735,7 +733,8 @@ button:hover {
 
 .form-input {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
+  margin: 2px;
   border: 1px solid #b8b3b3;
   border-radius: 30px;
   font-size: 1rem;
@@ -743,7 +742,6 @@ button:hover {
   resize: none;
   /* Prevents resizing */
 }
-
 
 .error {
   color: #b12a37;
