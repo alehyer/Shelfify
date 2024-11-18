@@ -44,4 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("About Us element not found!");
   }
+
+  // Redirect Profile button
+  const redirectProfileElements = document.querySelector(".redirect-profile");
+  if (redirectProfileElements) {
+    redirectProfileElements.addEventListener("click", () => {
+      window.location.href = "/pages/profile.html";
+    });
+  } else {
+    console.error("Profile element not found!");
+  }
 });

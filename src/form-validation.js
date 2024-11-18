@@ -32,17 +32,27 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/pages/about_us.html";
     });
   } else {
-    console.error("About Us element not found!");
+    console.error("Contact Us element not found!");
   }
 
   // Redirect Contact Us button
   const redirectContactUsElements = document.querySelector(".redirect-contact");
   if (redirectContactUsElements) {
     redirectContactUsElements.addEventListener("click", () => {
-      window.location.href = "/pa ges/contact.html";
+      window.location.href = "/pages/contact.html";
     });
   } else {
     console.error("About Us element not found!");
+  }
+
+  // Redirect Profile button
+  const redirectProfileElements = document.querySelector(".redirect-profile");
+  if (redirectProfileElements) {
+    redirectProfileElements.addEventListener("click", () => {
+      window.location.href = "/pages/profile.html";
+    });
+  } else {
+    console.error("Profile element not found!");
   }
 
   // Form submission handling
