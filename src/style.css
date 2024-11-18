@@ -782,20 +782,6 @@ button:hover {
 }
 
 /* addUsers Page */
-.addUsers-backPage-btn {
-    background-color: transparent;
-    color: var(--primaryText);
-    font-size: 1.3rem;
-    font-weight: 600;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    text-decoration: none;
-    position: absolute;
-    top: 8%;
-    left: 2%;    
-}
-
 .addUsers-container {
     background-color: var(--tertiaryBackground);
     width: 85vw;
