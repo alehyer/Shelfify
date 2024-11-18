@@ -4,27 +4,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookAuthor = document.getElementById("book-author");
     const bookPublisher = document.getElementById("book-publisher");
     const bookCategory = document.getElementById("book-category");
+    const backButton = document.getElementById("backPage-btn");
 
+    backButton.disabled = false;
     // nav bar function
     const menuToggle = document.querySelector(".menu-toggle");
     const menuItems = document.querySelector(".right-group");
     menuToggle.addEventListener("click", () => {
         menuItems.classList.toggle("active"); // Toggle the active class
         menuToggle.classList.toggle("rotated");
-        backButton.classList.toggle('hiddenBtn');
+        backButton.classList.toggle("hiddenBtn");
     });
 
-    // function when home buttons are clicked
-    document.querySelectorAll(".redirect-home").forEach(function (element) {
-        element.addEventListener("click", function () {
-            window.location.href = `../pages/home.html`;
-        });
+    backButton.addEventListener("click", function () {
+        window.location.href = `../pages/home.html`; // change this to the previous page html.
     });
-
-    backButton.addEventListener('click', function() {
-       window.location.href = `../pages/home.html`; // change this to the previous page html. 
-    });
-
 
     // upload file btn
     document.querySelector(".file-upload-btn").addEventListener("click", () => {
@@ -53,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
         const fileInput = document.getElementById("file-upload");
         fileInput.value = ""; // Clear the file input
 
@@ -61,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const imagePreview = document.getElementById("image-preview");
         imagePreview.style.display = "none"; // Hide the image preview
     });
-    
 
     // function for addBook button
     document
@@ -119,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 // allow user to preview and confirm to add book
                 document.getElementById("bookDetail-panel").style.opacity = "0";
+                backButton.classList.toggle("hiddenBtn");
                 document.getElementById("confirmation-panel").style.display =
                     "flex";
 
@@ -138,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("cancel-btn")
         .addEventListener("click", function () {
             document.getElementById("bookDetail-panel").style.opacity = "1";
+            backButton.classList.toggle("hiddenBtn");
             document.getElementById("confirmation-panel").style.display =
                 "none";
         });
@@ -147,14 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("confirm-btn")
         .addEventListener("click", function () {});
 
-    });
-    
     function displayInSpan(imageData) {
         const span = document.getElementById("image-span");
         span.innerHTML = `<img src="${imageData}" alt="Uploaded Image">`;
 
         // Add a <style> block with media queries dynamically
-        const style = document.createElement('style');
+        const style = document.createElement("style");
         style.textContent = `
             #image-span img {
                 max-width: 5rem;
@@ -174,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         document.head.appendChild(style);
     }
-
 
     // Remove the red outline as the user types
     function validateInput(event) {
@@ -213,4 +205,4 @@ document.addEventListener("DOMContentLoaded", function () {
     [bookCategory, fileInput].forEach((field) => {
         field.addEventListener("change", validateInput);
     });
-
+});

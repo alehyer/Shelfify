@@ -297,7 +297,7 @@ button:hover {
 /* Login Page */
 
 .login-body {
-    background-color: var(--primaryBackground);
+    background-color: var(--secondaryText);
 }
 
 .login-container {
@@ -348,8 +348,8 @@ button:hover {
     margin-top: 3rem;
     border: none;
     border-radius: 3rem;
-    background-color: var(--tertiaryBackground);
-    color: white;
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
     font-weight: bold;
     cursor: pointer;
     text-align: center;
@@ -357,7 +357,7 @@ button:hover {
 }
 
 .login-button:hover {
-    color: var(--primaryBackground);
+    color: var(--secondaryText);
 }
 
 .login-note {
@@ -375,6 +375,7 @@ button:hover {
 
 .login-note a {
     margin-right: 0.5rem;
+    color: var(--primaryText)
 }
 
 /* For tablets */
@@ -457,13 +458,23 @@ button:hover {
 }
 
 .backPage-btn {
+    background-color: transparent;
+    color: var(--primaryText);
     font-size: 1.5rem;
-    font-weight: 700;
-    position: fixed;
-    top: 8%;
-    left: 15%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 1rem;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    text-decoration: none;
+    position: absolute;
+    top: 10%;
+    left: 3%;  
+}
+
+.backPage-btn:hover {
+    box-shadow: none;
+    color: var(--primaryText);
+    text-decoration: underline;
 }
 
 .bookRegistration-container {
@@ -478,7 +489,7 @@ button:hover {
 }
 
 .bookRegistration-container h1 {
-    color: var(--primaryBackground);
+    color: var(--primaryText);
     margin: 1rem;
     margin-bottom: 0;
     font-size: 2.5rem;
@@ -488,7 +499,7 @@ button:hover {
     font-size: 1.2rem;
     font-weight: 700;
     margin-top: 0.5rem;
-    color: var(--primaryBackground);
+    color: var(--primaryText);
     border-spacing: 2rem 2rem;
     width: 70%;
 }
@@ -508,7 +519,7 @@ button:hover {
 
 .file-upload-btn {
     padding: 0.3rem 0.8rem;
-    background: var(--secondaryText);
+    background: var(--primaryText);
     color: white;
     border: none;
     border-radius: 5px;
@@ -518,7 +529,7 @@ button:hover {
 }
 
 .file-upload-btn:hover {
-    color: white;
+    color: var(--secondaryText);
 }
 
 #image-preview {
@@ -544,8 +555,8 @@ button:hover {
 }
 
 .bookRegistration-addBtn {
-    background-color: var(--primaryBackground);
-    color: var(--tertiaryBackground);
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
     margin-top: 2rem;
     margin-bottom: 1.3rem;
     width: 40vw;
@@ -554,7 +565,7 @@ button:hover {
 }
 
 .bookRegistration-addBtn:hover {
-    color: var(--primaryText);
+    color: var(--secondaryText);
 }
 
 /* Red outline for invalid inputs */
@@ -579,7 +590,6 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000; /* High z-index to appear in front */
     max-height: 41rem;
     overflow-y: auto;
     overflow-x: hidden;
@@ -588,13 +598,13 @@ button:hover {
 #confirmation-panel h2 {
     font-size: 1.5rem;
     text-align: center;
-    color: var(--primaryBackground);
+    color: var(--primaryText);
     margin-top: 1rem;
 }
 
 .confirmation-table {
     font-size: 1.2rem;
-    color: var(--primaryBackground);
+    color: var(--primaryText);
     border-spacing: 2rem 1rem;
     width: 100%;
     padding: 1rem;
@@ -614,19 +624,19 @@ button:hover {
 .confirmation-btn {
     width: 8rem;
     height: 4rem;
-    background-color: var(--primaryBackground);
-    color: var(--tertiaryBackground);
+    background-color: var(--primaryText);
+    color: var(--primaryBackground);
     font-weight: 700;
 }
 
 .confirmation-btn:hover {
-    color: var(--primaryText);
+    color: var(--secondaryText);
 }
 
 /* for tablets */
 @media only screen and (min-width: 768px) {
     .backPage-btn {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         top: 9%;
         left: 4%;    
     }
@@ -658,7 +668,7 @@ button:hover {
     .file-upload-btn {
         padding: 0.5rem 1rem;
         border-radius: 10px;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     #image-preview {
@@ -716,6 +726,12 @@ button:hover {
 
 /* for laptops */
 @media only screen and (min-width: 1024px) {
+    .backPage-btn {
+        font-size: 2rem;
+        top: 10%;
+        left: 3%;  
+    }
+
     .bookRegistration-container {
         width: 70vw;
         padding: 1rem;
@@ -743,7 +759,7 @@ button:hover {
     .file-upload-btn {
         padding: 0.5rem 1rem;
         border-radius: 10px;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     #image-preview {
@@ -795,4 +811,94 @@ button:hover {
         width: 13rem;
         height: 4rem;
     }
+}
+
+/* addUsers Page */
+.addUsers-backPage-btn {
+    background-color: transparent;
+    color: var(--primaryText);
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    text-decoration: none;
+    position: absolute;
+    top: 8%;
+    left: 2%;    
+}
+
+.addUsers-container {
+    background-color: var(--tertiaryBackground);
+    width: 85vw;
+    margin: 10vh auto;
+    padding: 0.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addUsers-container h1 {
+    color: var(--primaryBackground);
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 1.8rem;
+}
+
+.form-grid {
+    display: grid;
+    background-color: transparent;
+    width: 90%;
+    grid-template-columns: 7rem auto; /* Labels and input fields */
+    gap: 1.5rem 1rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.form-grid label {
+    align-self: center;
+    color: var(--primaryBackground);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.addUsers-inputText {
+    padding: 0.8rem;
+    margin: 0.2rem 0rem;
+    margin-right: 0.5rem;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    font-size: 1rem;
+    width: 10rem;
+}
+
+.addUsers-inputText:focus {
+    outline: none;
+}
+
+.addUsers-nameField {
+    width: 10rem;
+}
+
+.addUsers-dropdown {
+    width: 10rem;
+}
+
+.addUsers-DOB {
+    font-family: "Poppins", serif; 
+    padding: 0.6rem;
+}
+
+
+
+
+@media only screen and (min-width: 768px) { 
+    
+}
+
+@media only screen and (min-width: 1024px) { 
+    
 }
