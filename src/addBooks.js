@@ -4,20 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookAuthor = document.getElementById("book-author");
     const bookPublisher = document.getElementById("book-publisher");
     const bookCategory = document.getElementById("book-category");
-    const backButton = document.getElementById("backPage-btn");
 
-    backButton.disabled = false;
     // nav bar function
     const menuToggle = document.querySelector(".menu-toggle");
     const menuItems = document.querySelector(".right-group");
     menuToggle.addEventListener("click", () => {
         menuItems.classList.toggle("active"); // Toggle the active class
         menuToggle.classList.toggle("rotated");
-        backButton.classList.toggle("hiddenBtn");
-    });
-
-    backButton.addEventListener("click", function () {
-        window.location.href = `../pages/home.html`; // change this to the previous page html.
     });
 
     // upload file btn
@@ -112,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 // allow user to preview and confirm to add book
                 document.getElementById("bookDetail-panel").style.opacity = "0";
-                backButton.classList.toggle("hiddenBtn");
                 document.getElementById("confirmation-panel").style.display =
                     "flex";
 
@@ -132,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("cancel-btn")
         .addEventListener("click", function () {
             document.getElementById("bookDetail-panel").style.opacity = "1";
-            backButton.classList.toggle("hiddenBtn");
             document.getElementById("confirmation-panel").style.display =
                 "none";
         });
