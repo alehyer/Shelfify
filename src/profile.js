@@ -44,46 +44,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  // Redirect Home button
-  const redirectHomeElements = document.querySelectorAll(".redirect-home");
-  if (redirectHomeElements) {
-    redirectHomeElements.forEach((element) => {
-      element.addEventListener("click", () => {
-        window.location.href = "/pages/home.html";
-      });
-    });
-  } else {
-    console.error("Redirect home elements not found!");
-  }
-
-  // Redirect About Us button
-  const redirectAboutUsElements = document.querySelector(".redirect-about");
-  if (redirectAboutUsElements) {
-    redirectAboutUsElements.addEventListener("click", () => {
-      window.location.href = "/pages/about_us.html";
-    });
-  } else {
-    console.error("About Us element not found!");
-  }
-
-  // Redirect Contact Us button
-  const redirectContactUsElements = document.querySelector(".redirect-contact");
-  if (redirectContactUsElements) {
-    redirectContactUsElements.addEventListener("click", () => {
-      window.location.href = "/pages/contact.html";
-    });
-  } else {
-    console.error("About Us element not found!");
-  }
-
-  // Redirect Profile button
-  const redirectProfileElements = document.querySelector(".redirect-profile");
-  if (redirectProfileElements) {
-    redirectProfileElements.addEventListener("click", () => {
-      window.location.href = "/pages/profile.html";
-    });
-  } else {
-    console.error("Profile element not found!");
-  }
 });
