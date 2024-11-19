@@ -66,7 +66,7 @@
             <button class="menu-toggle">☰</button>
         </menu>
 
-        <div class="input-container">
+        <div class="input-container" id="userDetail-panel">
             <h1 class="page-h1">Register New Account</h1>
 
             <form class="form-grid">
@@ -106,8 +106,8 @@
                 </div>
                 <select id="user-type" class="page-inputText addUsers-dropdown">
                     <option>Select User</option>
-                    <option value="Member">👤 Member</option>
-                    <option value="Librarian">📚 Librarian</option>
+                    <option value="Member">Member</option>
+                    <option value="Librarian">Librarian</option>
                 </select>
 
                 <!-- Name -->
@@ -169,7 +169,7 @@
                 />
 
                 <!-- Address-->
-                <h2 class="addUsers-h2">Full Address</h2>
+                <h2 class="addUsers-h2">Address Information</h2>
 
                 <div style="display: flex">
                     <img
@@ -239,7 +239,37 @@
 
         <div id="confirmation-panel">
             <h2>Confirm Addition of This User?</h2>
-            <table class="confirmation-table"></table>
+            <table class="confirmation-table">
+                <tr>
+                    <th>Profile Picture:</th>
+                    <td id="image-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>User Type:</th>
+                    <td id="userType-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Full Name:</th>
+                    <td id="name-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Email:</th>
+                    <td id="email-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Phone Number:</th>
+                    <td id="phone-span">-</td>
+                </tr>
+
+                <tr>
+                    <th>Full Address:</th>
+                    <td id="address-span">-</td>
+                </tr>
+            </table>
 
             <div class="confirmation-button-container">
                 <button class="confirmation-btn" id="cancel-btn">Cancel</button>

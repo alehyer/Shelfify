@@ -57,15 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const bookPublisherValue = bookPublisher.value.trim();
             const bookCategoryValue = bookCategory.value.trim();
 
-            // Reset all outlines before applying new ones
-            document
-                .querySelector(".file-upload-btn")
-                .classList.remove("invalid-input");
-            bookTitle.classList.remove("invalid-input");
-            bookAuthor.classList.remove("invalid-input");
-            bookPublisher.classList.remove("invalid-input");
-            bookCategory.classList.remove("invalid-input");
-
             // Apply red outline for invalid fields
             // Define an array of fields with their respective validation conditions
             const fields = [
@@ -103,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             } else {
                 // allow user to preview and confirm to add book
-                document.getElementById("bookDetail-panel").style.opacity = "0";
+                document.getElementById("bookDetail-panel").style.display =
+                    "none";
                 document.getElementById("confirmation-panel").style.display =
                     "flex";
 
@@ -122,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document
         .getElementById("cancel-btn")
         .addEventListener("click", function () {
-            document.getElementById("bookDetail-panel").style.opacity = "1";
+            document.getElementById("bookDetail-panel").style.display = "flex";
             document.getElementById("confirmation-panel").style.display =
                 "none";
         });
