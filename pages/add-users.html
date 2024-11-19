@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" class="html-background">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../src/style.css" />
+        <script src="../src/addUsers.js"></script>
+        <title>Shelfify</title>
+    </head>
+    <body>
+        <menu>
+            <img src="../images/logo.png" alt="" />
+            <a href="home.html">
+                <li class="logo">SHELFIFY</li>
+            </a>
+            <div class="right-group">
+                <a href="home.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/home2.png"
+                                alt="home logo"
+                                class="nav-icon"
+                            />
+                            <p>HOME</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="about-us.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/about-us2.png"
+                                alt="magnifier with question mark"
+                                class="nav-icon"
+                            />
+                            <p>ABOUT US</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="contact-us.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/contact-us2.png"
+                                alt="phone ringing logo"
+                                class="nav-icon"
+                            />
+                            <p>CONTACT US</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="profile.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/profile2.png"
+                                alt="profile logo"
+                                class="nav-icon"
+                            />
+                            <p>PROFILE</p>
+                        </div>
+                    </li>
+                </a>
+            </div>
+            <button class="menu-toggle">☰</button>
+        </menu>
+
+        <div class="input-container">
+            <h1 class="page-h1">Register New Account</h1>
+
+            <form class="form-grid">
+                <!-- Profile Picture -->
+                <div style="display: flex">
+                    <img
+                        src="../images/camera.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="file-upload">Profile Picture</label>
+                </div>
+                <div class="file-upload-container">
+                    <img
+                        id="image-preview"
+                        alt="Preview of uploaded cover image"
+                    />
+                    <button class="file-upload-btn" type="button">
+                        Upload
+                    </button>
+                    <input
+                        type="file"
+                        id="file-upload"
+                        accept="image/*"
+                        hidden
+                    />
+                </div>
+
+                <!-- User Type -->
+                <div style="display: flex">
+                    <img
+                        src="../images/user-type.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="user-type">User Type</label>
+                </div>
+                <select id="user-type" class="page-inputText addUsers-dropdown">
+                    <option>Select User</option>
+                    <option value="Member">👤 Member</option>
+                    <option value="Librarian">📚 Librarian</option>
+                </select>
+
+                <!-- Name -->
+                <div style="display: flex">
+                    <img
+                        src="../images/id-card.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="full-name">Full Name</label>
+                </div>
+                <div class="">
+                    <input
+                        type="text"
+                        id="first-name"
+                        class="page-inputText addUsers-name"
+                        placeholder="First Name"
+                    />
+                    <input
+                        type="text"
+                        id="last-name"
+                        class="page-inputText addUsers-name"
+                        placeholder="Last Name"
+                    />
+                </div>
+
+                <!-- Email -->
+                <div style="display: flex">
+                    <img
+                        src="../images/email.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="email">Email</label>
+                </div>
+                <input
+                    type="email"
+                    id="email"
+                    class="page-inputText"
+                    placeholder="example@imail.sunway.edu.my"
+                />
+
+                <!-- Phone Number -->
+                <div style="display: flex">
+                    <img
+                        src="../images/phonebook.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="phone-no">Phone Number</label>
+                </div>
+                <input
+                    type="tel"
+                    id="phone-no"
+                    class="page-inputText addUsers-smallerField"
+                    placeholder="e.g. +6012 345 6789"
+                    maxlength="16"
+                    value="+60"
+                />
+
+                <!-- Address-->
+                <h2 class="addUsers-h2">Full Address</h2>
+
+                <div style="display: flex">
+                    <img
+                        src="../images/gps.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="street-address">Street Address</label>
+                </div>
+                <input
+                    type="text"
+                    id="street-address"
+                    class="page-inputText addUsers-smallerField"
+                    placeholder="e.g. 5, Jalan University"
+                />
+
+                <div style="display: flex">
+                    <img
+                        src="../images/cityscape.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="city-address">City</label>
+                </div>
+                <input
+                    type="text"
+                    id="city-address"
+                    class="page-inputText"
+                    placeholder="e.g. Bandar Sunway"
+                />
+
+                <div style="display: flex">
+                    <img
+                        src="../images/mailbox.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="zip-code">Zip Code</label>
+                </div>
+                <input
+                    type="number"
+                    id="zip-code"
+                    class="page-inputText"
+                    placeholder="e.g. 47500"
+                />
+
+                <div style="display: flex">
+                    <img
+                        src="../images/state-icon.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="state-address">State</label>
+                </div>
+                <input
+                    type="text"
+                    id="state-address"
+                    class="page-inputText"
+                    placeholder="e.g. Selangor"
+                />
+            </form>
+
+            <button class="login-button page-addBtn" id="addUser-btn">
+                Add User
+            </button>
+        </div>
+
+        <div id="confirmation-panel">
+            <h2>Confirm Addition of This User?</h2>
+            <table class="confirmation-table"></table>
+
+            <div class="confirmation-button-container">
+                <button class="confirmation-btn" id="cancel-btn">Cancel</button>
+                <button class="confirmation-btn" id="confirm-btn">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

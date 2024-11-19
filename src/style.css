@@ -68,6 +68,13 @@ menu li:hover {
     color: var(--secondaryText);
 }
 
+/* remove arrows in input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .right-group {
     display: flex;
     margin-left: auto;
@@ -436,7 +443,8 @@ button:hover {
     }
 }
 
-/* Book Registration Page */
+
+/* add-books & add-users Page */
 .html-background {
     position: relative;
     margin: 0;
@@ -444,7 +452,7 @@ button:hover {
 
 .html-background::before {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -457,10 +465,10 @@ button:hover {
     z-index: -1;
 }
 
-.bookRegistration-container {
+.input-container {
     background-color: var(--tertiaryBackground);
     width: 85vw;
-    margin: 10vh auto;
+    margin: 8vh auto;
     padding: 0.5rem;
     border-radius: 20px;
     display: flex;
@@ -468,27 +476,29 @@ button:hover {
     align-items: center;
 }
 
-.bookRegistration-container h1 {
-    color: var(--primaryText);
-    margin: 1rem;
-    margin-bottom: 0;
-    font-size: 2.5rem;
-}
-
-.bookRegistration-table {
-    font-size: 1.2rem;
-    font-weight: 700;
+.form-grid {
+    display: grid;
+    background-color: transparent;
+    width: 90%;
+    grid-template-columns: 8.5rem auto; /* Labels and input fields */
+    gap: 1.5rem 1rem;
     margin-top: 0.5rem;
-    color: var(--primaryText);
-    border-spacing: 2rem 2rem;
-    width: 70%;
+    padding: 1rem;
+    justify-content: center;
 }
 
-.bookRegistration-icon {
+.form-grid label {
+    align-self: center;
+    color: var(--primaryText);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.page-icon {
     width: auto;
     align-self: center;
-    height: 1.5rem;
-    margin-right: 1rem;
+    height: 2rem;
+    margin: 0 0.5rem;
 }
 
 .file-upload-container {
@@ -514,27 +524,26 @@ button:hover {
 
 #image-preview {
     display: none;
-    max-width: 3rem;
+    max-width: 5rem;
 }
 
-.bookRegistration-inputText {
-    width: 30vw;
-    padding: 1rem;
+.page-inputText {
+    padding: 0.8rem;
+    margin: 0.2rem 0rem;
+    margin-right: 0.5rem;
     border: none;
-    border-radius: 20px;
-    font-size: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    font-size: 1rem;
+    width: 10rem;
+    align-self: center;
 }
 
-.bookRegistration-inputText:focus {
+.page-inputText:focus {
     outline: none;
 }
 
-.bookRegistration-dropdown {
-    width: 35vw;
-}
-
-.bookRegistration-addBtn {
+.page-addBtn {
     background-color: var(--secondaryBackground);
     color: var(--primaryBackground);
     margin-top: 2rem;
@@ -544,18 +553,13 @@ button:hover {
     border-radius: 2rem;
 }
 
-.bookRegistration-addBtn:hover {
+.page-addBtn:hover {
     color: var(--secondaryText);
 }
 
 /* Red outline for invalid inputs */
 .invalid-input {
     outline: 2px solid #ff4d4d;
-}
-
-/* No outline for valid inputs */
-.valid-input {
-    outline: none;
 }
 
 #confirmation-panel {
@@ -566,13 +570,11 @@ button:hover {
     display: none;
     flex-direction: column;
     align-items: center;
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 41rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+    margin-top: 2rem;
 }
 
 #confirmation-panel h2 {
@@ -613,30 +615,62 @@ button:hover {
     color: var(--secondaryText);
 }
 
+
+/* add-book page only */
+.addBook-dropdown {
+    width: 10rem;
+    height: 2.75rem;
+}
+
+
+/* add-user page only */
+.page-h1 {
+    color: var(--primaryText);
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 1.8rem;
+}
+
+.addUsers-dropdown {
+    width: 9rem;
+    height: 2.75rem;
+}
+
+.addUsers-smallerField {
+    height: 1.13rem;
+}
+
+.addUsers-h2 {
+    grid-column: 1 / span 2; 
+    margin-top: 1.2rem
+}
+
+.addUsers-name {
+    width: 8rem;
+}
+
 /* for tablets */
 @media only screen and (min-width: 768px) {
-    .bookRegistration-container {
+    .input-container {
         width: 70vw;
         padding: 1rem;
         border-radius: 30px;
     }
 
-    .bookRegistration-container h1 {
-        margin: 1rem;
-        margin-bottom: 0;
-        font-size: 3rem;
+    .form-grid {
+        width: 95%;
+        grid-template-columns: 13rem auto; 
+        gap: 1.5rem 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .form-grid label {
+        font-size: 1.7rem;
     }
 
-    .bookRegistration-table {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-top: 1rem;
-        border-spacing: 3rem 2rem;
-    }
-
-    .bookRegistration-icon {
-        height: 2rem;
-        margin-right: 1.5rem;
+    .page-icon {
+        height: 2.5rem;
+        margin: 0 1rem;
     }
 
     .file-upload-btn {
@@ -647,21 +681,15 @@ button:hover {
 
     #image-preview {
         display: none;
-        max-width: 5.5rem;
+        max-width: 6rem;
     }
 
-    .bookRegistration-inputText {
-        width: 30vw;
-        padding: 1rem;
-        border-radius: 20px;
+    .page-inputText {
         font-size: 1.3rem;
+        width: 17rem;
     }
 
-    .bookRegistration-dropdown {
-        width: 30vw;
-    }
-
-    .bookRegistration-addBtn {
+    .page-addBtn {
         margin-top: 2rem;
         margin-bottom: 1.3rem;
         font-size: 1.5rem;
@@ -672,7 +700,6 @@ button:hover {
         width: 65vw;
         padding: 1.5rem;
         border-radius: 20px;
-        max-height: 45rem;
     }
 
     #confirmation-panel h2 {
@@ -696,32 +723,56 @@ button:hover {
         height: 4.5rem;
         font-size: 1.5rem;
     }
+
+    .addBook-dropdown {
+        width: 14rem;
+        height: 3.1rem;
+    }
+
+    .page-h1 {
+        font-size: 2.8rem;
+    }
+    
+    .addUsers-dropdown {
+        width: 10rem;
+        height: 3.1rem;
+    }
+    
+    .addUsers-smallerField {
+        height: 1.5rem;
+    }
+
+    .addUsers-h2 {
+        font-size: 2rem;
+    }
+
+    .addUsers-name {
+        width: 10rem;
+    }
 }
 
 /* for laptops */
 @media only screen and (min-width: 1024px) {
-    .bookRegistration-container {
+    .input-container {
         width: 70vw;
         padding: 1rem;
         border-radius: 30px;
     }
 
-    .bookRegistration-container h1 {
-        margin: 1rem;
-        margin-bottom: 0;
-        font-size: 4rem;
+    .form-grid {
+        width: 90%;
+        grid-template-columns: 16rem auto; 
+        gap: 1.5rem 1.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .form-grid label {
+        font-size: 1.9rem;
     }
 
-    .bookRegistration-table {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-top: 1rem;
-        border-spacing: 3rem 2rem;
-    }
-
-    .bookRegistration-icon {
+    .page-icon {
         height: 3rem;
-        margin-right: 2rem;
+        margin: 0 1.5rem;
     }
 
     .file-upload-btn {
@@ -735,18 +786,12 @@ button:hover {
         max-width: 7rem;
     }
 
-    .bookRegistration-inputText {
-        width: 30vw;
-        padding: 1rem;
-        border-radius: 20px;
+    .page-inputText {
         font-size: 1.3rem;
+        width: 27rem;
     }
 
-    .bookRegistration-dropdown {
-        width: 12vw;
-    }
-
-    .bookRegistration-addBtn {
+    .page-addBtn {
         margin-top: 1.5rem;
         margin-bottom: 1.3rem;
         width: 25vw;
@@ -764,9 +809,8 @@ button:hover {
     }
 
     .confirmation-table {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         border-spacing: 2rem;
-        width: 100%;
         padding: 1rem;
     }
 
@@ -779,80 +823,31 @@ button:hover {
         width: 13rem;
         height: 4rem;
     }
-}
 
-/* addUsers Page */
-.addUsers-container {
-    background-color: var(--tertiaryBackground);
-    width: 85vw;
-    margin: 10vh auto;
-    padding: 0.5rem;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .addBook-dropdown {
+        width: 14rem;
+        height: 3.1rem;
+    }
 
-.addUsers-container h1 {
-    color: var(--primaryBackground);
-    margin: 1rem;
-    margin-bottom: 0;
-    font-size: 1.8rem;
-}
-
-.form-grid {
-    display: grid;
-    background-color: transparent;
-    width: 90%;
-    grid-template-columns: 7rem auto; /* Labels and input fields */
-    gap: 1.5rem 1rem;
-    margin-top: 0.5rem;
-    padding: 1rem;
-    justify-content: center;
-}
-
-.form-grid label {
-    align-self: center;
-    color: var(--primaryBackground);
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.addUsers-inputText {
-    padding: 0.8rem;
-    margin: 0.2rem 0rem;
-    margin-right: 0.5rem;
-    border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
-    font-size: 1rem;
-    width: 10rem;
-}
-
-.addUsers-inputText:focus {
-    outline: none;
-}
-
-.addUsers-nameField {
-    width: 10rem;
-}
-
-.addUsers-dropdown {
-    width: 10rem;
-}
-
-.addUsers-DOB {
-    font-family: "Poppins", serif; 
-    padding: 0.6rem;
-}
-
-
-
-
-@media only screen and (min-width: 768px) { 
+    .page-h1 {
+        margin: 1rem;
+        font-size: 3.8rem;
+    }
     
-}
-
-@media only screen and (min-width: 1024px) { 
+    .addUsers-dropdown {
+        width: 10rem;
+        height: 3.1rem;
+    }
     
+    .addUsers-smallerField {
+        height: 1.5rem;
+    }
+
+    .addUsers-h2 {
+        font-size: 2.2rem;
+    }
+
+    .addUsers-name {
+        width: 12.27rem;
+    }
 }

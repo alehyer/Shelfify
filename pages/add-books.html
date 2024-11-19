@@ -66,171 +66,117 @@
             <button class="menu-toggle">☰</button>
         </menu>
 
-        <div
-            class="bookRegistration-container"
-            id="bookDetail-panel"
-            style="display: flex"
-        >
-            <h1>Add Book</h1>
+        <div class="input-container" id="bookDetail-panel">
+            <h1 class="page-h1">Register New Book</h1>
 
-            <div class="input-container">
-                <form class="bookRegistration-form">
-                    <table class="bookRegistration-table">
-                        <tr>
-                            <td>
-                                <div style="display: flex">
-                                    <img
-                                        src="../images/upload.png"
-                                        alt="Upload icon for cover image"
-                                        class="bookRegistration-icon"
-                                    />
-                                    <label for="file-upload">Cover Image</label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="file-upload-container">
-                                    <img
-                                        id="image-preview"
-                                        alt="Preview of uploaded cover image"
-                                    />
-                                    <button
-                                        class="file-upload-btn"
-                                        type="button"
-                                    >
-                                        Upload
-                                    </button>
-                                    <input
-                                        type="file"
-                                        id="file-upload"
-                                        name="cover-image"
-                                        accept="image/*"
-                                        hidden
-                                    />
-                                </div>
-                            </td>
-                        </tr>
+            <form class="form-grid">
+                <!-- Book cover -->
+                <div style="display: flex">
+                    <img
+                        src="../images/upload.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="file-upload">Cover Image</label>
+                </div>
+                <div class="file-upload-container">
+                    <img
+                        id="image-preview"
+                        alt="Preview of uploaded cover image"
+                    />
+                    <button class="file-upload-btn" type="button">
+                        Upload
+                    </button>
+                    <input
+                        type="file"
+                        id="file-upload"
+                        accept="image/*"
+                        hidden
+                    />
+                </div>
 
-                        <tr>
-                            <td>
-                                <div style="display: flex">
-                                    <img
-                                        src="../images/book-title.png"
-                                        alt="Book title icon"
-                                        class="bookRegistration-icon"
-                                    />
-                                    <label for="book-title">Title</label>
-                                </div>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Harry Potter and the Philosopher's Stone"
-                                    class="bookRegistration-inputText"
-                                    id="book-title"
-                                    name="book-title"
-                                    tabindex="2"
-                                />
-                            </td>
-                        </tr>
+                <!-- Book Title -->
+                <div style="display: flex">
+                    <img
+                        src="../images/book-title.png"
+                        alt="Book title icon"
+                        class="page-icon"
+                    />
+                    <label for="book-title">Title</label>
+                </div>
+                <input
+                    type="text"
+                    placeholder="e.g. Harry Potter and the Philosopher's Stone"
+                    class="page-inputText"
+                    id="book-title"
+                />
 
-                        <tr>
-                            <td>
-                                <div style="display: flex">
-                                    <img
-                                        src="../images/fountain-pen.png"
-                                        alt="Fountain pen icon"
-                                        class="bookRegistration-icon"
-                                    />
-                                    <label for="book-author">Author</label>
-                                </div>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. J. K. Rowling"
-                                    class="bookRegistration-inputText"
-                                    id="book-author"
-                                    name="book-author"
-                                    tabindex="3"
-                                />
-                            </td>
-                        </tr>
+                <!-- Book Author -->
+                <div style="display: flex">
+                    <img
+                        src="../images/fountain-pen.png"
+                        alt="Fountain pen icon"
+                        class="page-icon"
+                    />
+                    <label for="book-author">Author</label>
+                </div>
+                <input
+                    type="text"
+                    placeholder="e.g. J. K. Rowling"
+                    class="page-inputText"
+                    id="book-author"
+                />
 
-                        <tr>
-                            <td>
-                                <div style="display: flex">
-                                    <img
-                                        src="../images/publisher.png"
-                                        alt="Publisher icon"
-                                        class="bookRegistration-icon"
-                                    />
-                                    <label for="book-publisher"
-                                        >Publisher</label
-                                    >
-                                </div>
-                            </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Bloomsbury"
-                                    class="bookRegistration-inputText"
-                                    id="book-publisher"
-                                    name="book-publisher"
-                                    tabindex="4"
-                                />
-                            </td>
-                        </tr>
+                <!-- Book Publisher -->
+                <div style="display: flex">
+                    <img
+                        src="../images/publisher.png"
+                        alt="Publisher icon"
+                        class="page-icon"
+                    />
+                    <label for="book-publisher">Publisher</label>
+                </div>
+                <input
+                    type="text"
+                    placeholder="e.g. Bloomsbury"
+                    class="page-inputText"
+                    id="book-publisher"
+                />
 
-                        <tr>
-                            <td>
-                                <div style="display: flex">
-                                    <img
-                                        src="../images/tags.png"
-                                        alt="Category icon"
-                                        class="bookRegistration-icon"
-                                    />
-                                    <label for="book-category">Category</label>
-                                </div>
-                            </td>
-                            <td>
-                                <select
-                                    id="book-category"
-                                    name="category"
-                                    class="bookRegistration-inputText bookRegistration-dropdown"
-                                    tabindex="5"
-                                >
-                                    <option value="">Select a Category</option>
-                                    <option value="Adventure">Adventure</option>
-                                    <option value="Biography">Biography</option>
-                                    <option value="Classics">Classics</option>
-                                    <option value="Fantasy">Fantasy</option>
-                                    <option value="Historical Fiction">
-                                        Historical Fiction
-                                    </option>
-                                    <option value="Horror">Horror</option>
-                                    <option value="Mystery">Mystery</option>
-                                    <option value="Non-Fiction">
-                                        Non-Fiction
-                                    </option>
-                                    <option value="Romance">Romance</option>
-                                    <option value="Science Fiction">
-                                        Science Fiction
-                                    </option>
-                                    <option value="Self-Help">Self-Help</option>
-                                    <option value="Thriller">Thriller</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-
-                <button
-                    class="login-button bookRegistration-addBtn"
-                    id="addBook-btn"
+                <!-- Book Category -->
+                <div style="display: flex">
+                    <img
+                        src="../images/tags.png"
+                        alt="Category icon"
+                        class="page-icon"
+                    />
+                    <label for="book-category">Category</label>
+                </div>
+                <select
+                    id="book-category"
+                    class="page-inputText addBook-dropdown"
                 >
-                    Add Book
-                </button>
-            </div>
+                    <option value="Select a Category">Select a Category</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Biography">Biography</option>
+                    <option value="Classics">Classics</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Historical Fiction">
+                        Historical Fiction
+                    </option>
+                    <option value="Horror">Horror</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Non-Fiction">Non-Fiction</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Self-Help">Self-Help</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+            </form>
+
+            <button class="login-button page-addBtn" id="addBook-btn">
+                Add Book
+            </button>
         </div>
 
         <div id="confirmation-panel">

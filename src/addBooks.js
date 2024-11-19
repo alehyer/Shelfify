@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     window.addEventListener("load", () => {
-        const fileInput = document.getElementById("file-upload");
         fileInput.value = ""; // Clear the file input
 
         // Optionally, clear the image preview (if applicable)
