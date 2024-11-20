@@ -42,6 +42,7 @@ menu {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 .logo {
@@ -100,74 +101,7 @@ menu li:hover {
     transform: rotate(90deg);
 }
 
-/* Mobile styles for nav bar */
-@media (max-width: 768px) {
-    .right-group {
-        flex-direction: column;
-        position: absolute;
-        top: 4rem;
-        right: 0;
-        background-color: var(--secondaryBackground);
-        width: 100%;
-        max-height: 0; /* Hidden by default */
-        overflow: hidden;
-        opacity: 0;
-    }
-
-    .right-group.active {
-        max-height: 300px;
-        opacity: 1;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    menu li {
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-}
-
-h1 {
-    font-size: 3rem;
-    font-family: "Radlush";
-}
-
-a:link,
-a:active,
-a:visited {
-    text-decoration: none;
-    color: var(--primaryBackground);
-    transition: color 0.3s ease-out;
-}
-
-a:hover {
-    color: var(--secondaryText);
-}
-
-button {
-    background-color: var(--secondaryBackground);
-    color: var(--primaryBackground);
-    font-family: "Poppins", serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    border: none;
-    padding: 1rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    border-radius: 3rem;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    transition: color 0.3s ease-out, box-shadow 0.3s ease-out;
-    cursor: pointer;
-}
-
-button:hover {
-    box-shadow: 0 0 2rem #00000075;
-    color: var(--secondaryText);
-}
-
-/* Home Page */
+/* Default Page */
 
 .default-page {
     display: flex;
@@ -183,7 +117,7 @@ button:hover {
 
 .navigation-cards {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -192,35 +126,94 @@ button:hover {
     margin-right: 1rem;
 }
 
-.cards {
+.nav-cards {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 25rem;
+    width: 24rem;
     height: 25rem;
     background-color: var(--tertiaryBackground);
     border-radius: 2rem;
     box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
 }
 
-.cards button {
+.nav-cards button {
     color: var(--primaryBackground);
     align-self: center;
     width: 15rem;
 }
 
-.cards a {
+.nav-cards a {
     align-self: center;
 }
 
-.cards img {
+.nav-cards img {
     align-self: center;
     height: 15rem;
     width: 15rem;
     filter: drop-shadow(5px 5px 5px #00000040);
 }
 
-/* Manage Books */
+/* Librarians Page */
+
+.container {
+    max-width: 80rem;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.search-bar input {
+    flex: 1;
+    margin-right: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 2rem;
+    font-size: 1rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    padding: 1.25rem;
+    border-radius: 2rem;
+    background-color: var(--secondaryText);
+    flex-direction: column;
+}
+
+.card img {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    margin-right: 1.25rem;
+}
+
+.card div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    color: var(--primaryText);
+}
+
+.card p {
+    margin: 0.3125rem 0;
+    font-size: 0.875rem;
+    color: #555;
+}
+
+.card button {
+}
 
 /* New styles for the library management interface */
 
@@ -402,6 +395,18 @@ button:hover {
 
     .login-note p {
         max-width: 250px;
+    }
+
+    .navigation-cards {
+        flex-direction: row;
+    }
+
+    .card {
+        flex-direction: row;
+    }
+
+    .card button {
+        margin-left: auto;
     }
 }
 
@@ -620,6 +625,73 @@ button:hover {
 
 .confirmation-btn:hover {
     color: var(--primaryText);
+}
+
+/* Mobile styles for nav bar */
+@media (max-width: 768px) {
+    .right-group {
+        flex-direction: column;
+        position: absolute;
+        top: 4rem;
+        right: 0;
+        background-color: var(--secondaryBackground);
+        width: 100%;
+        max-height: 0; /* Hidden by default */
+        overflow: hidden;
+        opacity: 0;
+    }
+
+    .right-group.active {
+        max-height: 300px;
+        opacity: 1;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    menu li {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: "Radlush";
+}
+
+a:link,
+a:active,
+a:visited {
+    text-decoration: none;
+    color: var(--primaryBackground);
+    transition: color 0.3s ease-out;
+}
+
+a:hover {
+    color: var(--secondaryText);
+}
+
+button {
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
+    font-family: "Poppins", serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: none;
+    padding: 1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: 3rem;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: color 0.3s ease-out, box-shadow 0.3s ease-out;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 2rem #00000075;
+    color: var(--secondaryText);
 }
 
 /* for tablets */
