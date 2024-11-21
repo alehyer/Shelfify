@@ -1,102 +1,89 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Navigation bar function
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menuItems = document.querySelector(".right-group");
+	// Form submission handling
+	const contactForm = document.getElementById("contactForm");
+	if (contactForm) {
+		contactForm.addEventListener("submit", function (e) {
+			e.preventDefault();
 
-  // Check if menuToggle and menuItems exist
-  if (menuToggle && menuItems) {
-    menuToggle.addEventListener("click", () => {
-      menuItems.classList.toggle("active"); // Toggle the active class
-      menuToggle.classList.toggle("rotated");
-    });
-  } else {
-    console.error("Menu toggle or menu items not found!");
-  }
+			// Reset previous errors
+			resetErrors();
 
-  // Form submission handling
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+			// Get form fields
+			const name = document.getElementById("name");
+			const email = document.getElementById("email");
+			const subject = document.getElementById("subject");
+			const message = document.getElementById("message");
 
-      // Reset previous errors
-      resetErrors();
+			let isValid = true;
 
-      // Get form fields
-      const name = document.getElementById("name");
-      const email = document.getElementById("email");
-      const subject = document.getElementById("subject");
-      const message = document.getElementById("message");
+			// Validate name
+			if (!name.value.trim()) {
+				showError("name");
+				isValid = false;
+			}
 
-      let isValid = true;
+			// Validate email
+			if (!validateEmail(email.value.trim())) {
+				showError("email");
+				isValid = false;
+			}
 
-      // Validate name
-      if (!name.value.trim()) {
-        showError("name");
-        isValid = false;
-      }
+			// Validate subject
+			if (!subject.value.trim()) {
+				showError("subject");
+				isValid = false;
+			}
 
-      // Validate email
-      if (!validateEmail(email.value.trim())) {
-        showError("email");
-        isValid = false;
-      }
+			// Validate message
+			if (!message.value.trim()) {
+				showError("message");
+				isValid = false;
+			}
 
-      // Validate subject
-      if (!subject.value.trim()) {
-        showError("subject");
-        isValid = false;
-      }
+			// If form is valid, show success message
+			if (isValid) {
+				// Here you would typically send the form data to your server
+				document.getElementById("successMessage").style.display =
+					"block";
+				this.reset();
+			}
+		});
+	} else {
+		console.error("Contact form not found!");
+	}
 
-      // Validate message
-      if (!message.value.trim()) {
-        showError("message");
-        isValid = false;
-      }
+	// Email validation function
+	function validateEmail(email) {
+		const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return re.test(email);
+	}
 
-      // If form is valid, show success message
-      if (isValid) {
-        // Here you would typically send the form data to your server
-        document.getElementById("successMessage").style.display = "block";
-        this.reset();
-      }
-    });
-  } else {
-    console.error("Contact form not found!");
-  }
+	// Show error for a specific field
+	function showError(fieldName) {
+		const field = document.getElementById(fieldName);
+		const error = document.getElementById(`${fieldName}Error`);
+		if (field && error) {
+			field.classList.add("error-border");
+			error.style.display = "block";
+		}
+	}
 
-  // Email validation function
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
+	// Reset all errors
+	function resetErrors() {
+		const errors = document.getElementsByClassName("error");
+		const inputs = document.getElementsByClassName("form-input");
 
-  // Show error for a specific field
-  function showError(fieldName) {
-    const field = document.getElementById(fieldName);
-    const error = document.getElementById(`${fieldName}Error`);
-    if (field && error) {
-      field.classList.add("error-border");
-      error.style.display = "block";
-    }
-  }
+		for (let error of errors) {
+			error.style.display = "none";
+		}
 
-  // Reset all errors
-  function resetErrors() {
-    const errors = document.getElementsByClassName("error");
-    const inputs = document.getElementsByClassName("form-input");
+		for (let input of inputs) {
+			input.classList.remove("error-border");
+		}
 
-    for (let error of errors) {
-      error.style.display = "none";
-    }
-
-    for (let input of inputs) {
-      input.classList.remove("error-border");
-    }
-
-    const successMessage = document.getElementById("successMessage");
-    if (successMessage) {
-      successMessage.style.display = "none";
-    }
-  }
+		const successMessage = document.getElementById("successMessage");
+		if (successMessage) {
+			successMessage.style.display = "none";
+		}
+	}
 });
