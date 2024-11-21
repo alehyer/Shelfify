@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="html-background">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <title>Profile - Shelfify</title>
+  </head>
+  <body>
+    <menu>
+      <img src="../images/logo.png" alt="" />
+      <a href="home.html">
+        <li class="logo">SHELFIFY</li>
+      </a>
+      <div class="right-group">
+        <a href="home.html">
+          <li>HOME</li>
+        </a>
+        <a href="about-us.html">
+          <li>ABOUT US</li>
+        </a>
+        <a href="contact-us.html">
+          <li>CONTACT US</li>
+        </a>
+        <a href="profile.html">
+          <li>PROFILE</li>
+        </a>
+      </div>
+      <button class="menu-toggle">☰</button>
+    </menu>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-picture-container">
+          <img
+            id="profile-picture"
+            src="../images/users.png"
+            alt="Profile Picture"
+          />
+          <button class="change-picture-btn">Change Picture</button>
+          <input
+            type="file"
+            id="picture-upload"
+            accept="image/*"
+            style="display: none"
+          />
+        </div>
+        <div class="profile-status">
+          <span class="status-badge active">Active</span>
+        </div>
+      </div>
+
+      <div class="profile-info">
+        <div class="info-section">
+          <h2>Basic Information</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Full Name</label>
+              <p>Adam Lim</p>
+            </div>
+            <div class="info-item">
+              <label>Library Card Number</label>
+              <p>SUN241110</p>
+            </div>
+            <div class="info-item">
+              <label>Email Address</label>
+              <p>adamlim@gmail.com</p>
+            </div>
+            <div class="info-item">
+              <label>Phone Number</label>
+              <p>+6016-778-9309</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2>Address Information</h2>
+          <div class="info-grid">
+            <div class="info-item full-width">
+              <label>Street Address</label>
+              <p>12, Jalan Alor</p>
+            </div>
+            <div class="info-item">
+              <label>City</label>
+              <p>Kuala Lumpur</p>
+            </div>
+            <div class="info-item">
+              <label>State</label>
+              <p>Kuala Lumpur</p>
+            </div>
+            <div class="info-item">
+              <label>ZIP Code</label>
+              <p>56000</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2>Account Information</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <label>Member Since</label>
+              <p>18-11-2024</p>
+            </div>
+            <div class="info-item">
+              <label>Renewal Date</label>
+              <p>18-11-2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../src/profile.js"></script>
+</html>
