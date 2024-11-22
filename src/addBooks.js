@@ -5,14 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookPublisher = document.getElementById("book-publisher");
     const bookCategory = document.getElementById("book-category");
 
-    // nav bar function
-    const menuToggle = document.querySelector(".menu-toggle");
-    const menuItems = document.querySelector(".right-group");
-    menuToggle.addEventListener("click", () => {
-        menuItems.classList.toggle("active"); // Toggle the active class
-        menuToggle.classList.toggle("rotated");
-    });
-
     // upload file btn
     document.querySelector(".file-upload-btn").addEventListener("click", () => {
         document.getElementById("file-upload").click();

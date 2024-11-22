@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/src/style.css" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
         <script src="/src/login.js"></script>
         <title>Shelfify</title>
     </head>
@@ -17,30 +18,45 @@
 
             <h1 class="login-h1">Welcome Back</h1>
 
-            <div class="input-container">
-                <form class="input-container">
+            <form novalidate class="login-form-container">
+                <div class="form-group">
                     <input
                         type="text"
                         placeholder="Librarian ID"
                         class="login-inputText"
                         id="librarian-id"
+                        data-error="idError"
+                        required
                     />
+                    <div id="idError" class="error">
+                        Please enter your librarian ID
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <input
                         type="password"
                         placeholder="Password"
                         class="login-inputText"
                         id="librarian-password"
+                        data-error="passwordError"
+                        required
                     />
-                </form>
-
-                <div class="login-note">
-                    <p>Note: Please login with your assigned Librarian ID.</p>
-
-                    <a id="login-helpInfo" href="">Need Help?</a>
+                    <div id="passwordError" class="error">
+                        Please enter your password
+                    </div>
                 </div>
 
-                <button class="login-button" id="login-button">LOGIN</button>
-            </div>
+                <div class="login-note">
+                    <b>Note: Please login with your assigned Librarian ID.</b>
+
+                    <a id="login-helpInfo" href=""><b>Need Help?</b></a>
+                </div>
+
+                <button type="submit" class="login-button" id="login-button">
+                    LOGIN
+                </button>
+            </form>
         </div>
     </body>
 </html>

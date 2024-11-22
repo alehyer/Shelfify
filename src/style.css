@@ -130,6 +130,14 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+input, select, textarea:focus {
+    outline: none;
+}
+
+textarea {
+    font-family: "Poppins";
+}
+
 .right-group {
     display: flex;
     margin-left: auto;
@@ -355,11 +363,11 @@ input::-webkit-inner-spin-button {
 /* Login Page */
 
 .login-body {
-    background-color: var(--secondaryText);
+    background-color: var(--tertiaryBackground);
 }
 
 .login-container {
-    width: 70vw;
+    width: 80vw;
     height: 75vh;
     margin: 10vh auto;
     padding: 1rem;
@@ -370,34 +378,31 @@ input::-webkit-inner-spin-button {
 }
 
 .login-logo {
-    width: 20vw;
+    width: 30vw;
     height: auto;
     margin: 1em 0;
 }
 
 .login-h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
 }
 
-.input-container {
+.login-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .login-inputText {
-    width: 60vw;
+    width: 85%;
     padding: 1.5rem;
     margin-top: 1.5rem;
     border: none;
     border-radius: 20px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-}
-
-.login-inputText:focus {
-    outline: none;
 }
 
 .login-button {
@@ -422,18 +427,19 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    width: 100%;
-    font-size: 0.8rem;
+    width: 90%;
+    font-size: 1rem;
 }
 
-.login-note p {
-    max-width: 200px;
+.login-note b {
+    max-width: 10rem;
     margin-left: 0.5rem;
 }
 
 .login-note a {
-    margin-right: 0.5rem;
     color: var(--primaryText);
+    text-decoration: underline;
+    margin-right: 0.5rem;
 }
 
 /* Book Details Page */
@@ -472,7 +478,6 @@ input::-webkit-inner-spin-button {
     margin: 65px auto;
     max-width: 650px;
     box-sizing: border-box;
-    font-family: "Radlush";
 }
 
 .contact-form h2 {
@@ -522,8 +527,8 @@ input::-webkit-inner-spin-button {
 }
 
 .form-input.error-border {
-    border-color: #dc3545;
-    border-width: 1px;
+    border-color: #ff4d4d;
+    border-width: 2px;
     border-style: solid;
 }
 
@@ -533,19 +538,13 @@ input::-webkit-inner-spin-button {
 }
 
 .submit-btn {
-    background-color: var(--primaryBackground);
-    color: var(--primaryText);
     font-weight: bold;
     padding: 0.75rem 1.5rem;
     border-radius: 100px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.2s;
-}
-
-.submit-btn:hover {
-    box-shadow: #000000 solid 2px;
-    background-color: #040002;
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
 }
 
 .submit-success {
@@ -616,7 +615,6 @@ input::-webkit-inner-spin-button {
     border-radius: 1.5rem;
     color: var(--primaryText);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: "Radlush";
 }
 
 .profile-header {
@@ -644,8 +642,8 @@ input::-webkit-inner-spin-button {
 }
 
 .change-picture-btn {
-    background-color: var(--primaryBackground);
-    color: var(--primaryText);
+    background-color: var(--secondaryBackground);
+    color: var(--primaryBackground);
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
 }
@@ -714,6 +712,10 @@ input::-webkit-inner-spin-button {
     margin: 8vh auto;
     padding: 0.5rem;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-grid {
@@ -777,10 +779,6 @@ input::-webkit-inner-spin-button {
     font-size: 1rem;
     width: 10rem;
     align-self: center;
-}
-
-.page-inputText:focus {
-    outline: none;
 }
 
 .page-addBtn {
@@ -955,16 +953,16 @@ input::-webkit-inner-spin-button {
 /* For tablets */
 @media only screen and (min-width: 768px) {
     .login-logo {
-        width: 20vw;
+        width: 25vw;
     }
 
     .login-h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
     }
 
     .login-inputText {
         width: 50vw;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     .login-button {
@@ -973,10 +971,11 @@ input::-webkit-inner-spin-button {
     }
 
     .login-note {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
+        width: 70%;
     }
 
-    .login-note p {
+    .login-note b {
         max-width: 250px;
     }
 
@@ -1100,25 +1099,26 @@ input::-webkit-inner-spin-button {
     }
 
     .login-h1 {
-        font-size: 3rem;
+        font-size: 4.5rem;
     }
 
     .login-inputText {
-        width: 35vw;
+        width: 31vw;
         font-size: 1.3rem;
     }
 
     .login-button {
-        width: 25vw;
+        width: 20vw;
         font-size: 1.3rem;
     }
 
     .login-note {
-        font-size: 1rem;
+        font-size: 1.3rem;
+        width: 42%;
     }
 
-    .login-note p {
-        max-width: none;
+    .login-note b {
+        max-width: 20rem;
     }
 
     .input-container {
