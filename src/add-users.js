@@ -4,7 +4,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const imagePreview = document.getElementById("image-preview");
     const form = document.querySelector("form");
     const phoneInput = document.getElementById("phone-no");
+    const referrer = document.referrer;
+    console.log(referrer);
 
+    // select user type dropdown
+    const userType = document.getElementById("user-type");
+    if (referrer.includes("librarians.html")) {
+        userType.value = "Librarian";
+    } else if (referrer.includes("members.html")) {
+        userType.value = "Member";
+    } else {
+    }
+
+    // format phone no
     phoneInput.addEventListener("input", () => {
         let value = phoneInput.value.replace(/\D/g, ""); // Remove non-numeric characters
         if (value.startsWith("60")) {
