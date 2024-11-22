@@ -71,7 +71,7 @@
         <div class="input-container" id="bookDetail-panel">
             <h1 class="page-h1">Register New Book</h1>
 
-            <form class="form-grid">
+            <form class="form-grid" novalidate>
                 <!-- Book cover -->
                 <div style="display: flex">
                     <img
@@ -93,8 +93,10 @@
                         type="file"
                         id="file-upload"
                         accept="image/*"
+                        data-error="fileError"
                         hidden
                     />
+                    <div id="fileError" class="error">Please upload a file</div>
                 </div>
 
                 <!-- Book Title -->
@@ -106,12 +108,18 @@
                     />
                     <label for="book-title">Title</label>
                 </div>
-                <input
-                    type="text"
-                    placeholder="e.g. Harry Potter and the Philosopher's Stone"
-                    class="page-inputText"
-                    id="book-title"
-                />
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="e.g. Harry Potter and the Philosopher's Stone"
+                        class="page-inputText"
+                        id="book-title"
+                        data-error="titleError"
+                    />
+                    <div id="titleError" class="error">
+                        Please enter a book title
+                    </div>
+                </div>
 
                 <!-- Book Author -->
                 <div style="display: flex">
@@ -122,12 +130,18 @@
                     />
                     <label for="book-author">Author</label>
                 </div>
-                <input
-                    type="text"
-                    placeholder="e.g. J. K. Rowling"
-                    class="page-inputText"
-                    id="book-author"
-                />
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="e.g. J. K. Rowling"
+                        class="page-inputText"
+                        id="book-author"
+                        data-error="authorError"
+                    />
+                    <div id="authorError" class="error">
+                        Please enter a book author
+                    </div>
+                </div>
 
                 <!-- Book Publisher -->
                 <div style="display: flex">
@@ -138,12 +152,18 @@
                     />
                     <label for="book-publisher">Publisher</label>
                 </div>
-                <input
-                    type="text"
-                    placeholder="e.g. Bloomsbury"
-                    class="page-inputText"
-                    id="book-publisher"
-                />
+                <div class="form-group">
+                    <input
+                        type="text"
+                        placeholder="e.g. Bloomsbury"
+                        class="page-inputText"
+                        id="book-publisher"
+                        data-error="publisherError"
+                    />
+                    <div id="publisherError" class="error">
+                        Please enter a book publisher
+                    </div>
+                </div>
 
                 <!-- Book Category -->
                 <div style="display: flex">
@@ -154,31 +174,43 @@
                     />
                     <label for="book-category">Category</label>
                 </div>
-                <select
-                    id="book-category"
-                    class="page-inputText addBook-dropdown"
-                >
-                    <option value="Select a Category">Select a Category</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Biography">Biography</option>
-                    <option value="Classics">Classics</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Historical Fiction">
-                        Historical Fiction
-                    </option>
-                    <option value="Horror">Horror</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="Non-Fiction">Non-Fiction</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Science Fiction">Science Fiction</option>
-                    <option value="Self-Help">Self-Help</option>
-                    <option value="Thriller">Thriller</option>
-                </select>
-            </form>
+                <div class="form-group">
+                    <select
+                        id="book-category"
+                        class="page-inputText addBook-dropdown"
+                        data-error="categoryError"
+                    >
+                        <option value="Select a Category">
+                            Select a Category
+                        </option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Biography">Biography</option>
+                        <option value="Classics">Classics</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Historical Fiction">
+                            Historical Fiction
+                        </option>
+                        <option value="Horror">Horror</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Self-Help">Self-Help</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                    <div id="categoryError" class="error">
+                        Please select a category
+                    </div>
+                </div>
 
-            <button class="login-button page-addBtn" id="addBook-btn">
-                Add Book
-            </button>
+                <button
+                    type="submit"
+                    class="login-button page-addBtn"
+                    id="addBook-btn"
+                >
+                    Add Book
+                </button>
+            </form>
         </div>
 
         <div id="confirmation-panel">

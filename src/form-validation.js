@@ -36,22 +36,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to validate fields
     function validateField(input) {
-        const errorElementId = input.dataset.error; // Get the associated error element ID
-        const errorElement = document.getElementById(errorElementId);
+        const errorElement = document.getElementById(input.dataset.error);
         const value = input.value.trim();
 
-        if (!value) {
-            // General validation for empty fields
-            input.classList.add("invalid-input");
-            errorElement.style.display = "block";
-        } else if (input.type === "email" && !isValidEmail(value)) {
-            // Specific validation for email fields
-            input.classList.add("invalid-input");
-            errorElement.style.display = "block";
+        // Validation rules
+        const validationRules = {
+            email: () => !isValidEmail(value),
+            default: () => !value, // General validation for empty fields
+        };
+
+        // Determine the validation logic to use
+        const validationType =
+            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
+        const isInvalid = (
+            validationRules[validationType] || validationRules.default
+        )();
+
+        // Set validity based on the result
+        if (isInvalid) {
+            setInvalid(input, errorElement);
+            if (input.type === "file") {
+                uploadTrigger.classList.add("invalid-input");
+            }
         } else {
-            input.classList.remove("invalid-input");
-            errorElement.style.display = "none";
+            setValid(input, errorElement);
         }
+    }
+
+    // Helper function to mark input as invalid
+    function setInvalid(input, errorElement) {
+        input.classList.add("invalid-input");
+        if (errorElement) errorElement.style.display = "block";
+    }
+
+    // Helper function to mark input as valid
+    function setValid(input, errorElement) {
+        input.classList.remove("invalid-input");
+        if (errorElement) errorElement.style.display = "none";
     }
 
     // Function to check if an email is valid

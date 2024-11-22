@@ -8,12 +8,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     const form = document.querySelector("form");
+    const id = document.getElementById("librarian-id");
+    const password = document.getElementById("librarian-password");
+    const loginError = document.getElementById("loginError");
+
     // Add event listener for form submission
     form.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent form submission for validation
         const inputs = form.querySelectorAll("[data-error]"); // Get all inputs with a data-error attribute
 
         inputs.forEach((input) => validateField(input)); // Validate each field
+
+        const idValue = id.value.trim();
+        const passwordValue = password.value.trim();
+
+        if (idValue && passwordValue) {
+            if (idValue === "123" && passwordValue === "abc") {
+                window.location.href = `/pages/home.html`;
+            } else {
+                loginError.style.display = "block";
+                password.value = "";
+                password.focus();
+            }
+        }
     });
 
     form.querySelectorAll("[data-error]").forEach((input) => {

@@ -1,59 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const fileInput = document.getElementById("file-upload");
-    const userType = document.getElementById("user-type");
-    const firstName = document.getElementById("first-name");
-    const lastName = document.getElementById("last-name");
-    const userEmail = document.getElementById("email");
-    const phoneNumber = document.getElementById("phone-no");
-    const streetAddress = document.getElementById("street-address");
-    const cityAddress = document.getElementById("city-address");
-    const zipCode = document.getElementById("zip-code");
-    const stateAddress = document.getElementById("state-address");
-
-    // nav bar function
-    const menuToggle = document.querySelector(".menu-toggle");
-    const menuItems = document.querySelector(".right-group");
-    menuToggle.addEventListener("click", () => {
-        menuItems.classList.toggle("active"); // Toggle the active class
-        menuToggle.classList.toggle("rotated");
-    });
-
-    // upload file btn
-    document.querySelector(".file-upload-btn").addEventListener("click", () => {
-        document.getElementById("file-upload").click();
-    });
-
-    // preview image
-    document.getElementById("file-upload").addEventListener("change", (e) => {
-        const file = e.target.files[0];
-
-        if (file && file.type.startsWith("image/")) {
-            const reader = new FileReader();
-
-            reader.onload = (event) => {
-                // Set the uploaded image as the src of the <img> element
-                const imagePreview = document.getElementById("image-preview");
-                imagePreview.src = event.target.result;
-                imagePreview.style.display = "block"; // Make the image visible
-                displayInSpan(event.target.result);
-            };
-
-            reader.readAsDataURL(file); // Read the file as a data URL
-        } else {
-            alert("Please upload a valid image file.");
-            e.target.value = ""; // Clear the invalid file
-        }
-    });
-
-    window.addEventListener("load", () => {
-        fileInput.value = ""; // Clear the file input
-
-        // Optionally, clear the image preview (if applicable)
-        const imagePreview = document.getElementById("image-preview");
-        imagePreview.style.display = "none"; // Hide the image preview
-    });
-
+    const uploadTrigger = document.querySelector(".file-upload-btn");
+    const imagePreview = document.getElementById("image-preview");
+    const form = document.querySelector("form");
     const phoneInput = document.getElementById("phone-no");
+
     phoneInput.addEventListener("input", () => {
         let value = phoneInput.value.replace(/\D/g, ""); // Remove non-numeric characters
         if (value.startsWith("60")) {
@@ -68,93 +19,39 @@ document.addEventListener("DOMContentLoaded", function () {
         phoneInput.value = value.trim();
     });
 
-    document
-        .getElementById("addUser-btn")
-        .addEventListener("click", function () {
-            const userTypeValue = userType.value.trim();
-            const firstNameValue = firstName.value.trim();
-            const lastNameValue = lastName.value.trim();
-            const emailValue = userEmail.value.trim();
-            const phoneNumberValue = phoneNumber.value.trim();
-            const streetAddressValue = streetAddress.value.trim();
-            const cityAddressValue = cityAddress.value.trim();
-            const zipCodeValue = zipCode.value.trim();
-            const stateAddressValue = stateAddress.value.trim();
+    // Trigger file input on button click
+    uploadTrigger.addEventListener("click", () => {
+        fileInput.click();
+    });
 
-            const fields = [
-                { element: userType, isValid: userTypeValue !== "Select User" },
-                { element: firstName, isValid: firstNameValue },
-                { element: lastName, isValid: lastNameValue },
-                { element: userEmail, isValid: emailValue.includes("@") },
-                {
-                    element: phoneNumber,
-                    isValid:
-                        phoneNumberValue.length >= 14 &&
-                        phoneNumberValue.startsWith("+60"),
-                },
-                { element: streetAddress, isValid: streetAddressValue },
-                { element: cityAddress, isValid: cityAddressValue },
-                { element: zipCode, isValid: zipCodeValue },
-                { element: stateAddress, isValid: stateAddressValue },
-            ];
+    // Preview the uploaded image
+    fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imagePreview.src = event.target.result;
+                imagePreview.style.display = "block"; // Show the image preview
+                displayInSpan(event.target.result); // Display the image in span
 
-            fields.forEach(({ element, isValid }) => {
-                if (!isValid) {
-                    element.classList.add("invalid-input");
-                }
-            });
+                // Clear invalid-input class
+                setValid(
+                    uploadTrigger,
+                    document.getElementById(fileInput.dataset.error)
+                );
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please upload a valid image file.");
+            e.target.value = ""; // Clear the invalid file
+        }
+    });
 
-            if (!(fileInput.files.length > 0)) {
-                document
-                    .querySelector(".file-upload-btn")
-                    .classList.add("invalid-input");
-            }
-
-            if (
-                fileInput.files.length <= 0 ||
-                userTypeValue === "Select User" ||
-                !firstNameValue ||
-                !lastNameValue ||
-                !emailValue.includes("@") ||
-                !(
-                    phoneNumberValue.length >= 14 &&
-                    phoneNumberValue.startsWith("+60")
-                ) ||
-                !streetAddressValue ||
-                !cityAddressValue ||
-                !zipCodeValue ||
-                !stateAddressValue
-            ) {
-                alert("Please fill in all required fields correctly.");
-                return;
-            } else {
-                document.getElementById("userDetail-panel").style.display =
-                    "none";
-                document.getElementById("confirmation-panel").style.display =
-                    "flex";
-
-                // replace text
-                document.getElementById("userType-span").textContent =
-                    userTypeValue;
-                document.getElementById(
-                    "name-span"
-                ).textContent = `${firstNameValue} ${lastNameValue}`;
-                document.getElementById("email-span").textContent = emailValue;
-                document.getElementById("phone-span").textContent =
-                    phoneNumberValue;
-                document.getElementById(
-                    "address-span"
-                ).textContent = `${streetAddressValue}, ${zipCodeValue} ${cityAddressValue}, ${stateAddressValue}`;
-            }
-        });
-
-    document
-        .getElementById("cancel-btn")
-        .addEventListener("click", function () {
-            document.getElementById("userDetail-panel").style.display = "flex";
-            document.getElementById("confirmation-panel").style.display =
-                "none";
-        });
+    // Clear file input and preview on page load
+    window.addEventListener("load", () => {
+        fileInput.value = "";
+        imagePreview.style.display = "none";
+    });
 
     function displayInSpan(imageData) {
         const span = document.getElementById("image-span");
@@ -182,49 +79,136 @@ document.addEventListener("DOMContentLoaded", function () {
         document.head.appendChild(style);
     }
 
-    function validateInput(event) {
-        const target = event.target;
+    // Form submission handler
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default form submission
+        const inputs = form.querySelectorAll("[data-error]");
+        let allValid = true;
 
-        // Handle text inputs
-        if (event.type === "input" && target.value.trim()) {
-            target.classList.remove("invalid-input");
+        // Validate all inputs
+        inputs.forEach((input) => {
+            validateField(input);
+            if (input.classList.contains("invalid-input")) {
+                allValid = false;
+            }
+        });
+
+        // If all fields are valid, proceed
+        if (allValid) {
+            // Handle form success (e.g., send data or show a success message)
+            document.getElementById("userDetail-panel").style.display = "none";
+            document.getElementById("confirmation-panel").style.display =
+                "flex";
+
+            // Map of input field IDs to span IDs
+            const fieldMapping = {
+                "user-type": "userType-span",
+                email: "email-span",
+                "phone-no": "phone-span",
+            };
+
+            // Helper function to get and trim input value by ID
+            function getTrimmedValue(id) {
+                return document.getElementById(id)?.value.trim() || "";
+            }
+
+            // Set full name
+            const firstName = getTrimmedValue("first-name");
+            const lastName = getTrimmedValue("last-name");
+            document.getElementById(
+                "name-span"
+            ).textContent = `${firstName} ${lastName}`;
+
+            // Set address
+            const streetAddress = getTrimmedValue("street-address");
+            const city = getTrimmedValue("city-address");
+            const zipcode = getTrimmedValue("zip-code");
+            const state = getTrimmedValue("state-address");
+            document.getElementById(
+                "address-span"
+            ).textContent = `${streetAddress}, ${zipcode} ${city}, ${state}`;
+
+            // Loop through the mapping and set text content
+            Object.entries(fieldMapping).forEach(([inputId, spanId]) => {
+                const inputValue = document
+                    .getElementById(inputId)
+                    .value.trim();
+                document.getElementById(spanId).textContent = inputValue;
+            });
         }
-        // Handle category selection
-        else if (
-            event.type === "change" &&
-            target === userType &&
-            target.value !== "Select User"
-        ) {
-            target.classList.remove("invalid-input");
-        }
-        // Handle file input
-        else if (
-            event.type === "change" &&
-            target === fileInput &&
-            fileInput.files.length > 0
-        ) {
-            document
-                .querySelector(".file-upload-btn")
-                .classList.remove("invalid-input");
+    });
+
+    // Real-time validation for inputs
+    form.querySelectorAll("[data-error]").forEach((input) => {
+        input.addEventListener("input", () => {
+            const errorElementId = input.dataset.error;
+            const errorElement = document.getElementById(errorElementId);
+
+            // Remove invalid styles and hide the error message as user types
+            input.classList.remove("invalid-input");
+            errorElement.style.display = "none";
+        });
+    });
+
+    // Validate individual fields
+    function validateField(input) {
+        const errorElement = document.getElementById(input.dataset.error);
+        const value = input.value.trim();
+
+        // Validation rules
+        const validationRules = {
+            SELECT: () => input.value === "Select User" || !input.value,
+            file: () => !input.files || input.files.length === 0,
+            tel: () => value.length < 14 || !value.startsWith("+60"),
+            email: () => !isValidEmail(value),
+            default: () => !value, // General validation for empty fields
+        };
+
+        // Determine the validation logic to use
+        const validationType =
+            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
+        const isInvalid = (
+            validationRules[validationType] || validationRules.default
+        )();
+
+        // Set validity based on the result
+        if (isInvalid) {
+            setInvalid(input, errorElement);
+            if (input.type === "file") {
+                uploadTrigger.classList.add("invalid-input");
+            }
+        } else {
+            setValid(input, errorElement);
         }
     }
 
-    // Attach the event listener to text inputs
-    [
-        firstName,
-        lastName,
-        userEmail,
-        phoneNumber,
-        streetAddress,
-        cityAddress,
-        zipCode,
-        stateAddress,
-    ].forEach((input) => {
-        input.addEventListener("input", validateInput);
-    });
+    // Helper function to mark input as invalid
+    function setInvalid(input, errorElement) {
+        input.classList.add("invalid-input");
+        if (errorElement) errorElement.style.display = "block";
+    }
 
-    // Attach a change event for the category and file input fields
-    [userType, fileInput].forEach((field) => {
-        field.addEventListener("change", validateInput);
-    });
+    // Helper function to mark input as valid
+    function setValid(input, errorElement) {
+        input.classList.remove("invalid-input");
+        if (errorElement) errorElement.style.display = "none";
+    }
+
+    // Helper function to validate email format
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    document
+        .getElementById("cancel-btn")
+        .addEventListener("click", function () {
+            document.getElementById("userDetail-panel").style.display = "flex";
+            document.getElementById("confirmation-panel").style.display =
+                "none";
+        });
+
+    document
+        .getElementById("confirm-btn")
+        .addEventListener("click", function () {});
 });

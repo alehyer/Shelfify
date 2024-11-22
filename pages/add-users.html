@@ -71,7 +71,7 @@
         <div class="input-container" id="userDetail-panel">
             <h1 class="page-h1">Register New Account</h1>
 
-            <form class="form-grid">
+            <form class="form-grid" novalidate>
                 <!-- Profile Picture -->
                 <div style="display: flex">
                     <img
@@ -93,82 +93,109 @@
                         type="file"
                         id="file-upload"
                         accept="image/*"
+                        data-error="fileError"
                         hidden
                     />
+                    <div id="fileError" class="error">Please upload a file</div>
                 </div>
 
                 <!-- User Type -->
                 <div style="display: flex">
                     <img
                         src="../images/user-type.png"
-                        alt="Upload icon for cover image"
+                        alt="User icon"
                         class="page-icon"
                     />
                     <label for="user-type">User Type</label>
                 </div>
-                <select id="user-type" class="page-inputText addUsers-dropdown">
-                    <option>Select User</option>
-                    <option value="Member">Member</option>
-                    <option value="Librarian">Librarian</option>
-                </select>
+                <div class="form-group">
+                    <select
+                        id="user-type"
+                        class="page-inputText addUsers-dropdown"
+                        data-error="userError"
+                    >
+                        <option value="Select User">Select User</option>
+                        <option value="Member">Member</option>
+                        <option value="Librarian">Librarian</option>
+                    </select>
+                    <div id="userError" class="error">Please select a user</div>
+                </div>
 
                 <!-- Name -->
                 <div style="display: flex">
                     <img
                         src="../images/id-card.png"
-                        alt="Upload icon for cover image"
+                        alt="Full name icon"
                         class="page-icon"
                     />
                     <label for="full-name">Full Name</label>
                 </div>
-                <div class="">
+                <div>
                     <input
                         type="text"
                         id="first-name"
                         class="page-inputText addUsers-name"
                         placeholder="First Name"
+                        data-error="fullNameError"
                     />
+
                     <input
                         type="text"
                         id="last-name"
                         class="page-inputText addUsers-name"
                         placeholder="Last Name"
+                        data-error="fullNameError"
                     />
+                    <div id="fullNameError" class="error">
+                        Please enter a full name
+                    </div>
                 </div>
 
                 <!-- Email -->
                 <div style="display: flex">
                     <img
                         src="../images/email.png"
-                        alt="Upload icon for cover image"
+                        alt="email icon"
                         class="page-icon"
                     />
                     <label for="email">Email</label>
                 </div>
-                <input
-                    type="email"
-                    id="email"
-                    class="page-inputText"
-                    placeholder="example@imail.sunway.edu.my"
-                />
+                <div class="form-group">
+                    <input
+                        type="email"
+                        id="email"
+                        class="page-inputText"
+                        placeholder="example@imail.sunway.edu.my"
+                        data-error="emailError"
+                    />
+                    <div id="emailError" class="error">
+                        Please enter a valid email address
+                    </div>
+                </div>
 
                 <!-- Phone Number -->
                 <div style="display: flex">
                     <img
                         src="../images/phonebook.png"
-                        alt="Upload icon for cover image"
+                        alt="Phone icon"
                         class="page-icon"
                     />
                     <label for="phone-no">Phone Number</label>
                 </div>
-                <input
-                    type="tel"
-                    id="phone-no"
-                    class="page-inputText addUsers-smallerField"
-                    placeholder="e.g. +6012 345 6789"
-                    maxlength="16"
-                    value="+60"
-                />
+                <div class="form-group">
+                    <input
+                        type="tel"
+                        id="phone-no"
+                        class="page-inputText addUsers-smallerField"
+                        placeholder="e.g. +6012 345 6789"
+                        maxlength="15"
+                        value="+60"
+                        data-error="phoneError"
+                    />
+                    <div id="phoneError" class="error">
+                        Please enter a valid phone number
+                    </div>
+                </div>
 
                 <!-- Address-->
                 <h2 class="addUsers-h2">Address Information</h2>
@@ -176,67 +203,93 @@
                 <div style="display: flex">
                     <img
                         src="../images/gps.png"
-                        alt="Upload icon for cover image"
+                        alt="Street address icon"
                         class="page-icon"
                     />
                     <label for="street-address">Street Address</label>
                 </div>
-                <input
-                    type="text"
-                    id="street-address"
-                    class="page-inputText addUsers-smallerField"
-                    placeholder="e.g. 5, Jalan University"
-                />
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="street-address"
+                        class="page-inputText addUsers-smallerField"
+                        placeholder="e.g. 5, Jalan University"
+                        data-error="streetError"
+                    />
+                    <div id="streetError" class="error">
+                        Please enter a street address
+                    </div>
+                </div>
 
                 <div style="display: flex">
                     <img
                         src="../images/cityscape.png"
-                        alt="Upload icon for cover image"
+                        alt="City icon"
                         class="page-icon"
                     />
                     <label for="city-address">City</label>
                 </div>
-                <input
-                    type="text"
-                    id="city-address"
-                    class="page-inputText"
-                    placeholder="e.g. Bandar Sunway"
-                />
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="city-address"
+                        class="page-inputText"
+                        placeholder="e.g. Bandar Sunway"
+                        data-error="cityError"
+                    />
+                    <div id="cityError" class="error">Please enter a city</div>
+                </div>
 
                 <div style="display: flex">
                     <img
                         src="../images/mailbox.png"
-                        alt="Upload icon for cover image"
+                        alt="Zip code icon"
                         class="page-icon"
                     />
                     <label for="zip-code">Zip Code</label>
                 </div>
-                <input
-                    type="number"
-                    id="zip-code"
-                    class="page-inputText"
-                    placeholder="e.g. 47500"
-                />
+                <div class="form-group">
+                    <input
+                        type="number"
+                        id="zip-code"
+                        class="page-inputText"
+                        placeholder="e.g. 47500"
+                        data-error="zipcodeError"
+                    />
+                    <div id="zipcodeError" class="error">
+                        Please enter a zip code
+                    </div>
+                </div>
 
                 <div style="display: flex">
                     <img
                         src="../images/state-icon.png"
-                        alt="Upload icon for cover image"
+                        alt="State icon"
                         class="page-icon"
                     />
                     <label for="state-address">State</label>
                 </div>
-                <input
-                    type="text"
-                    id="state-address"
-                    class="page-inputText"
-                    placeholder="e.g. Selangor"
-                />
-            </form>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="state-address"
+                        class="page-inputText"
+                        placeholder="e.g. Selangor"
+                        data-error="stateError"
+                    />
+                    <div id="stateError" class="error">
+                        Please enter a state
+                    </div>
+                </div>
 
-            <button class="login-button page-addBtn" id="addUser-btn">
-                Add User
-            </button>
+                <button
+                    type="submit"
+                    class="login-button page-addBtn"
+                    id="addUser-btn"
+                >
+                    Add User
+                </button>
+            </form>
         </div>
 
         <div id="confirmation-panel">

@@ -784,11 +784,11 @@ textarea {
 .page-addBtn {
     background-color: var(--secondaryBackground);
     color: var(--primaryBackground);
-    margin-top: 2rem;
-    margin-bottom: 1.3rem;
     width: 40vw;
     padding: 1rem;
     border-radius: 2rem;
+    grid-column: 1 / span 2;
+    margin: 2rem auto 1.3rem auto;
 }
 
 .page-addBtn:hover {
@@ -816,6 +816,7 @@ textarea {
     max-height: 50rem;
     overflow-y: auto;
     overflow-x: hidden;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 #confirmation-panel h2 {
@@ -860,6 +861,7 @@ textarea {
 .addBook-dropdown {
     width: 10rem;
     height: 2.75rem;
+    align-self: baseline;
 }
 
 /* add-user page only */
@@ -873,6 +875,7 @@ textarea {
 .addUsers-dropdown {
     width: 9rem;
     height: 2.75rem;
+    align-self: baseline;
 }
 
 .addUsers-smallerField {
@@ -1118,7 +1121,7 @@ textarea {
     }
 
     .login-note b {
-        max-width: 20rem;
+        max-width: 25rem;
     }
 
     .input-container {

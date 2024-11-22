@@ -1,108 +1,194 @@
 document.addEventListener("DOMContentLoaded", function () {
     const fileInput = document.getElementById("file-upload");
-    const bookTitle = document.getElementById("book-title");
-    const bookAuthor = document.getElementById("book-author");
-    const bookPublisher = document.getElementById("book-publisher");
-    const bookCategory = document.getElementById("book-category");
+    const uploadTrigger = document.querySelector(".file-upload-btn");
+    const imagePreview = document.getElementById("image-preview");
+    const form = document.querySelector("form");
 
-    // upload file btn
-    document.querySelector(".file-upload-btn").addEventListener("click", () => {
-        document.getElementById("file-upload").click();
+    // Trigger file input on button click
+    uploadTrigger.addEventListener("click", () => {
+        fileInput.click();
     });
 
-    // preview image
-    document.getElementById("file-upload").addEventListener("change", (e) => {
+    // Preview the uploaded image
+    fileInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
-
         if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
-
             reader.onload = (event) => {
-                // Set the uploaded image as the src of the <img> element
-                const imagePreview = document.getElementById("image-preview");
                 imagePreview.src = event.target.result;
-                imagePreview.style.display = "block"; // Make the image visible
-                displayInSpan(event.target.result);
-            };
+                imagePreview.style.display = "block"; // Show the image preview
+                displayInSpan(event.target.result); // Display the image in span
 
-            reader.readAsDataURL(file); // Read the file as a data URL
+                // Clear invalid-input class
+                setValid(
+                    uploadTrigger,
+                    document.getElementById(fileInput.dataset.error)
+                );
+            };
+            reader.readAsDataURL(file);
         } else {
             alert("Please upload a valid image file.");
             e.target.value = ""; // Clear the invalid file
         }
     });
 
+    // Clear file input and preview on page load
     window.addEventListener("load", () => {
-        fileInput.value = ""; // Clear the file input
-
-        // Optionally, clear the image preview (if applicable)
-        const imagePreview = document.getElementById("image-preview");
-        imagePreview.style.display = "none"; // Hide the image preview
+        fileInput.value = "";
+        imagePreview.style.display = "none";
     });
 
-    // function for addBook button
-    document
-        .getElementById("addBook-btn")
-        .addEventListener("click", function () {
-            const bookTitleValue = bookTitle.value.trim();
-            const bookAuthorValue = bookAuthor.value.trim();
-            const bookPublisherValue = bookPublisher.value.trim();
-            const bookCategoryValue = bookCategory.value.trim();
+    // Function to display image in a span with responsive styles
+    function displayInSpan(imageData) {
+        const span = document.getElementById("image-span");
+        span.innerHTML = `<img src="${imageData}" alt="Uploaded Image">`;
 
-            // Apply red outline for invalid fields
-            // Define an array of fields with their respective validation conditions
-            const fields = [
-                { element: bookTitle, isValid: bookTitleValue },
-                { element: bookAuthor, isValid: bookAuthorValue },
-                { element: bookPublisher, isValid: bookPublisherValue },
-                {
-                    element: bookCategory,
-                    isValid: bookCategoryValue !== "Select a Category",
-                },
-            ];
-
-            // Loop through each field to apply the validation
-            fields.forEach(({ element, isValid }) => {
-                if (!isValid) {
-                    element.classList.add("invalid-input");
+        const style = document.createElement("style");
+        style.textContent = `
+                #image-span img {
+                    max-width: 5rem;
                 }
-            });
+    
+                @media (min-width: 768px) {
+                    #image-span img {
+                        max-width: 6rem;
+                    }
+                }
+    
+                @media (min-width: 1024px) {
+                    #image-span img {
+                        max-width: 7rem;
+                    }
+                }
+            `;
+        document.head.appendChild(style);
+    }
 
-            if (!(fileInput.files.length > 0)) {
-                document
-                    .querySelector(".file-upload-btn")
-                    .classList.add("invalid-input");
-            }
+    // Form submission handler
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent default form submission
+        const inputs = form.querySelectorAll("[data-error]");
+        let allValid = true;
 
-            // If any field is empty, return without submitting the form
-            if (
-                fileInput.files.length <= 0 ||
-                !bookTitleValue ||
-                !bookAuthorValue ||
-                !bookPublisherValue ||
-                bookCategoryValue === "Select a Category"
-            ) {
-                alert("Please fill in all required fields.");
-                return;
-            } else {
-                // allow user to preview and confirm to add book
-                document.getElementById("bookDetail-panel").style.display =
-                    "none";
-                document.getElementById("confirmation-panel").style.display =
-                    "flex";
-
-                // replace the text with the values in input fields
-                document.getElementById("title-span").textContent =
-                    bookTitleValue;
-                document.getElementById("author-span").textContent =
-                    bookAuthorValue;
-                document.getElementById("publisher-span").textContent =
-                    bookPublisherValue;
-                document.getElementById("category-span").textContent =
-                    bookCategoryValue;
+        // Validate all inputs
+        inputs.forEach((input) => {
+            validateField(input);
+            if (input.classList.contains("invalid-input")) {
+                allValid = false;
             }
         });
 
+        // If all fields are valid, proceed
+        if (allValid) {
+            console.log("Form is valid!");
+            // Handle form success (e.g., send data or show a success message)
+            document.getElementById("bookDetail-panel").style.display = "none";
+            document.getElementById("confirmation-panel").style.display =
+                "flex";
+
+            // Map of input field IDs to span IDs
+            const fieldMapping = {
+                "book-title": "title-span",
+                "book-author": "author-span",
+                "book-publisher": "publisher-span",
+                "book-category": "category-span",
+            };
+
+            // Loop through the mapping and set text content
+            Object.entries(fieldMapping).forEach(([inputId, spanId]) => {
+                const inputValue = document
+                    .getElementById(inputId)
+                    .value.trim();
+                document.getElementById(spanId).textContent = inputValue;
+            });
+        }
+    });
+
+    // Real-time validation for inputs
+    form.querySelectorAll("[data-error]").forEach((input) => {
+        input.addEventListener("input", () => {
+            const errorElementId = input.dataset.error;
+            const errorElement = document.getElementById(errorElementId);
+
+            // Remove invalid styles and hide the error message as user types
+            input.classList.remove("invalid-input");
+            errorElement.style.display = "none";
+        });
+    });
+
+    // Validate individual fields
+    function validateField(input) {
+        const errorElementId = input.dataset.error;
+        const errorElement = document.getElementById(errorElementId);
+
+        if (input.tagName === "SELECT") {
+            // Validate <select> elements
+            if (input.value === "Select a Category" || !input.value) {
+                setInvalid(input, errorElement);
+            } else {
+                setValid(input, errorElement);
+            }
+        } else if (input.type === "file") {
+            // Validate file inputs
+            if (!input.files || input.files.length === 0) {
+                setInvalid(input, errorElement);
+                uploadTrigger.classList.add("invalid-input");
+            } else {
+                setValid(input, errorElement);
+            }
+        } else {
+            // Validate general inputs
+            const value = input.value.trim();
+            if (!value) {
+                setInvalid(input, errorElement);
+            } else {
+                setValid(input, errorElement);
+            }
+        }
+    }
+
+    function validateField(input) {
+        const errorElement = document.getElementById(input.dataset.error);
+        const value = input.value.trim();
+
+        // Validation rules
+        const validationRules = {
+            SELECT: () => input.value === "Select a Category" || !input.value,
+            file: () => !input.files || input.files.length === 0,
+            default: () => !value, // General validation for empty fields
+        };
+
+        // Determine the validation logic to use
+        const validationType =
+            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
+        const isInvalid = (
+            validationRules[validationType] || validationRules.default
+        )();
+
+        // Set validity based on the result
+        if (isInvalid) {
+            setInvalid(input, errorElement);
+            if (input.type === "file") {
+                uploadTrigger.classList.add("invalid-input");
+            }
+        } else {
+            setValid(input, errorElement);
+        }
+    }
+
+    // Helper function to mark input as invalid
+    function setInvalid(input, errorElement) {
+        input.classList.add("invalid-input");
+        if (errorElement) errorElement.style.display = "block";
+    }
+
+    // Helper function to mark input as valid
+    function setValid(input, errorElement) {
+        input.classList.remove("invalid-input");
+        if (errorElement) errorElement.style.display = "none";
+    }
+
+    // cancel button displays back input fields
     document
         .getElementById("cancel-btn")
         .addEventListener("click", function () {
@@ -115,68 +201,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document
         .getElementById("confirm-btn")
         .addEventListener("click", function () {});
-
-    function displayInSpan(imageData) {
-        const span = document.getElementById("image-span");
-        span.innerHTML = `<img src="${imageData}" alt="Uploaded Image">`;
-
-        // Add a <style> block with media queries dynamically
-        const style = document.createElement("style");
-        style.textContent = `
-            #image-span img {
-                max-width: 5rem;
-            }
-
-            @media (min-width: 768px) {
-                #image-span img {
-                    max-width: 6rem;
-                }
-            }
-
-            @media (min-width: 1024px) {
-                #image-span img {
-                    max-width: 7rem;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // Remove the red outline as the user types
-    function validateInput(event) {
-        const target = event.target;
-
-        // Handle text inputs
-        if (event.type === "input" && target.value.trim()) {
-            target.classList.remove("invalid-input");
-        }
-        // Handle category selection
-        else if (
-            event.type === "change" &&
-            target === bookCategory &&
-            target.value !== "Select a Category"
-        ) {
-            target.classList.remove("invalid-input");
-        }
-        // Handle file input
-        else if (
-            event.type === "change" &&
-            target === fileInput &&
-            fileInput.files.length > 0
-        ) {
-            document
-                .querySelector(".file-upload-btn")
-                .classList.remove("invalid-input");
-        }
-    }
-
-    // Attach the event listener to text inputs
-    [bookTitle, bookAuthor, bookPublisher].forEach((input) => {
-        input.addEventListener("input", validateInput);
-    });
-
-    // Attach a change event for the category and file input fields
-    [bookCategory, fileInput].forEach((field) => {
-        field.addEventListener("change", validateInput);
-    });
 });
