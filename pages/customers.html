@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../src/style.css" />
 		<title>Shelfify</title>
-		<link rel="icon" type="image/x-icon" href="/images/logo.png" />
 		<script src="../src/app.js"></script>
+		<link rel="icon" type="image/x-icon" href="/images/logo.png" />
 	</head>
 	<body>
 		<menu>
@@ -66,21 +66,41 @@
 			</div>
 			<button class="menu-toggle">☰</button>
 		</menu>
-		<div class="default-page">
-			<h1>HOME PAGE</h1>
-			<div class="navigation-cards">
-				<div class="nav-cards">
-					<img src="../images/books.png" alt="" /><br /><br />
-					<a href="manage-books.html"
-						><button>Manage Books</button></a
-					>
+		<div class="container">
+			<div class="search-bar">
+				<input type="text" id="search" placeholder="Search users..." />
+				<button id="">Add</button>
+			</div>
+			<div class="cards">
+				<div class="card">
+					<img src="../images/customers.png" alt="User 1" />
+					<div>
+						<h3>User 1</h3>
+						<p>User ID: 12345</p>
+						<p>Phone: +60 xx xxx xxxx</p>
+						<p>Email: user1@example.com</p>
+					</div>
+					<button>remove</button>
 				</div>
-
-				<div class="nav-cards">
-					<img src="../images/users.png" alt="" /><br /><br />
-					<a href="manage-users.html"
-						><button>Manage Users</button></a
-					>
+				<div class="card">
+					<img src="../images/customers.png" alt="User 2" />
+					<div>
+						<h3>User 2</h3>
+						<p>User ID: 67890</p>
+						<p>Phone: +60 xx xxx xxxx</p>
+						<p>Email: user2@example.com</p>
+					</div>
+					<button>remove</button>
+				</div>
+				<div class="card">
+					<img src="../images/customers.png" alt="User 3" />
+					<div>
+						<h3>User 3</h3>
+						<p>User ID: 11223</p>
+						<p>Phone: +60 xx xxx xxxx</p>
+						<p>Email: user3@example.com</p>
+					</div>
+					<button>remove</button>
 				</div>
 			</div>
 		</div>
