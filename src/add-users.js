@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
     const phoneInput = document.getElementById("phone-no");
     const referrer = document.referrer;
-    console.log(referrer);
+    let base64Image = ""; // variable to hold the Base64 encoded image
 
     // select user type dropdown
     const userType = document.getElementById("user-type");
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (referrer.includes("members.html")) {
         userType.value = "Member";
     } else {
+        userType.value = "Select User";
     }
 
     // format phone no
@@ -42,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onload = (event) => {
-                imagePreview.src = event.target.result;
+                base64Image = event.target.result;
+                imagePreview.src = base64Image;
                 imagePreview.style.display = "block"; // Show the image preview
                 displayInSpan(event.target.result); // Display the image in span
 
@@ -52,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById(fileInput.dataset.error)
                 );
             };
+
             reader.readAsDataURL(file);
         } else {
             alert("Please upload a valid image file.");
@@ -222,5 +225,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document
         .getElementById("confirm-btn")
-        .addEventListener("click", function () {});
+        .addEventListener("click", function () {
+            localStorage.setItem("uploadedUserImage", base64Image);
+            const userType =
+                document.getElementById("userType-span").textContent;
+            const name = document.getElementById("name-span").textContent;
+            const email = document.getElementById("email-span").textContent;
+            const phone = document.getElementById("phone-span").textContent;
+            const address = document.getElementById("address-span").textContent;
+            let redirectURL = "";
+            let userID = Math.floor(Math.random() * 90000) + 10000; // random 5 digits generator
+
+            if (userType === "Librarian") {
+                redirectURL = `librarians.html`;
+                userID = `LIB${userID}`;
+            } else {
+                redirectURL = `members.html`;
+                userID = `SUN${userID}`;
+            }
+
+            const queryParams = new URLSearchParams({
+                userID: userID,
+                name: name,
+                email: email,
+                phone: phone,
+                address: address,
+            }).toString();
+
+            window.location.href = `${redirectURL}?${queryParams}`;
+        });
 });
