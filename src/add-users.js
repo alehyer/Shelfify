@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         style.textContent = `
             #image-span img {
                 max-width: 5rem;
+                border-radius: 1rem;
             }
 
             @media (min-width: 768px) {
