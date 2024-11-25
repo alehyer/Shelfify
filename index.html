@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="src/style.css" />
-        <link rel="icon" type="image/x-icon" href="images/logo.png" />
-        <script src="src/login.js"></script>
-        <title>Shelfify</title>
-    </head>
-    <body class="login-body">
-        <div class="login-container">
-            <img src="images/logo.png" alt="Shelfify Logo" class="login-logo" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="src/style.css" />
+		<link rel="icon" type="image/x-icon" href="images/logo.png" />
+		<script src="src/login.js"></script>
+		<title>Shelfify</title>
+	</head>
+	<body class="login-body">
+		<div class="login-container">
+			<img src="images/logo.png" alt="Shelfify Logo" class="login-logo" />
 
-            <h1 class="login-h1">Welcome Back</h1>
+			<h1 class="login-h1">Welcome Back</h1>
 
-            <form novalidate class="login-form-container">
-                <div class="form-group">
-                    <input
-                        type="text"
-                        placeholder="Librarian ID"
-                        class="login-inputText"
-                        id="librarian-id"
-                        data-error="idError"
-                        required
-                    />
-                    <div id="idError" class="error">
-                        Please enter your librarian ID
-                    </div>
-                </div>
+			<form novalidate class="login-form-container">
+				<div class="form-group">
+					<input
+						type="text"
+						placeholder="Librarian ID"
+						class="login-inputText"
+						id="librarian-id"
+						data-error="idError"
+						required
+					/>
+					<div id="idError" class="error">
+						Please enter your librarian ID
+					</div>
+				</div>
 
-                <div class="form-group">
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        class="login-inputText"
-                        id="librarian-password"
-                        data-error="passwordError"
-                        required
-                    />
-                    <div id="passwordError" class="error">
-                        Please enter your password
-                    </div>
-                    <div id="loginError" class="error">
-                        Incorrect Librarian ID or Password. Type the correct
-                        Librarian ID and Password, and try again.
-                    </div>
-                </div>
+				<div class="form-group">
+					<input
+						type="password"
+						placeholder="Password"
+						class="login-inputText"
+						id="librarian-password"
+						data-error="passwordError"
+						required
+					/>
+					<div id="passwordError" class="error">
+						Please enter your password
+					</div>
+					<div id="loginError" class="error">
+						Incorrect Librarian ID or Password. Type the correct
+						Librarian ID and Password, and try again.
+					</div>
+				</div>
 
-                <div class="login-note">
-                    <b>Note: Please login with your assigned Librarian ID.</b>
+				<div class="login-note">
+					<b>Note: Please login with your assigned Librarian ID.</b>
 
-                    <a id="login-helpInfo" href=""><b>Need Help?</b></a>
-                </div>
+					<a id="login-helpInfo" href=""><b>Need Help?</b></a>
+				</div>
 
-                <button type="submit" class="login-button" id="login-button">
-                    LOGIN
-                </button>
-            </form>
-        </div>
-    </body>
+				<button type="submit" class="login-button" id="login-button">
+					LOGIN
+				</button>
+			</form>
+		</div>
+	</body>
 </html>
