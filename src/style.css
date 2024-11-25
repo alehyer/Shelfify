@@ -461,7 +461,7 @@ textarea {
 }
 
 .contact-form h2 {
-    font-size: 35px;
+    font-size: 1.8rem;
     color: var(--primaryText);
     margin-bottom: 1rem;
     text-align: center;
@@ -1055,9 +1055,8 @@ textarea {
     }
 
     .contact-form h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
-
 }
 
 /* For desktops */
