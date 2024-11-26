@@ -270,6 +270,7 @@ textarea {
     background-color: var(--secondaryText);
     flex-direction: column;
     filter: drop-shadow(5px 5px 5px #00000040);
+    cursor: pointer;
 }
 
 .card img {

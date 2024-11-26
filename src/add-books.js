@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const uploadTrigger = document.querySelector(".file-upload-btn");
     const imagePreview = document.getElementById("image-preview");
     const form = document.querySelector("form");
+    let base64Image = "";
 
     // Trigger file input on button click
     uploadTrigger.addEventListener("click", () => {
@@ -15,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onload = (event) => {
-                imagePreview.src = event.target.result;
+                base64Image = event.target.result;
+                imagePreview.src = base64Image;
                 imagePreview.style.display = "block"; // Show the image preview
                 displayInSpan(event.target.result); // Display the image in span
 
@@ -117,6 +119,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // cancel button displays back input fields
+    document
+        .getElementById("cancel-btn")
+        .addEventListener("click", function () {
+            document.getElementById("bookDetail-panel").style.display = "flex";
+            document.getElementById("confirmation-panel").style.display =
+                "none";
+        });
+
+    // confirm button redirects user, and transfer added new book info to to book details page
+    document
+        .getElementById("confirm-btn")
+        .addEventListener("click", function () {
+            const title = document.getElementById("title-span").textContent;
+            const author = document.getElementById("author-span").textContent;
+            const publisher =
+                document.getElementById("publisher-span").textContent;
+            const category =
+                document.getElementById("category-span").textContent;
+
+            // generate bookID
+            const bookID = `${getRandChar()}${getRandChar()}${
+                Math.floor(Math.random() * 9000) + 1000
+            }`;
+
+            // Generate two random digits
+            const num1 = Math.floor(Math.random() * 10); // First digit
+            const num2 = Math.floor(Math.random() * 10); // Second digit
+            const shelfLocation = `${getRandChar()}-${num1}-${num2}`;
+
+            const newBookDetail = {
+                uploadedBookCover: base64Image,
+                title: title,
+                author: author,
+                publisher: publisher,
+                category: category,
+                bookID: bookID,
+                shelfLocation: shelfLocation,
+            };
+
+            localStorage.setItem("newBookData", JSON.stringify(newBookDetail));
+            window.location.href = "../pages/all-books.html";
+        });
+
+    function getRandChar() {
+        return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    }
+
     // Validate individual fields
     function validateField(input) {
         const errorElementId = input.dataset.error;
@@ -188,18 +238,4 @@ document.addEventListener("DOMContentLoaded", function () {
         input.classList.remove("invalid-input");
         if (errorElement) errorElement.style.display = "none";
     }
-
-    // cancel button displays back input fields
-    document
-        .getElementById("cancel-btn")
-        .addEventListener("click", function () {
-            document.getElementById("bookDetail-panel").style.display = "flex";
-            document.getElementById("confirmation-panel").style.display =
-                "none";
-        });
-
-    // confirm button redirects user, and transfer added new book info to to book details page
-    document
-        .getElementById("confirm-btn")
-        .addEventListener("click", function () {});
 });

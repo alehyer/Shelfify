@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("add-btn").addEventListener("click", function () {
-        window.location.href = `../pages/add-users.html`;
-    });
-
-    const data = JSON.parse(localStorage.getItem("newUserData"));
+    const data = JSON.parse(localStorage.getItem("newBookData"));
     if (data) {
         const cardsContainer = document.querySelector(".cards");
 
@@ -13,19 +9,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Add the content for the new card
         newCard.innerHTML = `
-            <img src="${data.uploadedUserImage}" alt="Uploaded Image" />
+            <img src="${data.uploadedBookCover}" alt="Book 1" style="border-radius: 1rem; height: auto;"/>
             <div>
-                <h3>${data.name}</h3>
-                <p>User ID: ${data.userID}</p>
-                <p>Phone: ${data.phone} </p>
-                <p>Email: ${data.email}</p>
+                <h3>${data.title}</h3>
+                <p>Book ID: ${data.bookID}</p>
+                <p>Author: ${data.author}</p>
+                <p>Publisher: ${data.publisher}</p>
+                <p>Category: ${data.category}</p>
                 <div style="display: none">
-                    <p>Street Address: ${data.streetAddress}</p>
-                    <p>City: ${data.city}</p>
-                    <p>Zipcode: ${data.zipcode}</p>
-                    <p>State: ${data.state}</p>
-                    <p>Member Since: ${data.memberDate}</p>
-                    <p>Renewal Date: ${data.renewalDate}</p>
+                    <p>Shelf Location: ${data.shelfLocation}</p>
                 </div>
             </div>
             <button
@@ -42,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cardsContainer.appendChild(newCard);
 
         // Delete data after use
-        localStorage.removeItem("newUserData");
+        localStorage.removeItem("newBookData");
     }
 
     const parent = function (el, match, last) {
@@ -76,22 +68,21 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".card").forEach(function (card) {
         card.addEventListener("click", function () {
             const imgSrc = this.querySelector("img").src;
-            const name = this.querySelector("h3").textContent;
+            const title = this.querySelector("h3").textContent;
 
-            let userDetail = {
+            let bookDetail = {
                 Image: imgSrc,
-                Name: name,
+                Title: title,
             };
 
             this.querySelectorAll("p").forEach(function (p) {
                 const key = p.textContent.split(":")[0].trim();
                 const value = p.textContent.split(":").pop().trim();
-                userDetail[key] = value;
+                bookDetail[key] = value;
             });
 
-            console.log(userDetail);
-            localStorage.setItem("userData", JSON.stringify(userDetail));
-            window.location.href = "../pages/profile.html";
+            localStorage.setItem("bookData", JSON.stringify(bookDetail));
+            window.location.href = "../pages/book-details.html";
         });
     });
 });

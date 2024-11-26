@@ -123,27 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "phone-no": "phone-span",
             };
 
-            // Helper function to get and trim input value by ID
-            function getTrimmedValue(id) {
-                return document.getElementById(id)?.value.trim() || "";
-            }
-
-            // Set full name
-            const firstName = getTrimmedValue("first-name");
-            const lastName = getTrimmedValue("last-name");
-            document.getElementById(
-                "name-span"
-            ).textContent = `${firstName} ${lastName}`;
-
-            // Set address
-            const streetAddress = getTrimmedValue("street-address");
-            const city = getTrimmedValue("city-address");
-            const zipcode = getTrimmedValue("zip-code");
-            const state = getTrimmedValue("state-address");
-            document.getElementById(
-                "address-span"
-            ).textContent = `${streetAddress}, ${zipcode} ${city}, ${state}`;
-
             // Loop through the mapping and set text content
             Object.entries(fieldMapping).forEach(([inputId, spanId]) => {
                 const inputValue = document
@@ -151,6 +130,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     .value.trim();
                 document.getElementById(spanId).textContent = inputValue;
             });
+
+            const firstName = getTrimmedValue("first-name");
+            const lastName = getTrimmedValue("last-name");
+            const streetAddress = getTrimmedValue("street-address");
+            const city = getTrimmedValue("city-address");
+            const zipcode = getTrimmedValue("zip-code");
+            const state = getTrimmedValue("state-address");
+
+            // set full name
+            document.getElementById(
+                "name-span"
+            ).textContent = `${firstName} ${lastName}`;
+
+            // Set address
+            document.getElementById(
+                "address-span"
+            ).textContent = `${streetAddress}, ${zipcode} ${city}, ${state}`;
         }
     });
 
@@ -165,6 +161,66 @@ document.addEventListener("DOMContentLoaded", function () {
             errorElement.style.display = "none";
         });
     });
+
+    document
+        .getElementById("cancel-btn")
+        .addEventListener("click", function () {
+            document.getElementById("userDetail-panel").style.display = "flex";
+            document.getElementById("confirmation-panel").style.display =
+                "none";
+        });
+
+    document
+        .getElementById("confirm-btn")
+        .addEventListener("click", function () {
+            const userType =
+                document.getElementById("userType-span").textContent;
+            const name = document.getElementById("name-span").textContent;
+            const email = document.getElementById("email-span").textContent;
+            const phone = document.getElementById("phone-span").textContent;
+            const streetAddress = getTrimmedValue("street-address");
+            const city = getTrimmedValue("city-address");
+            const zipcode = getTrimmedValue("zip-code");
+            const state = getTrimmedValue("state-address");
+
+            let redirectURL = "";
+            let userID = Math.floor(Math.random() * 90000) + 10000; // random 5 digits generator
+
+            if (userType === "Librarian") {
+                redirectURL = `librarians.html`;
+                userID = `LIB${userID}`;
+            } else {
+                redirectURL = `members.html`;
+                userID = `SUN${userID}`;
+            }
+
+            const date = new Date();
+            const day = String(date.getDate()).padStart(2, "0"); // Get day with leading zero
+            const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month (0-indexed)
+            const year = date.getFullYear(); // Get full year
+
+            const memberDate = `${day}-${month}-${year}`;
+            const renewalDate = `${day}-${month}-${year + 1}`;
+
+            const newUserDetail = {
+                uploadedUserImage: base64Image,
+                userID: userID,
+                name: name,
+                email: email,
+                phone: phone,
+                streetAddress: streetAddress,
+                city: city,
+                zipcode: zipcode,
+                state: state,
+                memberDate: memberDate,
+                renewalDate: renewalDate,
+            };
+
+            console.log(newUserDetail);
+            localStorage.setItem("newUserData", JSON.stringify(newUserDetail));
+
+            window.location.href = `../pages/${redirectURL}`;
+        });
 
     // Validate individual fields
     function validateField(input) {
@@ -198,6 +254,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Helper function to get and trim input value by ID
+    function getTrimmedValue(id) {
+        return document.getElementById(id)?.value.trim() || "";
+    }
+
     // Helper function to mark input as invalid
     function setInvalid(input, errorElement) {
         input.classList.add("invalid-input");
@@ -215,44 +276,4 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-
-    document
-        .getElementById("cancel-btn")
-        .addEventListener("click", function () {
-            document.getElementById("userDetail-panel").style.display = "flex";
-            document.getElementById("confirmation-panel").style.display =
-                "none";
-        });
-
-    document
-        .getElementById("confirm-btn")
-        .addEventListener("click", function () {
-            localStorage.setItem("uploadedUserImage", base64Image);
-            const userType =
-                document.getElementById("userType-span").textContent;
-            const name = document.getElementById("name-span").textContent;
-            const email = document.getElementById("email-span").textContent;
-            const phone = document.getElementById("phone-span").textContent;
-            const address = document.getElementById("address-span").textContent;
-            let redirectURL = "";
-            let userID = Math.floor(Math.random() * 90000) + 10000; // random 5 digits generator
-
-            if (userType === "Librarian") {
-                redirectURL = `librarians.html`;
-                userID = `LIB${userID}`;
-            } else {
-                redirectURL = `members.html`;
-                userID = `SUN${userID}`;
-            }
-
-            const queryParams = new URLSearchParams({
-                userID: userID,
-                name: name,
-                email: email,
-                phone: phone,
-                address: address,
-            }).toString();
-
-            window.location.href = `${redirectURL}?${queryParams}`;
-        });
 });
