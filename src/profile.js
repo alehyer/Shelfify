@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = JSON.parse(localStorage.getItem("userData"));
 
     if (data) {
+        document.getElementById("signOut-btn").style.display = "none";
+
         // Define a field mapping of data keys to span IDs
         const fieldMapping = {
             Image: "profile-picture",
@@ -68,4 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         localStorage.removeItem("userData");
     }
+
+    document
+        .getElementById("signOut-btn")
+        .addEventListener("click", function () {
+            window.location.href = "../index.html";
+        });
 });
