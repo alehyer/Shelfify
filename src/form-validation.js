@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (allValid) {
             // If all fields are valid, show success message
-            successMessage.style.display = "block";
+            alert("Thank you! Your message has been sent successfully.");
+            inputs.forEach((input) => {
+                input.value = "";
+            });
         }
     });
 

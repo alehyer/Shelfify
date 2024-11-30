@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <link rel="preload" href="../images/books.png" as="image" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Shelfify</title>
         <link rel="stylesheet" href="../src/style.css" />
@@ -52,7 +53,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="profile.html">
+                <a href="profile.html?fromNavBar=true">
                     <li>
                         <div style="display: flex">
                             <img
@@ -72,13 +73,6 @@
             <div class="profile-header">
                 <div class="profile-picture-container">
                     <img id="book-cover" src="" alt="Book Cover" />
-                    <button class="change-picture-btn">Change Picture</button>
-                    <input
-                        type="file"
-                        id="picture-upload"
-                        accept="image/*"
-                        style="display: none"
-                    />
                 </div>
 
                 <div class="profile-status">

@@ -1,74 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Profile picture upload functionality
-    const pictureUpload = document.getElementById("picture-upload");
-    const profilePicture = document.getElementById("profile-picture");
-    const changePictureBtn = document.querySelector(".change-picture-btn");
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromNavBar = urlParams.get("fromNavBar");
 
-    // Load saved profile picture from localStorage
-    const savedProfilePicture = localStorage.getItem("profilePicture");
-    if (savedProfilePicture) {
-        profilePicture.src = savedProfilePicture;
-    }
+    if (!fromNavBar) {
+        // replace text content with user data
+        const data = JSON.parse(localStorage.getItem("userData"));
 
-    if (changePictureBtn && pictureUpload) {
-        changePictureBtn.addEventListener("click", () => {
-            pictureUpload.click();
-        });
+        if (data) {
+            document.getElementById("signOut-btn").style.display = "none";
 
-        pictureUpload.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file && file.type.startsWith("image/")) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const imageData = e.target.result;
-                    profilePicture.src = imageData;
+            // Define a field mapping of data keys to span IDs
+            const fieldMapping = {
+                Image: "profile-picture",
+                Name: "name-span",
+                "User ID": "id-span",
+                Email: "email-span",
+                Phone: "phone-span",
+                "Street Address": "street-span",
+                City: "city-span",
+                State: "state-span",
+                Zipcode: "zipcode-span",
+                "Member Since": "memberDate-span",
+                "Renewal Date": "renewalDate-span",
+            };
 
-                    // Save the image data to localStorage
-                    localStorage.setItem("profilePicture", imageData);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
+            // Iterate over the field mapping
+            Object.keys(fieldMapping).forEach((key) => {
+                // Get the value from the data object using the key
+                const value = data[key];
 
-    // replace text content with user data
-    const data = JSON.parse(localStorage.getItem("userData"));
+                // Find the corresponding span element by ID
+                const span = document.getElementById(fieldMapping[key]);
 
-    if (data) {
-        document.getElementById("signOut-btn").style.display = "none";
-
-        // Define a field mapping of data keys to span IDs
-        const fieldMapping = {
-            Image: "profile-picture",
-            Name: "name-span",
-            "User ID": "id-span",
-            Email: "email-span",
-            Phone: "phone-span",
-            "Street Address": "street-span",
-            City: "city-span",
-            State: "state-span",
-            Zipcode: "zipcode-span",
-            "Member Since": "memberDate-span",
-            "Renewal Date": "renewalDate-span",
-        };
-
-        // Iterate over the field mapping
-        Object.keys(fieldMapping).forEach((key) => {
-            // Get the value from the data object using the key
-            const value = data[key];
-
-            // Find the corresponding span element by ID
-            const span = document.getElementById(fieldMapping[key]);
-
-            // Populate the span element with the value
-            if (span == document.getElementById("profile-picture") && value) {
-                span.src = value;
-            } else if (span && value) {
-                span.textContent = value;
-            }
-        });
-
-        localStorage.removeItem("userData");
+                // Populate the span element with the value
+                if (
+                    span == document.getElementById("profile-picture") &&
+                    value
+                ) {
+                    span.src = value;
+                } else if (span && value) {
+                    span.textContent = value;
+                }
+            });
+        }
     }
 
     document

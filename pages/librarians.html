@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../src/style.css" />
         <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <link rel="preload" href="../images/librarian.png" as="image" />
         <script src="../src/app.js"></script>
         <script src="../src/users.js"></script>
         <title>Shelfify</title>
@@ -52,7 +53,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="profile.html">
+                <a href="profile.html?fromNavBar=true">
                     <li>
                         <div style="display: flex">
                             <img
@@ -67,6 +68,7 @@
             </div>
             <button class="menu-toggle">☰</button>
         </menu>
+
         <div class="container">
             <h1>LIBRARIANS</h1>
             <br />
@@ -78,83 +80,7 @@
                 />
                 <button id="add-btn">Add Librarian</button>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <img src="../images/librarian.png" alt="Librarian 1" />
-                    <div>
-                        <h3>Librarian 1</h3>
-                        <p>User ID: LIB12345</p>
-                        <p>Phone: +60 xx xxx xxxx</p>
-                        <p>Email: librarian1@example.com</p>
-                        <div style="display: none">
-                            <p>Street Address: dummy street address</p>
-                            <p>City: dummy city</p>
-                            <p>Zipcode: dummy zipcode</p>
-                            <p>State: dummy state</p>
-                            <p>Member Since: 10-03-2024</p>
-                            <p>Renewal Date: 10-03-2025</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-                <div class="card">
-                    <img src="../images/librarian.png" alt="Librarian 2" />
-                    <div>
-                        <h3>Librarian 2</h3>
-                        <p>User ID: LIB67890</p>
-                        <p>Phone: +60 xx xxx xxxx</p>
-                        <p>Email: librarian2@example.com</p>
-                        <div style="display: none">
-                            <p>Street Address: dummy street address</p>
-                            <p>City: dummy city</p>
-                            <p>Zipcode: dummy zipcode</p>
-                            <p>State: dummy state</p>
-                            <p>Member Since: 20-04-2024</p>
-                            <p>Renewal Date: 20-04-2025</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-                <div class="card">
-                    <img src="../images/librarian.png" alt="Librarian 3" />
-                    <div>
-                        <h3>Librarian 3</h3>
-                        <p>User ID: LIB11223</p>
-                        <p>Phone: +60 xx xxx xxxx</p>
-                        <p>Email: librarian3@example.com</p>
-                        <div style="display: none">
-                            <p>Street Address: dummy street address</p>
-                            <p>City: dummy city</p>
-                            <p>Zipcode: dummy zipcode</p>
-                            <p>State: dummy state</p>
-                            <p>Member Since: 27-07-2024</p>
-                            <p>Renewal Date: 27-07-2025</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-            </div>
+            <div class="cards"></div>
         </div>
     </body>
 </html>

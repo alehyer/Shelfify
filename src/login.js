@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const passwordValue = password.value.trim();
 
         if (idValue && passwordValue) {
-            if (idValue === "123" && passwordValue === "abc") {
+            if (
+                idValue.length === 8 &&
+                idValue.substr(0, 3) === "LIB" &&
+                Number.isInteger(parseInt(idValue.substr(3, 7)))
+            ) {
                 window.location.href = `/pages/home.html`;
             } else {
                 loginError.style.display = "block";

@@ -34,10 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Clear file input and preview on page load
+    // Clear file input, file preview, and all inputs on page load
     window.addEventListener("load", () => {
+        const inputs = document.querySelectorAll("input");
+        const selects = document.querySelectorAll("select");
+
         fileInput.value = "";
         imagePreview.style.display = "none";
+
+        inputs.forEach((input) => {
+            input.value = "";
+        });
+
+        selects.forEach((select) => {
+            select.selectedIndex = 0; // Reset to the first option
+        });
     });
 
     // Function to display image in a span with responsive styles
@@ -116,6 +127,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Remove invalid styles and hide the error message as user types
             input.classList.remove("invalid-input");
             errorElement.style.display = "none";
+
+            if (input.name === "name") {
+                document.getElementById("validNameError").style.display =
+                    "none";
+            }
         });
     });
 
@@ -149,7 +165,17 @@ document.addEventListener("DOMContentLoaded", function () {
             const num2 = Math.floor(Math.random() * 10); // Second digit
             const shelfLocation = `${getRandChar()}-${num1}-${num2}`;
 
-            const newBookDetail = {
+            let bookData;
+            try {
+                bookData = JSON.parse(localStorage.getItem("newBookData"));
+            } catch (error) {
+                bookData = null;
+            }
+
+            const newBookDetail = Array.isArray(bookData) ? bookData : [];
+            console.log("Fetched newBookDetail: ", newBookDetail);
+
+            const bookDetail = {
                 uploadedBookCover: base64Image,
                 title: title,
                 author: author,
@@ -157,7 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 category: category,
                 bookID: bookID,
                 shelfLocation: shelfLocation,
+                isAvailable: true,
             };
+
+            newBookDetail.push(bookDetail);
 
             localStorage.setItem("newBookData", JSON.stringify(newBookDetail));
             window.location.href = "../pages/all-books.html";
@@ -165,37 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getRandChar() {
         return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    }
-
-    // Validate individual fields
-    function validateField(input) {
-        const errorElementId = input.dataset.error;
-        const errorElement = document.getElementById(errorElementId);
-
-        if (input.tagName === "SELECT") {
-            // Validate <select> elements
-            if (input.value === "Select a Category" || !input.value) {
-                setInvalid(input, errorElement);
-            } else {
-                setValid(input, errorElement);
-            }
-        } else if (input.type === "file") {
-            // Validate file inputs
-            if (!input.files || input.files.length === 0) {
-                setInvalid(input, errorElement);
-                uploadTrigger.classList.add("invalid-input");
-            } else {
-                setValid(input, errorElement);
-            }
-        } else {
-            // Validate general inputs
-            const value = input.value.trim();
-            if (!value) {
-                setInvalid(input, errorElement);
-            } else {
-                setValid(input, errorElement);
-            }
-        }
     }
 
     function validateField(input) {
@@ -206,19 +204,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const validationRules = {
             SELECT: () => input.value === "Select a Category" || !input.value,
             file: () => !input.files || input.files.length === 0,
+            name: () => {
+                const nameRegex = /^[a-zA-Z\s\-'/.]+$/;
+                return (
+                    !value ||
+                    !nameRegex.test(value) ||
+                    value.length < 2 ||
+                    value.length > 50
+                );
+            },
             default: () => !value, // General validation for empty fields
         };
 
         // Determine the validation logic to use
-        const validationType =
-            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
+        if (input.tagName === "SELECT") {
+            validationType = "SELECT";
+        } else if (input.name === "name") {
+            validationType = "name";
+        } else if (input.type) {
+            validationType = input.type;
+        } else {
+            validationType = "default";
+        }
+
         const isInvalid = (
             validationRules[validationType] || validationRules.default
         )();
 
         // Set validity based on the result
         if (isInvalid) {
-            setInvalid(input, errorElement);
+            if (input.name === "name" && value) {
+                setInvalid(input, document.getElementById("validNameError"));
+            } else {
+                setInvalid(input, errorElement);
+            }
+
             if (input.type === "file") {
                 uploadTrigger.classList.add("invalid-input");
             }

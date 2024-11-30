@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../src/style.css" />
         <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <link rel="preload" href="../images/librarian.png" as="image" />
+        <link rel="preload" href="../images/customers.png" as="image" />
         <script src="../src/app.js"></script>
         <title>Shelfify</title>
     </head>
@@ -51,7 +53,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="profile.html">
+                <a href="profile.html?fromNavBar=true">
                     <li>
                         <div style="display: flex">
                             <img
@@ -66,6 +68,7 @@
             </div>
             <button class="menu-toggle">☰</button>
         </menu>
+
         <div class="default-page">
             <h1>MANAGE USERS</h1>
             <div class="navigation-cards">

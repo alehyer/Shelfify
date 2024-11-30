@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../src/style.css" />
         <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <link rel="preload" href="../images/books.png" as="image" />
         <script src="../src/app.js"></script>
         <script src="../src/all-books.js"></script>
         <title>Shelfify</title>
@@ -52,7 +53,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="profile.html">
+                <a href="profile.html?fromNavBar=true">
                     <li>
                         <div style="display: flex">
                             <img
@@ -74,85 +75,7 @@
                 <input type="text" id="search" placeholder="Search books..." />
                 <a href="add-books.html"><button>Add Book</button></a>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <img
-                        src="../images/books.png"
-                        alt="Book 1"
-                        style="border-radius: 1rem; height: auto"
-                    />
-                    <div>
-                        <h3>Book 1</h3>
-                        <p>Book ID: SD2340</p>
-                        <p>Author: Author 1</p>
-                        <p>Publisher: Publisher 1</p>
-                        <p>Category: Adventure</p>
-                        <div style="display: none">
-                            <p>Shelf Location: A-10-23</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-
-                <div class="card">
-                    <img
-                        src="../images/books.png"
-                        alt="Book 2"
-                        style="border-radius: 1rem; height: auto"
-                    />
-                    <div>
-                        <h3>Book 2</h3>
-                        <p>Book ID: KD3452</p>
-                        <p>Author: Author 2</p>
-                        <p>Publisher: Publisher 2</p>
-                        <p>Category: Non-fiction</p>
-                        <div style="display: none">
-                            <p>Shelf Location: G-21-65</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-
-                <div class="card">
-                    <img
-                        src="../images/books.png"
-                        alt="Book 3"
-                        style="border-radius: 1rem; height: auto"
-                    />
-                    <div>
-                        <h3>Book 3</h3>
-                        <p>Book ID: UW1231</p>
-                        <p>Author: Author 3</p>
-                        <p>Publisher: Publisher 3</p>
-                        <p>Category: Science</p>
-                        <div style="display: none">
-                            <p>Shelf Location: H-20-05</p>
-                        </div>
-                    </div>
-                    <button
-                        class="delete"
-                        data-delete="zoom"
-                        onclick="event.stopPropagation();"
-                    >
-                        remove
-                    </button>
-                    <div class="animation-assets"></div>
-                </div>
-            </div>
+            <div class="cards"></div>
         </div>
     </body>
 </html>

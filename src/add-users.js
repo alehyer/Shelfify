@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const imagePreview = document.getElementById("image-preview");
     const form = document.querySelector("form");
     const phoneInput = document.getElementById("phone-no");
+    const zipcode = document.getElementById("zip-code");
     const referrer = document.referrer;
     let base64Image = ""; // variable to hold the Base64 encoded image
 
@@ -30,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 value.slice(7);
         }
         phoneInput.value = value.trim();
+    });
+
+    zipcode.addEventListener("input", () => {
+        let value = zipcode.value.replace(/\D/g, "");
+        zipcode.value = value.trim();
     });
 
     // Trigger file input on button click
@@ -62,10 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Clear file input and preview on page load
+    // Clear file input, file preview, and all inputs on page load
     window.addEventListener("load", () => {
+        const inputs = document.querySelectorAll("input");
+
         fileInput.value = "";
         imagePreview.style.display = "none";
+
+        inputs.forEach((input) => {
+            if (input.name === "tel") {
+                input.value = "+60";
+            } else {
+                input.value = "";
+            }
+        });
     });
 
     function displayInSpan(imageData) {
@@ -150,6 +166,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Validate individual fields
+    function validateField(input) {
+        const errorElement = document.getElementById(input.dataset.error);
+        const value = input.value.trim();
+
+        // Validation rules
+        const validationRules = {
+            SELECT: () => input.value === "Select User" || !input.value,
+            file: () => !input.files || input.files.length === 0,
+            tel: () => value.length < 14 || !value.startsWith("+60"),
+            email: () => !isValidEmail(value),
+            name: () => {
+                const nameRegex = /^[a-zA-Z\s\-'/.]+$/;
+                return (
+                    !value ||
+                    !nameRegex.test(value) ||
+                    value.length < 2 ||
+                    value.length > 50
+                );
+            },
+            default: () => !value, // General validation for empty fields
+        };
+
+        // Determine the validation logic to use
+        let validationType;
+
+        if (input.tagName === "SELECT") {
+            validationType = "SELECT";
+        } else if (input.name === "name") {
+            validationType = "name";
+        } else if (input.type) {
+            validationType = input.type;
+        } else {
+            validationType = "default";
+        }
+
+        const isInvalid = (
+            validationRules[validationType] || validationRules.default
+        )();
+
+        // Set validity based on the result
+        if (isInvalid) {
+            if (input.name === "name" && value) {
+                setInvalid(input, document.getElementById("validNameError"));
+            } else {
+                setInvalid(input, errorElement);
+            }
+
+            if (input.type === "file") {
+                uploadTrigger.classList.add("invalid-input");
+            }
+        } else {
+            setValid(input, errorElement);
+        }
+    }
+
     // Real-time validation for inputs
     form.querySelectorAll("[data-error]").forEach((input) => {
         input.addEventListener("input", () => {
@@ -159,6 +231,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Remove invalid styles and hide the error message as user types
             input.classList.remove("invalid-input");
             errorElement.style.display = "none";
+
+            if (input.name === "name") {
+                document.getElementById("validNameError").style.display =
+                    "none";
+            }
         });
     });
 
@@ -202,7 +279,29 @@ document.addEventListener("DOMContentLoaded", function () {
             const memberDate = `${day}-${month}-${year}`;
             const renewalDate = `${day}-${month}-${year + 1}`;
 
-            const newUserDetail = {
+            let librarianData, memberData;
+            try {
+                librarianData = JSON.parse(
+                    localStorage.getItem("newLibrarianData")
+                );
+                memberData = JSON.parse(localStorage.getItem("newMemberData"));
+            } catch (error) {
+                console.error("Error parsing localStorage data:", error);
+                librarianData = memberData = null;
+            }
+
+            const newUserDetail =
+                userType === "Librarian"
+                    ? Array.isArray(librarianData)
+                        ? librarianData
+                        : []
+                    : Array.isArray(memberData)
+                    ? memberData
+                    : [];
+
+            console.log("Fetched newUserDetail:", newUserDetail);
+
+            var newDetail = {
                 uploadedUserImage: base64Image,
                 userID: userID,
                 name: name,
@@ -216,43 +315,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 renewalDate: renewalDate,
             };
 
-            console.log(newUserDetail);
-            localStorage.setItem("newUserData", JSON.stringify(newUserDetail));
+            newUserDetail.push(newDetail);
 
+            if (userType === "Librarian") {
+                localStorage.setItem(
+                    "newLibrarianData",
+                    JSON.stringify(newUserDetail)
+                );
+            } else if (userType === "Member") {
+                localStorage.setItem(
+                    "newMemberData",
+                    JSON.stringify(newUserDetail)
+                );
+            } else {
+                console.error("Invalid userType:", userType);
+            }
             window.location.href = `../pages/${redirectURL}`;
         });
-
-    // Validate individual fields
-    function validateField(input) {
-        const errorElement = document.getElementById(input.dataset.error);
-        const value = input.value.trim();
-
-        // Validation rules
-        const validationRules = {
-            SELECT: () => input.value === "Select User" || !input.value,
-            file: () => !input.files || input.files.length === 0,
-            tel: () => value.length < 14 || !value.startsWith("+60"),
-            email: () => !isValidEmail(value),
-            default: () => !value, // General validation for empty fields
-        };
-
-        // Determine the validation logic to use
-        const validationType =
-            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
-        const isInvalid = (
-            validationRules[validationType] || validationRules.default
-        )();
-
-        // Set validity based on the result
-        if (isInvalid) {
-            setInvalid(input, errorElement);
-            if (input.type === "file") {
-                uploadTrigger.classList.add("invalid-input");
-            }
-        } else {
-            setValid(input, errorElement);
-        }
-    }
 
     // Helper function to get and trim input value by ID
     function getTrimmedValue(id) {

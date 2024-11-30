@@ -52,7 +52,7 @@
                         </div>
                     </li>
                 </a>
-                <a href="profile.html">
+                <a href="profile.html?fromNavBar=true">
                     <li>
                         <div style="display: flex">
                             <img
@@ -134,6 +134,7 @@
                     <input
                         type="text"
                         id="first-name"
+                        name="name"
                         class="page-inputText addUsers-name"
                         placeholder="First Name"
                         data-error="fullNameError"
@@ -142,12 +143,16 @@
                     <input
                         type="text"
                         id="last-name"
+                        name="name"
                         class="page-inputText addUsers-name"
                         placeholder="Last Name"
                         data-error="fullNameError"
                     />
                     <div id="fullNameError" class="error">
                         Please enter a full name
+                    </div>
+                    <div id="validNameError" class="error">
+                        Please enter a valid name
                     </div>
                 </div>
 
@@ -186,6 +191,7 @@
                     <input
                         type="tel"
                         id="phone-no"
+                        name="tel"
                         class="page-inputText addUsers-smallerField"
                         placeholder="e.g. +6012 345 6789"
                         maxlength="15"
@@ -250,11 +256,12 @@
                 </div>
                 <div class="form-group">
                     <input
-                        type="number"
+                        type="text"
                         id="zip-code"
                         class="page-inputText"
                         placeholder="e.g. 47500"
                         data-error="zipcodeError"
+                        maxlength="5"
                     />
                     <div id="zipcodeError" class="error">
                         Please enter a zip code

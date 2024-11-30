@@ -1,6 +1,71 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const data = JSON.parse(localStorage.getItem("newBookData"));
-    if (data) {
+    const book1 = {
+        uploadedBookCover: `../images/books.png`,
+        title: "Book 1",
+        author: "Author 1",
+        publisher: "Publisher 1",
+        category: "Adventure",
+        bookID: "SD2340",
+        shelfLocation: "A-10-23",
+        isAvailable: true,
+    };
+
+    const book2 = {
+        uploadedBookCover: `../images/books.png`,
+        title: "Book 2",
+        author: "Author 2",
+        publisher: "Publisher 2",
+        category: "Non-Fiction",
+        bookID: "KD3452",
+        shelfLocation: "G-21-65",
+        isAvailable: true,
+    };
+
+    const book3 = {
+        uploadedBookCover: `../images/books.png`,
+        title: "Book 3",
+        author: "Author 3",
+        publisher: "Publisher 3",
+        category: "Fantasy",
+        bookID: "UW1231",
+        shelfLocation: "H-20-05",
+        isAvailable: false,
+    };
+
+    const currentURL = window.location.href;
+    const bookArray = JSON.parse(localStorage.getItem("newBookData")) || [];
+
+    if (bookArray.length === 0) {
+        bookArray.push(book1, book2, book3);
+        localStorage.setItem("newBookData", JSON.stringify(bookArray));
+    }
+
+    console.log(bookArray);
+
+    // if current page is all books
+    if (currentURL.includes("all-books.html")) {
+        bookArray.forEach((data) => {
+            appendNewCard(data, "Remove", "all-books.html");
+        });
+    }
+    // else if current page is avalidable books
+    else if (currentURL.includes("available-books.html")) {
+        bookArray.forEach((data) => {
+            if (data.isAvailable === true) {
+                appendNewCard(data, "Lend Book", "available-books.html");
+            }
+        });
+    }
+    // else if current page is lent books
+    else if (currentURL.includes("lent-books.html")) {
+        bookArray.forEach((data) => {
+            if (data.isAvailable === false) {
+                appendNewCard(data, "Return Book", "lent-books.html");
+            }
+        });
+    }
+
+    function appendNewCard(data, button, page) {
         const cardsContainer = document.querySelector(".cards");
 
         // Create a new card element
@@ -18,14 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p>Category: ${data.category}</p>
                 <div style="display: none">
                     <p>Shelf Location: ${data.shelfLocation}</p>
+                    <p>isAvailable: ${data.isAvailable}</p>
                 </div>
             </div>
             <button
                 class="delete"
                 data-delete="zoom"
                 onclick="event.stopPropagation();"
+                data-book-id="${data.bookID}"
             >
-                remove
+                ${button}
             </button>
             <div class="animation-assets"></div>
         `;
@@ -33,8 +100,41 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append the new card to the "cards" container
         cardsContainer.appendChild(newCard);
 
-        // Delete data after use
-        localStorage.removeItem("newBookData");
+        // add event listener to delete button upon creating card
+        const deleteBtn = newCard.querySelector(".delete");
+        deleteBtn.addEventListener("click", function () {
+            const card = parent(this, ".card", 1); // Find the card element
+
+            // Add the zoom class for animation
+            card.classList.add("zoom");
+
+            card.addEventListener("animationend", function () {
+                card.remove();
+            });
+
+            const bookID = this.getAttribute("data-book-id");
+
+            // if current page is all-books, then remove from local storage
+            if (page === "all-books.html") {
+                const indexToRemove = bookArray.findIndex(
+                    (item) => item.bookID === bookID
+                );
+
+                if (indexToRemove !== -1) {
+                    bookArray.splice(indexToRemove, 1);
+                }
+                console.log("Updated bookArray:", bookArray);
+            }
+            // else if current page is available-books, change isAvailable to false
+            else if (page === "available-books.html") {
+                data.isAvailable = false;
+            }
+            // else if current page is lent-books, change isAvailable to true
+            else if (page === "lent-books.html") {
+                data.isAvailable = true;
+            }
+            localStorage.setItem("newBookData", JSON.stringify(bookArray));
+        });
     }
 
     const parent = function (el, match, last) {
@@ -51,19 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return result;
         }
     };
-
-    document.querySelectorAll(".delete").forEach(function (button) {
-        button.addEventListener("click", function () {
-            const card = parent(this, ".card", 1); // Find the card element
-
-            // Add the zoom class for animation
-            card.classList.add("zoom");
-
-            card.addEventListener("animationend", function () {
-                card.remove();
-            });
-        });
-    });
 
     document.querySelectorAll(".card").forEach(function (card) {
         card.addEventListener("click", function () {
