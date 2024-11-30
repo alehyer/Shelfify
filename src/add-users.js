@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 console.error("Invalid userType:", userType);
             }
-            window.location.href = `../pages/${redirectURL}`;
+            window.location.replace(`../pages/${redirectURL}`);
         });
 
     // Helper function to get and trim input value by ID

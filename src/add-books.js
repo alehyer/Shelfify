@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
             newBookDetail.push(bookDetail);
 
             localStorage.setItem("newBookData", JSON.stringify(newBookDetail));
-            window.location.href = "../pages/all-books.html";
+            window.location.replace("../pages/all-books.html");
         });
 
     function getRandChar() {
