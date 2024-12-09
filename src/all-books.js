@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add the content for the new card
         newCard.innerHTML = `
             <img src="${data.uploadedBookCover}" alt="Book 1" style="border-radius: 1rem; height: auto;"/>
-            <div>
+            <div >
                 <h3>${data.title}</h3>
                 <p>Book ID: ${data.bookID}</p>
                 <p>Author: ${data.author}</p>
@@ -91,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 data-delete="zoom"
                 onclick="event.stopPropagation();"
                 data-book-id="${data.bookID}"
+                
             >
                 ${button}
             </button>

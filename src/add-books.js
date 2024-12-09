@@ -217,6 +217,8 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Determine the validation logic to use
+        let validationType;
+
         if (input.tagName === "SELECT") {
             validationType = "SELECT";
         } else if (input.name === "name") {

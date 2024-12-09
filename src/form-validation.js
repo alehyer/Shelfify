@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
             validateField(input);
             if (input.classList.contains("invalid-input")) {
                 allValid = false;
-                successMessage.style.display = "none";
             }
         });
 
@@ -34,6 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
             // Remove invalid styles and hide the error message as user types
             input.classList.remove("invalid-input");
             errorElement.style.display = "none";
+
+            if (input.name === "name") {
+                document.getElementById("validNameError").style.display =
+                    "none";
+            }
         });
     });
 
@@ -45,19 +49,41 @@ document.addEventListener("DOMContentLoaded", () => {
         // Validation rules
         const validationRules = {
             email: () => !isValidEmail(value),
+            name: () => {
+                const nameRegex = /^[a-zA-Z\s\-'/.]+$/;
+                return (
+                    !value ||
+                    !nameRegex.test(value) ||
+                    value.length < 2 ||
+                    value.length > 50
+                );
+            },
             default: () => !value, // General validation for empty fields
         };
 
         // Determine the validation logic to use
-        const validationType =
-            input.tagName === "SELECT" ? "SELECT" : input.type || "default";
+        let validationType;
+
+        if (input.name === "name") {
+            validationType = "name";
+        } else if (input.type) {
+            validationType = input.type;
+        } else {
+            validationType = "default";
+        }
+
         const isInvalid = (
             validationRules[validationType] || validationRules.default
         )();
 
         // Set validity based on the result
         if (isInvalid) {
-            setInvalid(input, errorElement);
+            if (input.name === "name" && value) {
+                setInvalid(input, document.getElementById("validNameError"));
+            } else {
+                setInvalid(input, errorElement);
+            }
+
             if (input.type === "file") {
                 uploadTrigger.classList.add("invalid-input");
             }
