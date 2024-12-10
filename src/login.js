@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Remove invalid styles and hide the error message as user types
             input.classList.remove("invalid-input");
             errorElement.style.display = "none";
+            loginError.style.display = "none";
         });
     });
 
