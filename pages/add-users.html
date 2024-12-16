@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="html-background">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../src/style.css" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <script src="../src/add-users.js"></script>
+        <script src="../src/app.js"></script>
+        <title>Shelfify</title>
+    </head>
+    <body>
+        <menu>
+            <img src="../images/logo.png" alt="" />
+            <a href="home.html">
+                <li class="logo">SHELFIFY</li>
+            </a>
+            <div class="right-group">
+                <a href="home.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/home2.png"
+                                alt="home logo"
+                                class="nav-icon"
+                            />
+                            <p>HOME</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="about-us.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/about-us2.png"
+                                alt="magnifier with question mark"
+                                class="nav-icon"
+                            />
+                            <p>ABOUT US</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="contact-us.html">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/contact-us2.png"
+                                alt="phone ringing logo"
+                                class="nav-icon"
+                            />
+                            <p>CONTACT US</p>
+                        </div>
+                    </li>
+                </a>
+                <a href="profile.html?fromNavBar=true">
+                    <li>
+                        <div style="display: flex">
+                            <img
+                                src="../images/profile2.png"
+                                alt="profile logo"
+                                class="nav-icon"
+                            />
+                            <p>PROFILE</p>
+                        </div>
+                    </li>
+                </a>
+            </div>
+            <button class="menu-toggle">☰</button>
+        </menu>
+
+        <div class="input-container" id="userDetail-panel">
+            <h1 class="page-h1">Register New Account</h1>
+
+            <form class="form-grid" novalidate>
+                <!-- Profile Picture -->
+                <div style="display: flex">
+                    <img
+                        src="../images/camera.png"
+                        alt="Upload icon for cover image"
+                        class="page-icon"
+                    />
+                    <label for="file-upload">Profile Picture</label>
+                </div>
+                <div class="file-upload-container">
+                    <img
+                        id="image-preview"
+                        alt="Preview of uploaded cover image"
+                    />
+                    <button class="file-upload-btn" type="button">
+                        Upload
+                    </button>
+                    <input
+                        type="file"
+                        id="file-upload"
+                        accept="image/*"
+                        data-error="fileError"
+                        hidden
+                    />
+                    <div id="fileError" class="error">Please upload a file</div>
+                </div>
+
+                <!-- User Type -->
+                <div style="display: flex">
+                    <img
+                        src="../images/user-type.png"
+                        alt="User icon"
+                        class="page-icon"
+                    />
+                    <label for="user-type">User Type</label>
+                </div>
+                <div class="form-group">
+                    <select
+                        id="user-type"
+                        class="page-inputText addUsers-dropdown"
+                        data-error="userError"
+                    >
+                        <option value="Select User">Select User</option>
+                        <option value="Member">Member</option>
+                        <option value="Librarian">Librarian</option>
+                    </select>
+                    <div id="userError" class="error">Please select a user</div>
+                </div>
+
+                <!-- Name -->
+                <div style="display: flex">
+                    <img
+                        src="../images/id-card.png"
+                        alt="Full name icon"
+                        class="page-icon"
+                    />
+                    <label for="full-name">Full Name</label>
+                </div>
+                <div>
+                    <input
+                        type="text"
+                        id="first-name"
+                        name="name"
+                        class="page-inputText addUsers-name"
+                        placeholder="First Name"
+                        data-error="fullNameError"
+                    />
+
+                    <input
+                        type="text"
+                        id="last-name"
+                        name="name"
+                        class="page-inputText addUsers-name"
+                        placeholder="Last Name"
+                        data-error="fullNameError"
+                    />
+                    <div id="fullNameError" class="error">
+                        Please enter a full name
+                    </div>
+                    <div id="validNameError" class="error">
+                        Please enter a valid name
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div style="display: flex">
+                    <img
+                        src="../images/email.png"
+                        alt="email icon"
+                        class="page-icon"
+                    />
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="email"
+                        id="email"
+                        class="page-inputText"
+                        placeholder="example@imail.sunway.edu.my"
+                        data-error="emailError"
+                    />
+                    <div id="emailError" class="error">
+                        Please enter a valid email address
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div style="display: flex">
+                    <img
+                        src="../images/phonebook.png"
+                        alt="Phone icon"
+                        class="page-icon"
+                    />
+                    <label for="phone-no">Phone Number</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="tel"
+                        id="phone-no"
+                        name="tel"
+                        class="page-inputText addUsers-smallerField"
+                        placeholder="e.g. +6012 345 6789"
+                        maxlength="15"
+                        value="+60"
+                        data-error="phoneError"
+                    />
+                    <div id="phoneError" class="error">
+                        Please enter a valid phone number
+                    </div>
+                </div>
+
+                <!-- Address-->
+                <h2 class="addUsers-h2">Address Information</h2>
+
+                <div style="display: flex">
+                    <img
+                        src="../images/gps.png"
+                        alt="Street address icon"
+                        class="page-icon"
+                    />
+                    <label for="street-address">Street Address</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="street-address"
+                        class="page-inputText addUsers-smallerField"
+                        placeholder="e.g. 5, Jalan University"
+                        data-error="streetError"
+                    />
+                    <div id="streetError" class="error">
+                        Please enter a street address
+                    </div>
+                </div>
+
+                <div style="display: flex">
+                    <img
+                        src="../images/cityscape.png"
+                        alt="City icon"
+                        class="page-icon"
+                    />
+                    <label for="city-address">City</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="city-address"
+                        class="page-inputText"
+                        placeholder="e.g. Bandar Sunway"
+                        data-error="cityError"
+                    />
+                    <div id="cityError" class="error">Please enter a city</div>
+                </div>
+
+                <div style="display: flex">
+                    <img
+                        src="../images/mailbox.png"
+                        alt="Zip code icon"
+                        class="page-icon"
+                    />
+                    <label for="zip-code">Zip Code</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="zip-code"
+                        class="page-inputText"
+                        placeholder="e.g. 47500"
+                        data-error="zipcodeError"
+                        maxlength="5"
+                    />
+                    <div id="zipcodeError" class="error">
+                        Please enter a zip code
+                    </div>
+                </div>
+
+                <div style="display: flex">
+                    <img
+                        src="../images/state-icon.png"
+                        alt="State icon"
+                        class="page-icon"
+                    />
+                    <label for="state-address">State</label>
+                </div>
+                <div class="form-group">
+                    <input
+                        type="text"
+                        id="state-address"
+                        class="page-inputText"
+                        placeholder="e.g. Selangor"
+                        data-error="stateError"
+                    />
+                    <div id="stateError" class="error">
+                        Please enter a state
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button page-addBtn"
+                    id="addUser-btn"
+                >
+                    Add User
+                </button>
+            </form>
+        </div>
+
+        <div id="confirmation-panel">
+            <h2>Confirm Addition of This User?</h2>
+
+            <div class="confirmation-grid">
+                <b>Profile Picture:</b>
+                <div id="image-span">-</div>
+
+                <b>User Type:</b>
+                <div id="userType-span">-</div>
+
+                <b>Full Name:</b>
+                <div id="name-span">-</div>
+
+                <b>Email:</b>
+                <div id="email-span">-</div>
+
+                <b>Phone Number:</b>
+                <div id="phone-span">-</div>
+
+                <b>Full Address:</b>
+                <div id="address-span">-</div>
+            </div>
+
+            <div class="confirmation-button-container">
+                <button class="confirmation-btn" id="cancel-btn">Cancel</button>
+                <button class="confirmation-btn" id="confirm-btn">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

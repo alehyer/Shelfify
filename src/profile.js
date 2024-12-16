@@ -1,47 +1,53 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Navigation bar function
-  const menuToggle = document.querySelector(".menu-toggle");
-  const menuItems = document.querySelector(".right-group");
+    const urlParams = new URLSearchParams(window.location.search);
+    const fromNavBar = urlParams.get("fromNavBar");
 
-  // Check if menuToggle and menuItems exist
-  if (menuToggle && menuItems) {
-    menuToggle.addEventListener("click", () => {
-      menuItems.classList.toggle("active"); // Toggle the active class
-      menuToggle.classList.toggle("rotated");
-    });
-  } else {
-    console.error("Menu toggle or menu items not found!");
-  }
+    if (!fromNavBar) {
+        // replace text content with user data
+        const data = JSON.parse(localStorage.getItem("userData"));
 
-  // Profile picture upload functionality
-  const pictureUpload = document.getElementById("picture-upload");
-  const profilePicture = document.getElementById("profile-picture");
-  const changePictureBtn = document.querySelector(".change-picture-btn");
+        if (data) {
+            document.getElementById("signOut-btn").style.display = "none";
 
-  // Load saved profile picture from localStorage
-  const savedProfilePicture = localStorage.getItem("profilePicture");
-  if (savedProfilePicture) {
-    profilePicture.src = savedProfilePicture;
-  }
+            // Define a field mapping of data keys to span IDs
+            const fieldMapping = {
+                Image: "profile-picture",
+                Name: "name-span",
+                "User ID": "id-span",
+                Email: "email-span",
+                Phone: "phone-span",
+                "Street Address": "street-span",
+                City: "city-span",
+                State: "state-span",
+                Zipcode: "zipcode-span",
+                "Member Since": "memberDate-span",
+                "Renewal Date": "renewalDate-span",
+            };
 
-  if (changePictureBtn && pictureUpload) {
-    changePictureBtn.addEventListener("click", () => {
-      pictureUpload.click();
-    });
+            // Iterate over the field mapping
+            Object.keys(fieldMapping).forEach((key) => {
+                // Get the value from the data object using the key
+                const value = data[key];
 
-    pictureUpload.addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith("image/")) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const imageData = e.target.result;
-          profilePicture.src = imageData;
+                // Find the corresponding span element by ID
+                const span = document.getElementById(fieldMapping[key]);
 
-          // Save the image data to localStorage
-          localStorage.setItem("profilePicture", imageData);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
+                // Populate the span element with the value
+                if (
+                    span == document.getElementById("profile-picture") &&
+                    value
+                ) {
+                    span.src = value;
+                } else if (span && value) {
+                    span.textContent = value;
+                }
+            });
+        }
+    }
+
+    document
+        .getElementById("signOut-btn")
+        .addEventListener("click", function () {
+            window.location.href = "../index.html";
+        });
 });

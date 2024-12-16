@@ -1,46 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("login-helpInfo").addEventListener("click", function () {
-    alert("Please contact IT Services \n\nPhone Number: +601234567890 \nEmail: shelfify@customersupport.com");
-  });
+    document
+        .getElementById("login-helpInfo")
+        .addEventListener("click", function () {
+            alert(
+                "Please contact IT Services \n\nPhone Number: +601234567890 \nEmail: shelfify@customersupport.com"
+            );
+        });
 
-  document.getElementById("login-button").addEventListener("click", function () {
-    const id = document.getElementById("librarian-id").value.trim();
-    let password = document.getElementById("librarian-password").value.trim();
+    const form = document.querySelector("form");
+    const id = document.getElementById("librarian-id");
+    const password = document.getElementById("librarian-password");
+    const loginError = document.getElementById("loginError");
 
-    if (!id) {
-      document.getElementById("librarian-id").classList.add("invalid-input");
+    // Add event listener for form submission
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent form submission for validation
+        const inputs = form.querySelectorAll("[data-error]"); // Get all inputs with a data-error attribute
+
+        inputs.forEach((input) => validateField(input)); // Validate each field
+
+        const idValue = id.value.trim();
+        const passwordValue = password.value.trim();
+
+        if (idValue && passwordValue) {
+            if (
+                idValue.length === 8 &&
+                idValue.substr(0, 3) === "LIB" &&
+                Number.isInteger(parseInt(idValue.substr(3, 7)))
+            ) {
+                window.location.href = `/pages/home.html`;
+            } else {
+                loginError.style.display = "block";
+                password.value = "";
+                password.focus();
+            }
+        }
+    });
+
+    form.querySelectorAll("[data-error]").forEach((input) => {
+        input.addEventListener("input", () => {
+            const errorElementId = input.dataset.error;
+            const errorElement = document.getElementById(errorElementId);
+
+            // Remove invalid styles and hide the error message as user types
+            input.classList.remove("invalid-input");
+            errorElement.style.display = "none";
+            loginError.style.display = "none";
+        });
+    });
+
+    // Function to validate fields
+    function validateField(input) {
+        const errorElementId = input.dataset.error; // Get the associated error element ID
+        const errorElement = document.getElementById(errorElementId);
+        const value = input.value.trim();
+
+        if (!value) {
+            input.classList.add("invalid-input");
+            errorElement.style.display = "block";
+        } else {
+            input.classList.remove("invalid-input");
+            errorElement.style.display = "none";
+        }
     }
-    if (!password) {
-      document.getElementById("librarian-password").classList.add("invalid-input");
-    }
-
-    if (!id || !password) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
-    // demo account
-    if (id === "123" && password === "abc") {
-      window.location.href = `../pages/home.html`;
-    } else {
-      alert("Incorrect ID or password.");
-      document.getElementById("librarian-id").classList.add("invalid-input");
-      document.getElementById("librarian-password").classList.add("invalid-input");
-    }
-
-    // reset password
-    document.getElementById("librarian-password").value = "";
-  });
-
-  document.getElementById("librarian-id").addEventListener("input", function () {
-    if (this.value.trim()) {
-      this.classList.remove("invalid-input");
-    }
-  });
-
-  document.getElementById("librarian-password").addEventListener("input", function () {
-    if (this.value.trim()) {
-      this.classList.remove("invalid-input");
-    }
-  });
 });
